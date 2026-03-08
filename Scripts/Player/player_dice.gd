@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+#Globals
+	#GlobalPlayerScript
 
 @export var player = CharacterBody3D
 #@export var PlayerMesh = Node3D
@@ -29,6 +31,8 @@ var EnableAttackCooldown: bool = false
 
 
 func _ready():
+	AttackingFloat = 0.15
+	AttackCooldownFloat = 1.0
 	return
 
 func _physics_process(delta):
@@ -58,6 +62,7 @@ func _physics_process(delta):
 
 func AttackingFunc():
 	if (Input.is_action_just_pressed("Attack") && EnableAttackCooldown == false):
+		GlobalPlayerScript.Attacking = true
 		Attacking.start(AttackingFloat)
 		AttackCooldown.start(AttackCooldownFloat)
 		AttackMesh.visible = true
@@ -66,6 +71,7 @@ func AttackingFunc():
 
 
 func _on_attacking_timeout():
+	GlobalPlayerScript.Attacking = false
 	EnableAttack = false
 	AttackMesh.visible = false
 
