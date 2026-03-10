@@ -48,7 +48,8 @@ albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
 [node name="Prototype" type="Node3D" unique_id=566195261]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1842385117]
-transform = Transform3D(1, 0, 0, 0, 0.54007876, 0.8416145, 0, -0.8416145, 0.54007876, 0, 8.200483, 9.619563)
+transform = Transform3D(1, 0, 0, 0, 0.54007876, 0.8416145, 0, -0.8416145, 0.54007876, 0, 10.200483, 10.619563)
+metadata/_edit_lock_ = true
 
 [node name="---Sun&Environment" type="Node3D" parent="." unique_id=673485911]
 metadata/_edit_lock_ = true

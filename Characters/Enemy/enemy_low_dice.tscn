@@ -29,4 +29,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_fowbw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyTrigger" unique_id=629395947]
 shape = SubResource("BoxShape3D_wwsqc")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="DamageCooldown" type="Timer" parent="." unique_id=528611121]
+wait_time = 0.1
+
+[node name="DamageLabel" type="Label3D" parent="." unique_id=502174633]
+transform = Transform3D(1.505, 0, 0, 0, 0.96739537, 1.1528969, 0, -1.1528969, 0.96739537, 0, 1, 0)
+visible = false
+modulate = Color(1, 0.47168958, 0.38229927, 1)
+text = "asdfsaefsadf"
+font_size = 50
+
+[connection signal="timeout" from="DamageCooldown" to="." method="_on_damage_cooldown_timeout"]
