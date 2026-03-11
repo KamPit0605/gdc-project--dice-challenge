@@ -39,4 +39,7 @@ modulate = Color(1, 0.47168958, 0.38229927, 1)
 text = "asdfsaefsadf"
 font_size = 50
 
+[node name="FollowingCooldown" type="Timer" parent="." unique_id=1520790909]
+
 [connection signal="timeout" from="DamageCooldown" to="." method="_on_damage_cooldown_timeout"]
+[connection signal="timeout" from="FollowingCooldown" to="." method="_on_following_cooldown_timeout"]
