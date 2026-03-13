@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 GlobalPlayerScript="*uid://dg8cv8c1b0lk7"
 
+[global_group]
+
+AttackTrigger=""
+
 [input]
 
 Move_Forward={

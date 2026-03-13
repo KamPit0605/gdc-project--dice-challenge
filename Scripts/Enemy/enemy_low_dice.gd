@@ -12,13 +12,13 @@ var PlayerAttackTrigger: bool = false #entered player's Area3D
 var DamageCooldown: bool = false
 var DamageCooldownF: float = 0.5
 #--MOVEMENT--
-var SPEED = 3.5
+var SPEED = 3.0
 
 #--HEALTH--
 var Health: int = 30
 
 #--PLAYER FOLLOW--
-@export var Player: CharacterBody3D
+var Player: CharacterBody3D #@export
 
 @onready var FollowingCooldownTimer = $FollowingCooldown
 var FollowPlayer: bool = false
@@ -27,10 +27,21 @@ var FollowPlayer: bool = false
 var TriggerOfF: float = 1.0 #variable for preventing any triggering happen within float time
 var PlayerAreaCount: int = 0 #counts how many times it entered the Area3D (even in some OTHER way that I don't know)
 
+#--SPAWNING--
+var TopMidPosition = Node3D #@export
+var BottomMidPosition = Node3D #@export
+var Positioner: int #assigns the above positions to their respective ints
+
+#@export var Cloned: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#Cloned = true
 	DisableALLTriggers()
 	FollowingCooldownTimer.start(1)
+	#if Cloned:
+		#_ifSpawning()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -53,18 +64,20 @@ func _debugPrinting():
 	#print(Health, FollowPlayer)
 
 func _physics_process(delta):
-	var targetPlayer = (Player.position - position).normalized()
-	if FollowPlayer:
-		position += targetPlayer * SPEED * delta
+	#if Cloned:
+		var targetPlayer = (Player.position - position).normalized()
+		if FollowPlayer:
+			position += targetPlayer * SPEED * delta
 
 func _on_damage_cooldown_timeout():
 	DamageCooldown = false
 	
 func _Health():
 	if Health <= 0:
-		self.visible = false
-		FollowPlayer = false
-		Health = 0
+		queue_free()
+		#self.visible = false
+		#FollowPlayer = false
+		#Health = 0
 
 
 func _triggerAdjust():
@@ -85,10 +98,21 @@ func _on_attack_trigger_area_entered(_area): #player's trigger
 		PlayerAttackTrigger = true
 		PlayerAreaCount = 2
 
-func _on_attack_trigger_area_exited(_area):
-	PlayerAttackTrigger = false
+#func _on_attack_trigger_area_exited(_area): (DIFFERENT FUNCTION: _on_enemy_trigger_area_entered(area)) 
+	#PlayerAttackTrigger = false
 
-#func _followingplayer():
+func _on_enemy_trigger_area_entered(area):
+	#print(area.name)
+	if area.is_in_group("AttackTrigger"):
+		PlayerAreaCount += 1
+		if (PlayerAreaCount >= 1):
+			PlayerAttackTrigger = true
+			PlayerAreaCount = 2
+
+func _on_enemy_trigger_area_exited(area):
+	if area.is_in_group("AttackTrigger"):
+		PlayerAttackTrigger = false
+#func _followingplayer(): (KEEP THIS COMMENTED FOR NOW)
 	#var targetPlayer = (Player.position - position).normalized()
 	#if FollowPlayer:
 		#position += targetPlayer * SPEED 
@@ -98,5 +122,17 @@ func _followcooldown(seconds):
 	FollowingCooldownTimer.start(seconds)
 	
 
+#func _spawning(PositionMarker):
+	#transform.origin = PositionMarker.position
+	#translate(Vector3(randf_range(-5,5),6,randf_range(-5,5)))
+	
+#func _ifSpawning():
+	#Positioner = randi_range(0,1)
+	#if Positioner == 0:
+		#_spawning(TopMidPosition)
+	#elif Positioner == 1:
+		#_spawning(BottomMidPosition)
+
 func _on_following_cooldown_timeout():
-	FollowPlayer = true
+	#if Cloned:
+		FollowPlayer = true

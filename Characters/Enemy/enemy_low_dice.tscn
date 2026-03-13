@@ -41,5 +41,7 @@ font_size = 50
 
 [node name="FollowingCooldown" type="Timer" parent="." unique_id=1520790909]
 
+[connection signal="area_entered" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_entered"]
+[connection signal="area_exited" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_exited"]
 [connection signal="timeout" from="DamageCooldown" to="." method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="FollowingCooldown" to="." method="_on_following_cooldown_timeout"]
