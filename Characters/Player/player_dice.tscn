@@ -45,7 +45,7 @@ shape = SubResource("BoxShape3D_avbah")
 
 [node name="Attacking" type="Node3D" parent="." unique_id=810333064]
 
-[node name="AttackTrigger" type="Area3D" parent="Attacking" unique_id=997109229]
+[node name="AttackTrigger" type="Area3D" parent="Attacking" unique_id=997109229 groups=["Enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Attacking/AttackTrigger" unique_id=1076116374]
@@ -64,5 +64,9 @@ wait_time = 0.1
 [node name="AttackCooldown" type="Timer" parent="Attacking" unique_id=534554342]
 wait_time = 0.5
 
+[connection signal="area_entered" from="PlayerTrigger" to="." method="_on_player_trigger_area_entered"]
+[connection signal="area_exited" from="PlayerTrigger" to="." method="_on_player_trigger_area_exited"]
+[connection signal="area_entered" from="Attacking/AttackTrigger" to="." method="_on_attack_trigger_area_entered"]
+[connection signal="area_exited" from="Attacking/AttackTrigger" to="." method="_on_attack_trigger_area_exited"]
 [connection signal="timeout" from="Attacking/Attacking" to="." method="_on_attacking_timeout"]
 [connection signal="timeout" from="Attacking/AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

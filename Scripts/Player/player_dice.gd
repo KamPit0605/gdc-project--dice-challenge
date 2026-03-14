@@ -23,17 +23,25 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var AttackCooldown = $Attacking/AttackCooldown
 @export var AttackCooldownFloat: float
 @onready var AttackMesh = $Attacking/AttackTrigger/AttackMesh
+var EnableAutoAttack: bool
 #var OnAttack: float = 0.0
 #var AttackCooldown: float = 0.0
 var EnableAttack: bool = false
 var EnableAttackCooldown: bool = false
 
-
+var EnemyDetected: bool
 
 func _ready():
 	AttackingFloat = 0.15
 	AttackCooldownFloat = 1.0
 	return
+
+func _process(_delta):
+	if Input.is_action_just_pressed('Auto_Attack'):
+		if !EnableAutoAttack:
+			EnableAutoAttack = true
+		else:
+			EnableAutoAttack = false
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -56,12 +64,14 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x,move_toward(velocity.x, 0, SPEED),.2)
 		velocity.z = lerp(velocity.z,move_toward(velocity.z, 0, SPEED),.2)
 
-	AttackingFunc()
-
+	if (Input.is_action_just_pressed("Attack")): #" && EnableAttackCooldown == false" use to be in the condition
+		AttackingFunc()
+	#AttackingFunc()
+	_autoAttackEnemy()
 	move_and_slide()
 
 func AttackingFunc():
-	if (Input.is_action_just_pressed("Attack") && EnableAttackCooldown == false):
+	if EnableAttackCooldown == false:
 		GlobalPlayerScript.Attacking = true
 		Attacking.start(AttackingFloat)
 		AttackCooldown.start(AttackCooldownFloat)
@@ -77,3 +87,24 @@ func _on_attacking_timeout():
 
 func _on_attack_cooldown_timeout():
 	EnableAttackCooldown = false
+
+#PLAYER TRIGGERS
+func _on_attack_trigger_area_entered(area):
+	if area.is_in_group("Enemies"):
+		EnemyDetected = true
+
+func _autoAttackEnemy():
+	if (EnemyDetected == true && EnableAutoAttack == true):
+		AttackingFunc()
+
+func _on_attack_trigger_area_exited(area):
+	if area.is_in_group("Enemies"):
+		EnemyDetected = false
+
+
+func _on_player_trigger_area_entered(area):
+	pass # Replace with function body.
+
+
+func _on_player_trigger_area_exited(area):
+	pass # Replace with function body.

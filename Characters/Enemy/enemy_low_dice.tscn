@@ -12,7 +12,7 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_wwsqc"]
 size = Vector3(1.05, 1.05, 1.05)
 
-[node name="enemyLow_dice" type="RigidBody3D" unique_id=1738791593 node_paths=PackedStringArray("Enemy", "EnemyTrigger")]
+[node name="enemyLow_dice" type="RigidBody3D" unique_id=1738791593 node_paths=PackedStringArray("Enemy", "EnemyTrigger") groups=["Enemies"]]
 script = ExtResource("1_wwsqc")
 Enemy = NodePath(".")
 EnemyTrigger = NodePath("EnemyTrigger")
@@ -24,7 +24,7 @@ shape = SubResource("BoxShape3D_w0rp6")
 mesh = SubResource("BoxMesh_wwsqc")
 surface_material_override/0 = SubResource("StandardMaterial3D_fowbw")
 
-[node name="EnemyTrigger" type="Area3D" parent="." unique_id=605287903]
+[node name="EnemyTrigger" type="Area3D" parent="." unique_id=605287903 groups=["Enemies"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyTrigger" unique_id=629395947]
 shape = SubResource("BoxShape3D_wwsqc")
