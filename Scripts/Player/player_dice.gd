@@ -24,6 +24,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var AttackCooldownFloat: float
 @onready var AttackMesh = $Attacking/AttackTrigger/AttackMesh
 var EnableAutoAttack: bool
+
+@onready var AttackGuide = $Attacking/Visuals/AttackGuide
+@onready var AttackCloserGuide = $Attacking/Visuals/AttackCloserGuide
 #var OnAttack: float = 0.0
 #var AttackCooldown: float = 0.0
 var EnableAttack: bool = false
@@ -92,6 +95,7 @@ func _on_attack_cooldown_timeout():
 func _on_attack_trigger_area_entered(area):
 	if area.is_in_group("Enemies"):
 		EnemyDetected = true
+		AttackCloserGuide.visible = true
 
 func _autoAttackEnemy():
 	if (EnemyDetected == true && EnableAutoAttack == true):
@@ -100,6 +104,7 @@ func _autoAttackEnemy():
 func _on_attack_trigger_area_exited(area):
 	if area.is_in_group("Enemies"):
 		EnemyDetected = false
+		AttackCloserGuide.visible = false
 
 
 func _on_player_trigger_area_entered(area):

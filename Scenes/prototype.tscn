@@ -47,12 +47,28 @@ albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_4ousu"]
 height = 0.5
-radius = 1.001
+radius = 1.25
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_6koui"]
-top_radius = 1.0
-bottom_radius = 1.0
+top_radius = 1.25
+bottom_radius = 1.25
 height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6koui"]
+transparency = 1
+albedo_color = Color(0.95686275, 0.95686275, 0.95686275, 0.54901963)
+
+[sub_resource type="TorusMesh" id="TorusMesh_4ousu"]
+material = SubResource("StandardMaterial3D_6koui")
+inner_radius = 2.9
+outer_radius = 3.0
+ring_segments = 3
+
+[sub_resource type="TorusMesh" id="TorusMesh_6koui"]
+material = SubResource("StandardMaterial3D_6koui")
+inner_radius = 1.2
+outer_radius = 1.25
+ring_segments = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ousu"]
 albedo_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
@@ -139,6 +155,16 @@ wait_time = 0.1
 
 [node name="AttackCooldown" type="Timer" parent="PlayerDice/Attacking" unique_id=1725762845]
 wait_time = 0.5
+
+[node name="Visuals" type="Node3D" parent="PlayerDice/Attacking" unique_id=454525877]
+
+[node name="AttackGuide" type="MeshInstance3D" parent="PlayerDice/Attacking/Visuals" unique_id=1807890101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44980037, 0)
+mesh = SubResource("TorusMesh_4ousu")
+
+[node name="AttackCloserGuide" type="MeshInstance3D" parent="PlayerDice/Attacking/Visuals" unique_id=2102643768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44980037, 0)
+mesh = SubResource("TorusMesh_6koui")
 
 [node name="Position References" type="Node3D" parent="PlayerDice" unique_id=1432369048]
 

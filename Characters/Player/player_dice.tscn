@@ -22,6 +22,35 @@ height = 0.15
 transparency = 1
 albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m8pjy"]
+height = 0.5
+radius = 1.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qbb6i"]
+top_radius = 1.25
+bottom_radius = 1.25
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qonha"]
+transparency = 1
+albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72tq2"]
+transparency = 1
+albedo_color = Color(0.95686275, 0.95686275, 0.95686275, 0.54901963)
+
+[sub_resource type="TorusMesh" id="TorusMesh_m8pjy"]
+material = SubResource("StandardMaterial3D_72tq2")
+inner_radius = 2.9
+outer_radius = 3.0
+ring_segments = 3
+
+[sub_resource type="TorusMesh" id="TorusMesh_qbb6i"]
+material = SubResource("StandardMaterial3D_72tq2")
+inner_radius = 1.2
+outer_radius = 1.25
+ring_segments = 3
+
 [node name="PlayerDice" type="CharacterBody3D" unique_id=1267587966 node_paths=PackedStringArray("player", "PlayerTrigger", "AttackTrigger")]
 script = ExtResource("1_72tq2")
 player = NodePath(".")
@@ -58,11 +87,34 @@ visible = false
 mesh = SubResource("CylinderMesh_72tq2")
 surface_material_override/0 = SubResource("StandardMaterial3D_qbb6i")
 
+[node name="AttackCloserTrigger" type="Area3D" parent="Attacking" unique_id=1990762667 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attacking/AttackCloserTrigger" unique_id=2060383481]
+shape = SubResource("CylinderShape3D_m8pjy")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="Attacking/AttackCloserTrigger" unique_id=386018464]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_qbb6i")
+surface_material_override/0 = SubResource("StandardMaterial3D_qonha")
+
 [node name="Attacking" type="Timer" parent="Attacking" unique_id=1300029245]
 wait_time = 0.1
 
 [node name="AttackCooldown" type="Timer" parent="Attacking" unique_id=534554342]
 wait_time = 0.5
+
+[node name="Visuals" type="Node3D" parent="Attacking" unique_id=934076119]
+
+[node name="AttackGuide" type="MeshInstance3D" parent="Attacking/Visuals" unique_id=917869181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44980037, 0)
+mesh = SubResource("TorusMesh_m8pjy")
+
+[node name="AttackCloserGuide" type="MeshInstance3D" parent="Attacking/Visuals" unique_id=1491990861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44980037, 0)
+mesh = SubResource("TorusMesh_qbb6i")
 
 [connection signal="area_entered" from="PlayerTrigger" to="." method="_on_player_trigger_area_entered"]
 [connection signal="area_exited" from="PlayerTrigger" to="." method="_on_player_trigger_area_exited"]
