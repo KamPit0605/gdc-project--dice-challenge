@@ -65,6 +65,10 @@ func _instanceDifferentTypes():
 func _on_spawner_cooldown_timeout():
 	#EnemyLowLevel.Cloned = true
 	SpawnCount = randi_range(4,8)
+	if RoundsSpawn >= 10:
+		SpawnCount = randi_range(6,12)
+	if RoundsSpawn >= 20:
+		SpawnCount = randi_range(8,16)
 	Spawning = true
 	TopPositionMarker.global_position = TopMidReset.global_position
 	BottomPositionMarker.global_position = BottomMidReset.global_position

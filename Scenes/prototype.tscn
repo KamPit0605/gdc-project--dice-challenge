@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://01rc4wcxhoec"]
 
 [ext_resource type="Script" uid="uid://b51xaavwp77nu" path="res://Scripts/Player/player_dice.gd" id="2_6koui"]
+[ext_resource type="PackedScene" uid="uid://wkbtlxu64hlw" path="res://UI/ui.tscn" id="3_3mrnv"]
 [ext_resource type="PackedScene" uid="uid://7shbr518fxwl" path="res://Scenes/Systems/EnemySpawner.tscn" id="3_6koui"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6ox75"]
@@ -45,6 +46,19 @@ height = 0.15
 transparency = 1
 albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6koui"]
+height = 0.5
+radius = 2.175
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3mrnv"]
+top_radius = 1.25
+bottom_radius = 1.25
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uurmw"]
+transparency = 1
+albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_4ousu"]
 height = 0.5
 radius = 1.25
@@ -70,11 +84,11 @@ inner_radius = 1.2
 outer_radius = 1.25
 ring_segments = 3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ousu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mrnv"]
 albedo_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4ousu"]
-material = SubResource("StandardMaterial3D_4ousu")
+material = SubResource("StandardMaterial3D_3mrnv")
 
 [node name="Prototype" type="Node3D" unique_id=566195261]
 
@@ -137,6 +151,19 @@ visible = false
 mesh = SubResource("CylinderMesh_k3dp0")
 surface_material_override/0 = SubResource("StandardMaterial3D_ma1ii")
 
+[node name="AttackCloseTrigger" type="Area3D" parent="PlayerDice/Attacking" unique_id=685533618 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDice/Attacking/AttackCloseTrigger" unique_id=1951945656]
+shape = SubResource("CylinderShape3D_6koui")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackCloseTrigger" unique_id=2075812905]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_3mrnv")
+surface_material_override/0 = SubResource("StandardMaterial3D_uurmw")
+
 [node name="AttackCloserTrigger" type="Area3D" parent="PlayerDice/Attacking" unique_id=1521237378 groups=["AttackTrigger"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
 
@@ -188,6 +215,9 @@ mesh = SubResource("BoxMesh_4ousu")
 [node name="Bottom-Mid Reset" type="Node3D" parent="PlayerDice/Position References" unique_id=1764876478]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
+[node name="DamageCooldown" type="Timer" parent="PlayerDice" unique_id=541043245]
+wait_time = 0.1
+
 [node name="Timers" type="Node" parent="." unique_id=1503358901]
 
 [node name="SpawnerCooldown" type="Timer" parent="Timers" unique_id=561025002]
@@ -204,6 +234,9 @@ BottomPositionMarker = NodePath("../PlayerDice/Position References/Bottom-Mid Po
 TopMidReset = NodePath("../PlayerDice/Position References/Top-Mid Reset")
 BottomMidReset = NodePath("../PlayerDice/Position References/Bottom-Mid Reset")
 
+[node name="UI" parent="." unique_id=20405237 node_paths=PackedStringArray("Player") instance=ExtResource("3_3mrnv")]
+Player = NodePath("../PlayerDice")
+
 [connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]
 [connection signal="area_exited" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_exited"]
 [connection signal="area_entered" from="PlayerDice/Attacking/AttackTrigger" to="PlayerDice" method="_on_attack_trigger_area_entered"]
@@ -212,4 +245,5 @@ BottomMidReset = NodePath("../PlayerDice/Position References/Bottom-Mid Reset")
 [connection signal="area_exited" from="PlayerDice/Attacking/AttackCloserTrigger" to="PlayerDice" method="_on_attack_trigger_area_exited"]
 [connection signal="timeout" from="PlayerDice/Attacking/Attacking" to="PlayerDice" method="_on_attacking_timeout"]
 [connection signal="timeout" from="PlayerDice/Attacking/AttackCooldown" to="PlayerDice" method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="PlayerDice/DamageCooldown" to="PlayerDice" method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="Timers/SpawnerCooldown" to="Globals/EnemySpawning" method="_on_spawner_cooldown_timeout"]

@@ -23,6 +23,8 @@ GlobalPlayerScript="*uid://dg8cv8c1b0lk7"
 
 AttackTrigger=""
 Enemies=""
+Player=""
+StrongEnemy=""
 
 [input]
 

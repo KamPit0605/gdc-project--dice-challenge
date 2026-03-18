@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://wkbtlxu64hlw"]
+
+[ext_resource type="Script" uid="uid://csi6aar7x2k1r" path="res://Scripts/UI/UiScript.gd" id="1_2fwl4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_msqxa"]
+font_size = 30
+font_color = Color(1, 0.13725491, 0.13725491, 1)
+outline_size = 6
+outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2fwl4"]
+font_size = 30
+font_color = Color(0.95686275, 0.95686275, 0.95686275, 0.95686275)
+outline_size = 6
+outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dajm1"]
+font_size = 20
+font_color = Color(0.18431373, 1, 0.9372549, 1)
+outline_size = 6
+outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
+[node name="UI" type="Control" unique_id=20405237]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2fwl4")
+
+[node name="HealthLevelXP" type="VBoxContainer" parent="." unique_id=1239138341]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="HealthUI" type="Label" parent="HealthLevelXP" unique_id=806076062]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Health"
+label_settings = SubResource("LabelSettings_msqxa")
+
+[node name="LevelUI" type="Label" parent="HealthLevelXP" unique_id=2040776475]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "LVL"
+label_settings = SubResource("LabelSettings_2fwl4")
+
+[node name="XPUI" type="Label" parent="HealthLevelXP" unique_id=1645459609]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "XP"
+label_settings = SubResource("LabelSettings_dajm1")

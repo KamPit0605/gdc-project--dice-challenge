@@ -22,9 +22,9 @@ height = 0.15
 transparency = 1
 albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_m8pjy"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qbb6i"]
 height = 0.5
-radius = 1.25
+radius = 2.175
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_qbb6i"]
 top_radius = 1.25
@@ -34,6 +34,10 @@ height = 0.15
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qonha"]
 transparency = 1
 albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m8pjy"]
+height = 0.5
+radius = 1.25
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72tq2"]
 transparency = 1
@@ -51,6 +55,12 @@ inner_radius = 1.2
 outer_radius = 1.25
 ring_segments = 3
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ousu"]
+albedo_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m8pjy"]
+material = SubResource("StandardMaterial3D_4ousu")
+
 [node name="PlayerDice" type="CharacterBody3D" unique_id=1267587966 node_paths=PackedStringArray("player", "PlayerTrigger", "AttackTrigger")]
 script = ExtResource("1_72tq2")
 player = NodePath(".")
@@ -66,7 +76,7 @@ shape = SubResource("BoxShape3D_avbah")
 mesh = SubResource("BoxMesh_72tq2")
 surface_material_override/0 = SubResource("StandardMaterial3D_m8pjy")
 
-[node name="PlayerTrigger" type="Area3D" parent="." unique_id=1186322200]
+[node name="PlayerTrigger" type="Area3D" parent="." unique_id=1186322200 groups=["Player"]]
 
 [node name="CollisionShape" type="CollisionShape3D" parent="PlayerTrigger" unique_id=792062784]
 visible = false
@@ -74,7 +84,7 @@ shape = SubResource("BoxShape3D_avbah")
 
 [node name="Attacking" type="Node3D" parent="." unique_id=810333064]
 
-[node name="AttackTrigger" type="Area3D" parent="Attacking" unique_id=997109229 groups=["Enemies"]]
+[node name="AttackTrigger" type="Area3D" parent="Attacking" unique_id=997109229 groups=["AttackTrigger"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Attacking/AttackTrigger" unique_id=1076116374]
@@ -86,6 +96,19 @@ editor_description = "Attack visibility"
 visible = false
 mesh = SubResource("CylinderMesh_72tq2")
 surface_material_override/0 = SubResource("StandardMaterial3D_qbb6i")
+
+[node name="AttackCloseTrigger" type="Area3D" parent="Attacking" unique_id=1784358857 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attacking/AttackCloseTrigger" unique_id=539591165]
+shape = SubResource("CylinderShape3D_qbb6i")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="Attacking/AttackCloseTrigger" unique_id=1059308147]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_qbb6i")
+surface_material_override/0 = SubResource("StandardMaterial3D_qonha")
 
 [node name="AttackCloserTrigger" type="Area3D" parent="Attacking" unique_id=1990762667 groups=["AttackTrigger"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
@@ -116,9 +139,35 @@ mesh = SubResource("TorusMesh_m8pjy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44980037, 0)
 mesh = SubResource("TorusMesh_qbb6i")
 
+[node name="Position References" type="Node3D" parent="." unique_id=1938192669]
+
+[node name="Top-Mid Position" type="Marker3D" parent="Position References" unique_id=591117304]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Position References/Top-Mid Position" unique_id=2007603281]
+visible = false
+mesh = SubResource("BoxMesh_m8pjy")
+
+[node name="Top-Mid Reset" type="Node3D" parent="Position References" unique_id=203792514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="Bottom-Mid Position" type="Marker3D" parent="Position References" unique_id=982309759]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Position References/Bottom-Mid Position" unique_id=553921410]
+visible = false
+mesh = SubResource("BoxMesh_m8pjy")
+
+[node name="Bottom-Mid Reset" type="Node3D" parent="Position References" unique_id=2142924559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="DamageCooldown" type="Timer" parent="." unique_id=854988240]
+wait_time = 0.1
+
 [connection signal="area_entered" from="PlayerTrigger" to="." method="_on_player_trigger_area_entered"]
 [connection signal="area_exited" from="PlayerTrigger" to="." method="_on_player_trigger_area_exited"]
 [connection signal="area_entered" from="Attacking/AttackTrigger" to="." method="_on_attack_trigger_area_entered"]
 [connection signal="area_exited" from="Attacking/AttackTrigger" to="." method="_on_attack_trigger_area_exited"]
 [connection signal="timeout" from="Attacking/Attacking" to="." method="_on_attacking_timeout"]
 [connection signal="timeout" from="Attacking/AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="DamageCooldown" to="." method="_on_damage_cooldown_timeout"]

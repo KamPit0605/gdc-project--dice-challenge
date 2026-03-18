@@ -14,6 +14,16 @@ extends CharacterBody3D
 var SPEED = 5.0
 #const JUMP_VELOCITY = 4.5
 
+#--HEALTH--
+var HEALTH: int = 40
+ #might change this to float
+var MaxHealth: int = 40
+const DefaultDamage: int = 5
+var Damage: int = 5
+@onready var DamageCooldown = $DamageCooldown
+var DamageCooldownFloat: float = 0.1
+var DamageTaken: bool
+
 #--GRAVITY--
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -67,12 +77,13 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x,move_toward(velocity.x, 0, SPEED),.2)
 		velocity.z = lerp(velocity.z,move_toward(velocity.z, 0, SPEED),.2)
 
-	if (Input.is_action_just_pressed("Attack")): #" && EnableAttackCooldown == false" use to be in the condition
+	if (Input.is_action_just_pressed("Attack")): #" && EnableAttackCooldown == false" is in "AtackingFunc()"
 		AttackingFunc()
 	#AttackingFunc()
 	_autoAttackEnemy()
 	move_and_slide()
 
+#Attack Functions
 func AttackingFunc():
 	if EnableAttackCooldown == false:
 		GlobalPlayerScript.Attacking = true
@@ -106,9 +117,25 @@ func _on_attack_trigger_area_exited(area):
 		EnemyDetected = false
 		AttackCloserGuide.visible = false
 
+#Health Functions
+func PlayerHealth():
+	if HEALTH >= MaxHealth:
+		HEALTH = MaxHealth
 
+func TakingDamage():
+	HEALTH -= Damage
+#other function
 func _on_player_trigger_area_entered(area):
-	pass # Replace with function body.
+	if (area.is_in_group("Enemies") && DamageTaken == false):
+		Damage = DefaultDamage
+		if (area.is_in_group("StrongEnemy")):
+			Damage = 15
+		TakingDamage()
+		
+		DamageCooldown.start(DamageCooldownFloat)
+		DamageTaken = true
+func _on_damage_cooldown_timeout():
+	DamageTaken = false
 
 
 func _on_player_trigger_area_exited(area):
