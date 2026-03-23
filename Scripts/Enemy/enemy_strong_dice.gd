@@ -11,6 +11,10 @@ extends RigidBody3D
 var PlayerAttackTrigger: bool = false #entered player's Area3D
 var DamageCooldown: bool = false
 var DamageCooldownF: float = 0.5
+
+#--XP--
+var XP: int = 180
+
 #--MOVEMENT--
 var SPEED = 3.0
 
@@ -74,6 +78,8 @@ func _on_damage_cooldown_timeout():
 	
 func _Health():
 	if Health <= 0:
+		GlobalPlayerScript.PlayerXP += XP
+		GlobalPlayerScript.LevelUpXP += XP
 		queue_free()
 		#self.visible = false
 		#FollowPlayer = false

@@ -164,6 +164,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 [node name="DamageCooldown" type="Timer" parent="." unique_id=854988240]
 wait_time = 0.1
 
+[node name="Text" type="Node" parent="." unique_id=1145853234]
+
+[node name="LevelUpText" type="Label3D" parent="Text" unique_id=1589136182]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 2, 0)
+visible = false
+modulate = Color(0.15686275, 0.83137256, 0.78039217, 1)
+text = "LEVEL UP"
+font_size = 100
+
+[node name="TextCountdown" type="Timer" parent="Text" unique_id=953081442]
+wait_time = 2.0
+
 [connection signal="area_entered" from="PlayerTrigger" to="." method="_on_player_trigger_area_entered"]
 [connection signal="area_exited" from="PlayerTrigger" to="." method="_on_player_trigger_area_exited"]
 [connection signal="area_entered" from="Attacking/AttackTrigger" to="." method="_on_attack_trigger_area_entered"]

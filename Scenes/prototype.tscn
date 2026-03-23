@@ -218,14 +218,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 [node name="DamageCooldown" type="Timer" parent="PlayerDice" unique_id=541043245]
 wait_time = 0.1
 
-[node name="Timers" type="Node" parent="." unique_id=1503358901]
+[node name="Text" type="Node3D" parent="PlayerDice" unique_id=1061698346]
 
-[node name="SpawnerCooldown" type="Timer" parent="Timers" unique_id=561025002]
+[node name="LevelUpText" type="Label3D" parent="PlayerDice/Text" unique_id=695362746]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 2, 0)
+visible = false
+modulate = Color(0.15686275, 0.83137256, 0.78039217, 1)
+text = "LEVEL UP"
+font_size = 100
+
+[node name="TextCountdown" type="Timer" parent="PlayerDice/Text" unique_id=1527374984]
+wait_time = 2.0
+
+[node name="Timers" type="Node" parent="PlayerDice" unique_id=1503358901]
+
+[node name="SpawnerCooldown" type="Timer" parent="PlayerDice/Timers" unique_id=561025002]
 autostart = true
 
 [node name="Globals" type="Node" parent="." unique_id=1647484007]
 
 [node name="EnemySpawning" type="Node" parent="Globals" unique_id=1794180242]
+
+[node name="PlayerScript" type="Node" parent="Globals" unique_id=857733540]
 
 [node name="Enemy Spawner" parent="." unique_id=1095715711 node_paths=PackedStringArray("targetPlayer", "TopPositionMarker", "BottomPositionMarker", "TopMidReset", "BottomMidReset") instance=ExtResource("3_6koui")]
 targetPlayer = NodePath("../PlayerDice")
@@ -246,4 +260,5 @@ Player = NodePath("../PlayerDice")
 [connection signal="timeout" from="PlayerDice/Attacking/Attacking" to="PlayerDice" method="_on_attacking_timeout"]
 [connection signal="timeout" from="PlayerDice/Attacking/AttackCooldown" to="PlayerDice" method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="PlayerDice/DamageCooldown" to="PlayerDice" method="_on_damage_cooldown_timeout"]
-[connection signal="timeout" from="Timers/SpawnerCooldown" to="Globals/EnemySpawning" method="_on_spawner_cooldown_timeout"]
+[connection signal="timeout" from="PlayerDice/Text/TextCountdown" to="PlayerDice" method="_on_text_countdown_timeout"]
+[connection signal="timeout" from="PlayerDice/Timers/SpawnerCooldown" to="Globals/EnemySpawning" method="_on_spawner_cooldown_timeout"]

@@ -9,6 +9,8 @@ extends CharacterBody3D
 @export var PlayerTrigger = Area3D
 @export var AttackTrigger = Area3D
 
+@onready var LevelUpText = $Text/LevelUpText
+@onready var TextCountdown = $Text/TextCountdown
 
 #--MOVEMENT--
 var SPEED = 5.0
@@ -55,6 +57,8 @@ func _process(_delta):
 			EnableAutoAttack = true
 		else:
 			EnableAutoAttack = false
+
+	PlayerHealth()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -121,6 +125,12 @@ func _on_attack_trigger_area_exited(area):
 func PlayerHealth():
 	if HEALTH >= MaxHealth:
 		HEALTH = MaxHealth
+	if GlobalPlayerScript.GainHealthBool == true:
+		HEALTH += 5
+		MaxHealth += 5
+		LevelUpText.visible = true
+		TextCountdown.start(2.0)
+		GlobalPlayerScript.GainHealthBool = false
 
 func TakingDamage():
 	HEALTH -= Damage
@@ -136,6 +146,9 @@ func _on_player_trigger_area_entered(area):
 		DamageTaken = true
 func _on_damage_cooldown_timeout():
 	DamageTaken = false
+
+func _on_text_countdown_timeout():
+	LevelUpText.visible = false
 
 
 func _on_player_trigger_area_exited(area):
