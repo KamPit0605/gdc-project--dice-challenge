@@ -80,6 +80,7 @@ func _Health():
 	if Health <= 0:
 		GlobalPlayerScript.PlayerXP += XP
 		GlobalPlayerScript.LevelUpXP += XP
+		GlobalPlayerScript.EnemyKills += 1
 		queue_free()
 		#self.visible = false
 		#FollowPlayer = false
@@ -109,11 +110,14 @@ func _on_attack_trigger_area_entered(_area): #player's trigger
 
 func _on_enemy_trigger_area_entered(area):
 	#print(area.name)
-	if area.is_in_group("AttackTrigger"):
+	if area.is_in_group("AttackTrigger"): #Detect Player's attack area
 		PlayerAreaCount += 1
 		if (PlayerAreaCount >= 1):
 			PlayerAttackTrigger = true
 			PlayerAreaCount = 2
+
+	if area.is_in_group("Player"): #Hit Player
+		_followcooldown(1.0)
 
 func _on_enemy_trigger_area_exited(area):
 	if area.is_in_group("AttackTrigger"):

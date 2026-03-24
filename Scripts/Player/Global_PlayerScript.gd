@@ -9,6 +9,8 @@ var PlayerXP: float = 0
 var LevelUpXP: float = 0
 var LevelUpQuota: int = 300
 
+var EnemyKills: int = 0
+
 var GainHealthBool: bool
 
 # Called when the node enters the scene tree for the first time.
@@ -18,7 +20,6 @@ func _ready():
 func _process(_delta):
 	LevelingUp()
 	XPXP(PlayerLevel)
-	print(LevelUpQuota)
 
 
 func LevelingUp():

@@ -20,6 +20,18 @@ font_color = Color(0.18431373, 1, 0.9372549, 1)
 outline_size = 6
 outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_e6gg6"]
+font_size = 30
+font_color = Color(0.13236082, 0.941846, 0.7419551, 1)
+outline_size = 6
+outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hat8c"]
+font_size = 30
+font_color = Color(0.8, 0.9137255, 0, 1)
+outline_size = 6
+outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
 [node name="UI" type="Control" unique_id=20405237]
 layout_mode = 3
 anchors_preset = 15
@@ -28,6 +40,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2fwl4")
+
+[node name="HurtIndicator" type="Control" parent="." unique_id=1709179627]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HitInd1" type="ColorRect" parent="HurtIndicator" unique_id=213715251]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 40.0
+color = Color(1, 0.11764706, 0.11764706, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="HitInd2" type="ColorRect" parent="HurtIndicator" unique_id=1698556784]
+layout_mode = 0
+offset_top = 608.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(1, 0.11764706, 0.11764706, 1)
+
+[node name="HitInd3" type="ColorRect" parent="HurtIndicator" unique_id=2090397475]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 1176.0
+offset_bottom = 40.0
+rotation = 1.5707964
+color = Color(1, 0.11764706, 0.11764706, 1)
+
+[node name="HitInd4" type="ColorRect" parent="HurtIndicator" unique_id=1862255033]
+layout_mode = 0
+offset_left = 1152.0
+offset_right = 2304.0
+offset_bottom = 40.0
+rotation = 1.5707964
+color = Color(1, 0.11764706, 0.11764706, 1)
 
 [node name="HealthLevelXP" type="VBoxContainer" parent="." unique_id=1239138341]
 layout_mode = 1
@@ -60,3 +108,38 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "XP"
 label_settings = SubResource("LabelSettings_dajm1")
+
+[node name="XPCoinsKills" type="VBoxContainer" parent="." unique_id=689159536]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TotalXPUI" type="Label" parent="XPCoinsKills" unique_id=468318670]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Total XP"
+label_settings = SubResource("LabelSettings_e6gg6")
+
+[node name="CoinsUI" type="BoxContainer" parent="XPCoinsKills" unique_id=359472514]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CoinsTextUI" type="Label" parent="XPCoinsKills/CoinsUI" unique_id=660983662]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Coins"
+label_settings = SubResource("LabelSettings_hat8c")
+
+[node name="KillsUI" type="BoxContainer" parent="XPCoinsKills" unique_id=2092537323]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="KillsTextUI" type="Label" parent="XPCoinsKills/KillsUI" unique_id=1814406104]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Kills"
+label_settings = SubResource("LabelSettings_2fwl4")

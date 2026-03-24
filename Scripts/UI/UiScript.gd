@@ -6,6 +6,10 @@ extends Control
 @onready var HealthUI = $HealthLevelXP/HealthUI
 @onready var LevelUI = $HealthLevelXP/LevelUI
 @onready var XPUI = $HealthLevelXP/XPUI
+
+@onready var TotalXPUI = $XPCoinsKills/TotalXPUI
+@onready var CoinsUI = 0
+@onready var KillsUI = $XPCoinsKills/KillsUI/KillsTextUI
 #GlobalPlayerScript
 
 # Called when the node enters the scene tree for the first time.
@@ -20,5 +24,9 @@ func _process(delta):
 	LevelUI.text = str(GlobalPlayerScript.PlayerLevel)
 	
 	var LevelUpXPString = "%.0f" % GlobalPlayerScript.LevelUpXP
+	var PlayerXPString = "%.0f" % GlobalPlayerScript.PlayerXP
 	XPUI.text = str(LevelUpXPString) + " / " + str(GlobalPlayerScript.LevelUpQuota)
+	
+	TotalXPUI.text = str(PlayerXPString)
+	KillsUI.text = str(GlobalPlayerScript.EnemyKills)
 	#pass
