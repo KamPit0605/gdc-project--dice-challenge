@@ -32,6 +32,134 @@ font_color = Color(0.8, 0.9137255, 0, 1)
 outline_size = 6
 outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
 
+[sub_resource type="Animation" id="Animation_3sbvi"]
+resource_name = "AbilityDiceRolling"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../DiceContainer2/AbilityDice/APlaceholder:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_2fwl4"]
+resource_name = "AttackDiceRolling"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ADPlaceholder:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_e6gg6"]
+resource_name = "DefenseDiceRolling"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DefenseDice/DPlaceholder:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_hat8c"]
+resource_name = "HealthDiceRolling"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../HealthDice/HPlaceholder:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_dajm1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ADPlaceholder:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DefenseDice/DPlaceholder:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../HealthDice/HPlaceholder:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../DiceContainer2/AbilityDice/APlaceholder:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e6gg6"]
+_data = {
+&"AbilityDiceRolling": SubResource("Animation_3sbvi"),
+&"AttackDiceRolling": SubResource("Animation_2fwl4"),
+&"DefenseDiceRolling": SubResource("Animation_e6gg6"),
+&"HealthDiceRolling": SubResource("Animation_hat8c"),
+&"RESET": SubResource("Animation_dajm1")
+}
+
 [node name="UI" type="Control" unique_id=20405237]
 layout_mode = 3
 anchors_preset = 15
@@ -40,42 +168,72 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2fwl4")
+metadata/_edit_lock_ = true
 
 [node name="HurtIndicator" type="Control" parent="." unique_id=1709179627]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HitInd1" type="ColorRect" parent="HurtIndicator" unique_id=213715251]
-layout_mode = 0
-offset_right = 1152.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -7.6000004
+anchor_right = 0.5
+anchor_bottom = -7.6000004
+offset_left = -567.99994
+offset_right = 584.00006
 offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
 color = Color(1, 0.11764706, 0.11764706, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="HitInd2" type="ColorRect" parent="HurtIndicator" unique_id=1698556784]
-layout_mode = 0
-offset_top = 608.0
-offset_right = 1152.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 8.6
+anchor_right = 0.5
+anchor_bottom = 8.6
+offset_left = -567.99994
+offset_top = -40.0
+offset_right = 584.00006
 color = Color(1, 0.11764706, 0.11764706, 1)
 
 [node name="HitInd3" type="ColorRect" parent="HurtIndicator" unique_id=2090397475]
 layout_mode = 0
-offset_left = 24.0
-offset_right = 1176.0
-offset_bottom = 40.0
+offset_left = -523.99994
+offset_top = -304.0
+offset_right = 123.14288
+offset_bottom = -264.0
 rotation = 1.5707964
 color = Color(1, 0.11764706, 0.11764706, 1)
 
 [node name="HitInd4" type="ColorRect" parent="HurtIndicator" unique_id=1862255033]
-layout_mode = 0
-offset_left = 1152.0
-offset_right = 2304.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 15.1
+anchor_right = 15.1
+offset_left = 6.1035156e-05
+offset_top = -304.0
+offset_right = 647.14294
+offset_bottom = -264.0
 rotation = 1.5707964
 color = Color(1, 0.11764706, 0.11764706, 1)
+
+[node name="HurtIndicatorTimer" type="Timer" parent="." unique_id=296221084]
+wait_time = 0.5
 
 [node name="HealthLevelXP" type="VBoxContainer" parent="." unique_id=1239138341]
 layout_mode = 1
@@ -143,3 +301,132 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "Kills"
 label_settings = SubResource("LabelSettings_2fwl4")
+
+[node name="DiceContainer" type="BoxContainer" parent="." unique_id=283360192]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.11100001
+anchor_top = 0.98800004
+anchor_right = 0.11100001
+anchor_bottom = 0.98800004
+offset_left = 0.12799072
+offset_top = -40.224
+offset_right = 200.12799
+offset_bottom = -0.22399902
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="AttackDice" type="Control" parent="DiceContainer" unique_id=610968875]
+layout_mode = 2
+
+[node name="ADPlaceholder" type="ColorRect" parent="DiceContainer/AttackDice" unique_id=226556585]
+layout_mode = 0
+offset_top = -24.0
+offset_right = 64.0
+offset_bottom = 40.0
+pivot_offset = Vector2(32, 32)
+color = Color(1, 0.13725491, 0.13725491, 1)
+
+[node name="ADNumber" type="Label" parent="DiceContainer/AttackDice" unique_id=890079214]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.6
+anchor_bottom = -0.6
+offset_right = 64.0
+offset_bottom = 64.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefenseDice" type="Control" parent="DiceContainer" unique_id=1207051581]
+layout_mode = 2
+
+[node name="DPlaceholder" type="ColorRect" parent="DiceContainer/DefenseDice" unique_id=1667781179]
+layout_mode = 0
+offset_top = -24.0
+offset_right = 64.0
+offset_bottom = 40.0
+pivot_offset = Vector2(32, 32)
+color = Color(0.29483745, 0.51679254, 1, 1)
+
+[node name="DNumber" type="Label" parent="DiceContainer/DefenseDice" unique_id=1653113251]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.6
+anchor_bottom = -0.6
+offset_right = 64.0
+offset_bottom = 64.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthDice" type="Control" parent="DiceContainer" unique_id=2116378023]
+layout_mode = 2
+
+[node name="HPlaceholder" type="ColorRect" parent="DiceContainer/HealthDice" unique_id=363427486]
+layout_mode = 0
+offset_top = -24.0
+offset_right = 64.0
+offset_bottom = 40.0
+pivot_offset = Vector2(32, 32)
+color = Color(0.1550627, 0.6599228, 1.92523e-07, 1)
+
+[node name="HNumber" type="Label" parent="DiceContainer/HealthDice" unique_id=1709455782]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.6
+anchor_bottom = -0.6
+offset_right = 64.0
+offset_bottom = 64.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiceContainer2" type="BoxContainer" parent="." unique_id=418938588]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.88900006
+anchor_top = 0.98800004
+anchor_right = 0.88900006
+anchor_bottom = 0.98800004
+offset_left = -64.12805
+offset_top = -40.224
+offset_right = -0.12805176
+offset_bottom = -0.22399902
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 100
+
+[node name="AbilityDice" type="Control" parent="DiceContainer2" unique_id=600433908]
+layout_mode = 2
+
+[node name="APlaceholder" type="ColorRect" parent="DiceContainer2/AbilityDice" unique_id=1564218685]
+layout_mode = 0
+offset_top = -24.0
+offset_right = 64.0
+offset_bottom = 40.0
+pivot_offset = Vector2(32, 32)
+color = Color(1, 0.6117647, 0.13725491, 1)
+
+[node name="AName" type="Label" parent="DiceContainer2/AbilityDice" unique_id=1679611955]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.6
+anchor_bottom = -0.6
+offset_right = 64.0
+offset_bottom = 64.0
+text = "Ability"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Animations" type="Control" parent="." unique_id=40189467]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DiceAnimation" type="AnimationPlayer" parent="Animations" unique_id=1484147347]
+root_node = NodePath("../../DiceContainer/AttackDice")
+libraries/ = SubResource("AnimationLibrary_e6gg6")
+
+[connection signal="timeout" from="HurtIndicatorTimer" to="." method="_on_hurt_indicator_timer_timeout"]

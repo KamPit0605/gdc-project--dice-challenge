@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ld1mxfj4vaxp"]
+
+[ext_resource type="Script" uid="uid://ntpge8ybo77s" path="res://Scripts/Dice/dice_system.gd" id="1_dqplx"]
+
+[node name="DiceSystem" type="Node" unique_id=87870044]
+script = ExtResource("1_dqplx")
+
+[node name="Timers" type="Node" parent="." unique_id=415387345]
+
+[node name="RollingDiceTimer" type="Timer" parent="Timers" unique_id=1796356170]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timers/RollingDiceTimer" to="." method="_on_rolling_dice_timer_timeout"]

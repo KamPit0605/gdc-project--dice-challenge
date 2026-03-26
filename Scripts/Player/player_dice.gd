@@ -35,6 +35,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var AttackCooldown = $Attacking/AttackCooldown
 @export var AttackCooldownFloat: float
 @onready var AttackMesh = $Attacking/AttackTrigger/AttackMesh
+@onready var CriticalMesh = $Attacking/AttackTrigger/CriticalMesh
 var EnableAutoAttack: bool
 
 @onready var AttackGuide = $Attacking/Visuals/AttackGuide
@@ -43,6 +44,10 @@ var EnableAutoAttack: bool
 #var AttackCooldown: float = 0.0
 var EnableAttack: bool = false
 var EnableAttackCooldown: bool = false
+
+var attack_rng: float
+var criticalRate: float = 0.85
+var criticalHit: bool
 
 var EnemyDetected: bool
 
@@ -85,16 +90,34 @@ func _physics_process(delta):
 		AttackingFunc()
 	#AttackingFunc()
 	_autoAttackEnemy()
+	
+	criticalFunction()
 	move_and_slide()
 
 #Attack Functions
+func criticalFunction():
+	if attack_rng >= criticalRate:
+		criticalHit = true
+		print("CRIT")
+	else:
+		criticalHit = false
+
+	if criticalHit == true:
+		GlobalPlayerScript.criticalHit_indicator = true
+	else:
+		GlobalPlayerScript.criticalHit_indicator = false
+
 func AttackingFunc():
 	if EnableAttackCooldown == false:
 		GlobalPlayerScript.Attacking = true
+		attack_rng = randf_range(0.1,1.0)
+		print(attack_rng)
 		Attacking.start(AttackingFloat)
 		AttackCooldown.start(AttackCooldownFloat)
 		AttackMesh.visible = true
 		EnableAttack = true
+		if criticalHit == true:
+			CriticalMesh.visible = true
 		EnableAttackCooldown = true
 
 
@@ -102,6 +125,7 @@ func _on_attacking_timeout():
 	GlobalPlayerScript.Attacking = false
 	EnableAttack = false
 	AttackMesh.visible = false
+	CriticalMesh.visible = false
 
 func _on_attack_cooldown_timeout():
 	EnableAttackCooldown = false
@@ -138,6 +162,7 @@ func TakingDamage():
 func _on_player_trigger_area_entered(area):
 	if (area.is_in_group("Enemies") && DamageTaken == false):
 		Damage = DefaultDamage
+		GlobalPlayerScript.DamageTaken = true
 		if (area.is_in_group("StrongEnemy")):
 			Damage = 15
 		TakingDamage()
@@ -146,6 +171,7 @@ func _on_player_trigger_area_entered(area):
 		DamageTaken = true
 func _on_damage_cooldown_timeout():
 	DamageTaken = false
+
 
 func _on_text_countdown_timeout():
 	LevelUpText.visible = false

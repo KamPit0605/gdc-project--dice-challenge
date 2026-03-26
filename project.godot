@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalPlayerScript="*uid://dg8cv8c1b0lk7"
+GlobalDiceScript="*uid://bs8exio7gkbd2"
 
 [global_group]
 

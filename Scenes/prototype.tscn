@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://01rc4wcxhoec"]
 
 [ext_resource type="Script" uid="uid://b51xaavwp77nu" path="res://Scripts/Player/player_dice.gd" id="2_6koui"]
+[ext_resource type="Script" uid="uid://bs8exio7gkbd2" path="res://Scripts/Dice/Global_DiceScript.gd" id="2_uurmw"]
 [ext_resource type="PackedScene" uid="uid://wkbtlxu64hlw" path="res://UI/ui.tscn" id="3_3mrnv"]
 [ext_resource type="PackedScene" uid="uid://7shbr518fxwl" path="res://Scenes/Systems/EnemySpawner.tscn" id="3_6koui"]
+[ext_resource type="PackedScene" uid="uid://ld1mxfj4vaxp" path="res://Scenes/Systems/dice_system.tscn" id="4_3mrnv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6ox75"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -45,6 +47,15 @@ height = 0.15
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ma1ii"]
 transparency = 1
 albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uurmw"]
+top_radius = 2.5
+bottom_radius = 3.0
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kyyp"]
+transparency = 1
+albedo_color = Color(0.08071878, 0.36173758, 0.99999994, 0.6862745)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6koui"]
 height = 0.5
@@ -151,6 +162,13 @@ visible = false
 mesh = SubResource("CylinderMesh_k3dp0")
 surface_material_override/0 = SubResource("StandardMaterial3D_ma1ii")
 
+[node name="CriticalMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackTrigger" unique_id=1404693855]
+editor_description = "Attack visibility"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019249141, 0)
+visible = false
+mesh = SubResource("CylinderMesh_uurmw")
+surface_material_override/0 = SubResource("StandardMaterial3D_7kyyp")
+
 [node name="AttackCloseTrigger" type="Area3D" parent="PlayerDice/Attacking" unique_id=685533618 groups=["AttackTrigger"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
 
@@ -241,6 +259,9 @@ autostart = true
 
 [node name="PlayerScript" type="Node" parent="Globals" unique_id=857733540]
 
+[node name="DiceScript" type="Node" parent="Globals" unique_id=814805544]
+script = ExtResource("2_uurmw")
+
 [node name="Enemy Spawner" parent="." unique_id=1095715711 node_paths=PackedStringArray("targetPlayer", "TopPositionMarker", "BottomPositionMarker", "TopMidReset", "BottomMidReset") instance=ExtResource("3_6koui")]
 targetPlayer = NodePath("../PlayerDice")
 TopPositionMarker = NodePath("../PlayerDice/Position References/Top-Mid Position")
@@ -250,6 +271,8 @@ BottomMidReset = NodePath("../PlayerDice/Position References/Bottom-Mid Reset")
 
 [node name="UI" parent="." unique_id=20405237 node_paths=PackedStringArray("Player") instance=ExtResource("3_3mrnv")]
 Player = NodePath("../PlayerDice")
+
+[node name="DiceSystem" parent="." unique_id=87870044 instance=ExtResource("4_3mrnv")]
 
 [connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]
 [connection signal="area_exited" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_exited"]

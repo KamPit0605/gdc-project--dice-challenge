@@ -21,6 +21,9 @@ var SPEED = 3.0
 #--HEALTH--
 var Health: int = 30
 
+#--critical DAMAGE--
+var CRIT: int = 1
+
 #--PLAYER FOLLOW--
 var Player: CharacterBody3D #@export
 
@@ -52,12 +55,17 @@ func _process(delta):
 	DamageLabel.text = str(Health)
 	_debugPrinting()
 	if (GlobalPlayerScript.Attacking == true && PlayerAttackTrigger == true && DamageCooldown == false): #damage taken
-		Health -= 15
+		Health -= 15 * CRIT
 		DamageCooldownTimer.start(DamageCooldownF)
 		DamageLabel.visible = true
 		_followcooldown(0.5)
-		print("OUCH!")
+		#print("OUCH!")
 		DamageCooldown = true
+	
+	if GlobalPlayerScript.criticalHit_indicator == true:
+		CRIT = 2
+	else:
+		CRIT = 1
 	
 	_Health()
 	#_followingplayer()
@@ -117,6 +125,7 @@ func _on_enemy_trigger_area_entered(area):
 			PlayerAreaCount = 2
 
 	if area.is_in_group("Player"): #Hit Player
+		GlobalPlayerScript.DamageTaken = true
 		_followcooldown(1.0)
 
 func _on_enemy_trigger_area_exited(area):
