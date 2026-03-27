@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 #Globals
 	#GlobalPlayerScript
+	#GlobalDiceScript
 
 @export var player = CharacterBody3D
 #@export var PlayerMesh = Node3D
@@ -22,9 +23,15 @@ var HEALTH: int = 40
 var MaxHealth: int = 40
 const DefaultDamage: int = 5
 var Damage: int = 5
-@onready var DamageCooldown = $DamageCooldown
-var DamageCooldownFloat: float = 0.1
+@onready var DamageCooldown = $Timers/DamageCooldown
+var DamageCooldownFloat: float = 0.15
 var DamageTaken: bool
+var HealthGain: int
+var HealthGainBool: bool
+@onready var HealthGainCooldown = $Timers/HealthGainCooldown
+
+#--DEFENSE DICE REDUCE--
+var DefenseDiceReduce: int = 1
 
 #--GRAVITY--
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -54,6 +61,7 @@ var EnemyDetected: bool
 func _ready():
 	AttackingFloat = 0.15
 	AttackCooldownFloat = 1.0
+	HealthGainBool = true
 	return
 
 func _process(_delta):
@@ -64,6 +72,7 @@ func _process(_delta):
 			EnableAutoAttack = false
 
 	PlayerHealth()
+	_defenseDice()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -155,16 +164,48 @@ func PlayerHealth():
 		LevelUpText.visible = true
 		TextCountdown.start(2.0)
 		GlobalPlayerScript.GainHealthBool = false
+		
+	if ((GlobalDiceScript.RollDice == false) && (GlobalDiceScript.AcquiredDice >= 4)):
+		GainingHealth()
+
+func GainingHealth():
+	if HealthGainBool == true:
+		HEALTH += HealthGain
+		HealthGainCooldown.start(2.0)
+		HealthGainBool = false
+	if (GlobalDiceScript.HealthDNum == 1):
+		HealthGain = 1
+	elif (GlobalDiceScript.HealthDNum == 2):
+		HealthGain = 2
+	elif (GlobalDiceScript.HealthDNum == 3):
+		HealthGain = 6
+	elif (GlobalDiceScript.HealthDNum == 4):
+		HealthGain = 8
+	elif (GlobalDiceScript.HealthDNum == 5):
+		HealthGain = 10
+	elif (GlobalDiceScript.HealthDNum == 6):
+		HealthGain = 12
+
+func _defenseDice():
+	if ((GlobalDiceScript.RollDice == false) && (GlobalDiceScript.AcquiredDice >= 3)):
+		if ((GlobalDiceScript.DefenseDNum >= 1) && (GlobalDiceScript.DefenseDNum <= 2)):
+			DefenseDiceReduce = 1
+		elif ((GlobalDiceScript.DefenseDNum >= 3) && (GlobalDiceScript.DefenseDNum <= 5)):
+			DefenseDiceReduce = 2
+		elif GlobalDiceScript.DefenseDNum == 6:
+			DefenseDiceReduce = 3
+func _on_health_gain_cooldown_timeout():
+	HealthGainBool = true
 
 func TakingDamage():
-	HEALTH -= Damage
+	HEALTH -= Damage / DefenseDiceReduce
 #other function
 func _on_player_trigger_area_entered(area):
 	if (area.is_in_group("Enemies") && DamageTaken == false):
 		Damage = DefaultDamage
-		GlobalPlayerScript.DamageTaken = true
 		if (area.is_in_group("StrongEnemy")):
 			Damage = 15
+		GlobalPlayerScript.DamageTaken = true
 		TakingDamage()
 		
 		DamageCooldown.start(DamageCooldownFloat)

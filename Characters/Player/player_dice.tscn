@@ -172,8 +172,12 @@ mesh = SubResource("BoxMesh_m8pjy")
 [node name="Bottom-Mid Reset" type="Node3D" parent="Position References" unique_id=2142924559]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
-[node name="DamageCooldown" type="Timer" parent="." unique_id=854988240]
+[node name="Timers" type="Node" parent="." unique_id=1283560993]
+
+[node name="DamageCooldown" type="Timer" parent="Timers" unique_id=854988240]
 wait_time = 0.1
+
+[node name="HealthGainCooldown" type="Timer" parent="Timers" unique_id=234975657]
 
 [node name="Text" type="Node" parent="." unique_id=1145853234]
 
@@ -193,4 +197,5 @@ wait_time = 2.0
 [connection signal="area_exited" from="Attacking/AttackTrigger" to="." method="_on_attack_trigger_area_exited"]
 [connection signal="timeout" from="Attacking/Attacking" to="." method="_on_attacking_timeout"]
 [connection signal="timeout" from="Attacking/AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
-[connection signal="timeout" from="DamageCooldown" to="." method="_on_damage_cooldown_timeout"]
+[connection signal="timeout" from="Timers/DamageCooldown" to="." method="_on_damage_cooldown_timeout"]
+[connection signal="timeout" from="Timers/HealthGainCooldown" to="." method="_on_health_gain_cooldown_timeout"]

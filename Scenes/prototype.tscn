@@ -233,9 +233,6 @@ mesh = SubResource("BoxMesh_4ousu")
 [node name="Bottom-Mid Reset" type="Node3D" parent="PlayerDice/Position References" unique_id=1764876478]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
-[node name="DamageCooldown" type="Timer" parent="PlayerDice" unique_id=541043245]
-wait_time = 0.1
-
 [node name="Text" type="Node3D" parent="PlayerDice" unique_id=1061698346]
 
 [node name="LevelUpText" type="Label3D" parent="PlayerDice/Text" unique_id=695362746]
@@ -250,8 +247,10 @@ wait_time = 2.0
 
 [node name="Timers" type="Node" parent="PlayerDice" unique_id=1503358901]
 
-[node name="SpawnerCooldown" type="Timer" parent="PlayerDice/Timers" unique_id=561025002]
-autostart = true
+[node name="DamageCooldown" type="Timer" parent="PlayerDice/Timers" unique_id=541043245]
+wait_time = 0.1
+
+[node name="HealthGainCooldown" type="Timer" parent="PlayerDice/Timers" unique_id=2082110432]
 
 [node name="Globals" type="Node" parent="." unique_id=1647484007]
 
@@ -282,6 +281,6 @@ Player = NodePath("../PlayerDice")
 [connection signal="area_exited" from="PlayerDice/Attacking/AttackCloserTrigger" to="PlayerDice" method="_on_attack_trigger_area_exited"]
 [connection signal="timeout" from="PlayerDice/Attacking/Attacking" to="PlayerDice" method="_on_attacking_timeout"]
 [connection signal="timeout" from="PlayerDice/Attacking/AttackCooldown" to="PlayerDice" method="_on_attack_cooldown_timeout"]
-[connection signal="timeout" from="PlayerDice/DamageCooldown" to="PlayerDice" method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="PlayerDice/Text/TextCountdown" to="PlayerDice" method="_on_text_countdown_timeout"]
-[connection signal="timeout" from="PlayerDice/Timers/SpawnerCooldown" to="Globals/EnemySpawning" method="_on_spawner_cooldown_timeout"]
+[connection signal="timeout" from="PlayerDice/Timers/DamageCooldown" to="PlayerDice" method="_on_damage_cooldown_timeout"]
+[connection signal="timeout" from="PlayerDice/Timers/HealthGainCooldown" to="PlayerDice" method="_on_health_gain_cooldown_timeout"]

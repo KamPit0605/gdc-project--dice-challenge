@@ -19,10 +19,13 @@ var XP: int = 180
 var SPEED = 3.0
 
 #--HEALTH--
-var Health: int = 50
+var Health: float = 50
 
 #--critical DAMAGE--
 var CRIT: int = 1
+#--ATTACK DICE MULTIPLYER--
+var AttackDiceMult: float = 1.0
+
 
 #--PLAYER FOLLOW--
 var Player: CharacterBody3D #@export
@@ -55,17 +58,15 @@ func _process(delta):
 	DamageLabel.text = str(Health)
 	_debugPrinting()
 	if (GlobalPlayerScript.Attacking == true && PlayerAttackTrigger == true && DamageCooldown == false): #damage taken
-		Health -= 15 * CRIT
+		Health -= 15 * CRIT * AttackDiceMult
 		DamageCooldownTimer.start(DamageCooldownF)
 		DamageLabel.visible = true
 		_followcooldown(0.5)
 		#print("OUCH!")
 		DamageCooldown = true
 	
-	if GlobalPlayerScript.criticalHit_indicator == true:
-		CRIT = 2
-	else:
-		CRIT = 1
+	_critical()
+	_attackDiceMult()
 	
 	_Health()
 	#_followingplayer()
@@ -94,6 +95,21 @@ func _Health():
 		#FollowPlayer = false
 		#Health = 0
 
+func _critical():
+	if GlobalPlayerScript.criticalHit_indicator == true:
+		CRIT = 2
+	else:
+		CRIT = 1
+func _attackDiceMult():
+	if (GlobalDiceScript.RollDice == false):
+		if ((GlobalDiceScript.AttackDNum >= 2) && (GlobalDiceScript.AttackDNum <= 3)):
+			AttackDiceMult = 1.0
+		elif ((GlobalDiceScript.AttackDNum >= 4) && (GlobalDiceScript.AttackDNum <= 5)):
+			AttackDiceMult = 1.5
+		elif (GlobalDiceScript.AttackDNum == 6):
+			AttackDiceMult = 2.0
+		elif (GlobalDiceScript.AttackDNum == 1):
+			AttackDiceMult = 0.5
 
 func _triggerAdjust():
 	pass
