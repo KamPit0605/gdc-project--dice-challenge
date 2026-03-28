@@ -283,6 +283,7 @@ text = "Total XP"
 label_settings = SubResource("LabelSettings_e6gg6")
 
 [node name="CoinsUI" type="BoxContainer" parent="XPCoinsKills" unique_id=359472514]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 

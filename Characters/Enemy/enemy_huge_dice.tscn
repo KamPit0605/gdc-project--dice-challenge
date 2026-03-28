@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://np1s8332f1a4"]
 
-[ext_resource type="Script" uid="uid://7pdjkuaqua56" path="res://Scripts/Enemy/enemy_big_dice.gd" id="1_t3ne1"]
+[ext_resource type="Script" uid="uid://bv4irr41vh5fj" path="res://Scripts/Enemy/enemy_huge_dice.gd" id="1_t3ne1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w0rp6"]
 size = Vector3(3, 3, 3)
@@ -9,7 +9,7 @@ size = Vector3(3, 3, 3)
 size = Vector3(3, 3, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fowbw"]
-albedo_color = Color(0.2627451, 0, 0.05882353, 1)
+albedo_color = Color(0.25882354, 0, 0.1764706, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wwsqc"]
 size = Vector3(1.05, 1.05, 1.05)
@@ -34,7 +34,7 @@ shape = SubResource("BoxShape3D_wwsqc")
 wait_time = 0.1
 
 [node name="DamageLabel" type="Label3D" parent="." unique_id=502174633]
-transform = Transform3D(1.505, 0, 0, 0, 0.96739537, 1.1528969, 0, -1.1528969, 0.96739537, 0, 1, 0)
+transform = Transform3D(1.505, 0, 0, 0, 0.96739537, 1.1528969, 0, -1.1528969, 0.96739537, 0, 2, 0)
 visible = false
 modulate = Color(1, 0.47168958, 0.38229927, 1)
 text = "asdfsaefsadf"

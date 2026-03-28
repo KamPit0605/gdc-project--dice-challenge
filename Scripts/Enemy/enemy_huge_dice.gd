@@ -13,13 +13,13 @@ var DamageCooldown: bool = false
 var DamageCooldownF: float = 0.5
 
 #--XP--
-var XP: int = 720
+var XP: int = 750
 
 #--MOVEMENT--
 var SPEED = 2.0
 
 #--HEALTH--
-var Health: float = 300
+var Health: float = 350
 
 #--critical DAMAGE--
 var CRIT: int = 1
