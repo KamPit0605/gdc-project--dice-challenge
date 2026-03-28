@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://np1s8332f1a4"]
+
+[ext_resource type="Script" uid="uid://7pdjkuaqua56" path="res://Scripts/Enemy/enemy_big_dice.gd" id="1_t3ne1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w0rp6"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wwsqc"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fowbw"]
+albedo_color = Color(0.2627451, 0, 0.05882353, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wwsqc"]
+size = Vector3(1.05, 1.05, 1.05)
+
+[node name="enemyHuge_dice" type="RigidBody3D" unique_id=1738791593 groups=["BossEnemy", "Enemies"]]
+script = ExtResource("1_t3ne1")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=506290660]
+shape = SubResource("BoxShape3D_w0rp6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=75911881]
+mesh = SubResource("BoxMesh_wwsqc")
+surface_material_override/0 = SubResource("StandardMaterial3D_fowbw")
+
+[node name="EnemyTrigger" type="Area3D" parent="." unique_id=605287903 groups=["BossEnemy", "Enemies"]]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyTrigger" unique_id=629395947]
+shape = SubResource("BoxShape3D_wwsqc")
+
+[node name="DamageCooldown" type="Timer" parent="." unique_id=528611121]
+wait_time = 0.1
+
+[node name="DamageLabel" type="Label3D" parent="." unique_id=502174633]
+transform = Transform3D(1.505, 0, 0, 0, 0.96739537, 1.1528969, 0, -1.1528969, 0.96739537, 0, 1, 0)
+visible = false
+modulate = Color(1, 0.47168958, 0.38229927, 1)
+text = "asdfsaefsadf"
+font_size = 50
+
+[node name="FollowingCooldown" type="Timer" parent="." unique_id=1520790909]
+
+[connection signal="area_entered" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_entered"]
+[connection signal="area_exited" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_exited"]
+[connection signal="timeout" from="DamageCooldown" to="." method="_on_damage_cooldown_timeout"]
+[connection signal="timeout" from="FollowingCooldown" to="." method="_on_following_cooldown_timeout"]

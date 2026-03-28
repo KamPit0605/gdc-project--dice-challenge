@@ -27,6 +27,7 @@ Enemies=""
 Player=""
 StrongEnemy=""
 BigEnemy=""
+BossEnemy=""
 
 [input]
 
