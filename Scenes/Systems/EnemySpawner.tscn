@@ -3,11 +3,13 @@
 [ext_resource type="Script" uid="uid://tath0ygmvrin" path="res://Scripts/Enemy/EnemySpawning.gd" id="1_up1wc"]
 [ext_resource type="PackedScene" uid="uid://djs3rameploj" path="res://Characters/Enemy/enemy_low_dice.tscn" id="2_aoe3b"]
 [ext_resource type="PackedScene" uid="uid://dos88ftpsxo1b" path="res://Characters/Enemy/enemy_strong_dice.tscn" id="3_x13wn"]
+[ext_resource type="PackedScene" uid="uid://8mqndqcu3plk" path="res://Characters/Enemy/enemy_big_dice.tscn" id="4_87pay"]
 
 [node name="Enemy Spawner" type="Node3D" unique_id=1095715711]
 script = ExtResource("1_up1wc")
 EnemyLowLevel = ExtResource("2_aoe3b")
 EnemyStrongLevel = ExtResource("3_x13wn")
+EnemyBigLevel = ExtResource("4_87pay")
 
 [node name="SpawnerCooldown" type="Timer" parent="." unique_id=1614421818]
 wait_time = 10.0

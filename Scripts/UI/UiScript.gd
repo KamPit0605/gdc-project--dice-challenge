@@ -21,8 +21,8 @@ extends Control
 @onready var HealthDice = $DiceContainer/HealthDice
 @onready var HealthDiceNum = $DiceContainer/HealthDice/HNumber
 @onready var AbilityDice = $DiceContainer2/AbilityDice
-
-
+@onready var AbilityDiceName = $DiceContainer2/AbilityDice/AName
+var AbilityNames: String = "Ability"
 #GlobalPlayerScript
 
 # Called when the node enters the scene tree for the first time.
@@ -51,10 +51,12 @@ func _process(_delta):
 	AttackDiceNum.text = str(GlobalDiceScript.AttackDNum)
 	DefenseDiceNum.text = str(GlobalDiceScript.DefenseDNum)
 	HealthDiceNum.text = str(GlobalDiceScript.HealthDNum)
+	AbilityDiceName.text = AbilityNames
 	
 	#--Functions--
 	_takingDamage()
 	_showThoseDice()
+	_abiltyDieNames()
 	#pass
 
 func _takingDamage():
@@ -77,3 +79,16 @@ func _showThoseDice():
 		DefenseDice.visible = true
 	if GlobalPlayerScript.PlayerLevel >= 8:
 		HealthDice.visible = true
+		
+func _abiltyDieNames():
+	if GlobalDiceScript.AcquiredDice >= 2:
+		if GlobalDiceScript.AbilityDRole == 1:
+			AbilityNames = "speed"
+		elif GlobalDiceScript.AbilityDRole == 2:
+			AbilityNames="shield"
+		elif GlobalDiceScript.AbilityDRole == 3:
+			AbilityNames="health"
+		elif GlobalDiceScript.AbilityDRole == 4:
+			AbilityNames="atk cldwn"
+		elif GlobalDiceScript.AbilityDRole >= 5:
+			AbilityNames="crit hit"

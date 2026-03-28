@@ -43,7 +43,7 @@ func _rolldice():
 	if AcquiredDice >= 1:
 		AttackDNum = randi_range(1,6)
 	if AcquiredDice >= 2:
-		AbilityDRole = randi_range(1,6)
+		AbilityDRole = randi_range(1,5)
 	if AcquiredDice >= 3:
 		DefenseDNum = randi_range(1,6)
 	if AcquiredDice >= 4:

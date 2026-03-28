@@ -26,6 +26,7 @@ AttackTrigger=""
 Enemies=""
 Player=""
 StrongEnemy=""
+BigEnemy=""
 
 [input]
 

@@ -15,6 +15,7 @@ extends CharacterBody3D
 
 #--MOVEMENT--
 var SPEED = 5.0
+const DefaultSPEED = 5.0
 #const JUMP_VELOCITY = 4.5
 
 #--HEALTH--
@@ -29,9 +30,11 @@ var DamageTaken: bool
 var HealthGain: int
 var HealthGainBool: bool
 @onready var HealthGainCooldown = $Timers/HealthGainCooldown
+var AbilityDiceHealhMult: int = 1
 
 #--DEFENSE DICE REDUCE--
 var DefenseDiceReduce: int = 1
+var AbilityDiceReduce: int = 0
 
 #--GRAVITY--
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -55,6 +58,7 @@ var EnableAttackCooldown: bool = false
 var attack_rng: float
 var criticalRate: float = 0.85
 var criticalHit: bool
+const defaultCriticalRate: float = 0.85
 
 var EnemyDetected: bool
 
@@ -73,6 +77,7 @@ func _process(_delta):
 
 	PlayerHealth()
 	_defenseDice()
+	_abilityDice()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -170,7 +175,7 @@ func PlayerHealth():
 
 func GainingHealth():
 	if HealthGainBool == true:
-		HEALTH += HealthGain
+		HEALTH += (HealthGain * AbilityDiceHealhMult)
 		HealthGainCooldown.start(2.0)
 		HealthGainBool = false
 	if (GlobalDiceScript.HealthDNum == 1):
@@ -197,14 +202,43 @@ func _defenseDice():
 func _on_health_gain_cooldown_timeout():
 	HealthGainBool = true
 
+func _abilityDice():
+	if ((GlobalDiceScript.AcquiredDice >= 2) && (GlobalDiceScript.RollDice == false)):
+		if GlobalDiceScript.AbilityDRole == 1: #SPEED Buff!
+			SPEED = 7.0
+		else:
+			SPEED = DefaultSPEED
+		
+		if GlobalDiceScript.AbilityDRole == 2: #SHIELD Buff!
+			AbilityDiceReduce = 1
+		else:
+			AbilityDiceReduce = 0
+		
+		if GlobalDiceScript.AbilityDRole == 3: #HEALTH regen Buff (multiplier)!
+			AbilityDiceHealhMult = 2
+		else:
+			AbilityDiceHealhMult = 1
+		
+		if GlobalDiceScript.AbilityDRole == 4: #attack cooldown reduce
+			AttackCooldownFloat = 0.75
+		else:
+			AttackCooldownFloat = 1.0
+		
+		if GlobalDiceScript.AbilityDRole >= 5:
+			criticalRate = 0.75
+		else:
+			criticalRate = defaultCriticalRate
+
 func TakingDamage():
-	HEALTH -= Damage / DefenseDiceReduce
+	HEALTH -= Damage / (DefenseDiceReduce + AbilityDiceReduce)
 #other function
 func _on_player_trigger_area_entered(area):
 	if (area.is_in_group("Enemies") && DamageTaken == false):
 		Damage = DefaultDamage
 		if (area.is_in_group("StrongEnemy")):
 			Damage = 15
+		if (area.is_in_group("BigEnemy")):
+			Damage = 45
 		GlobalPlayerScript.DamageTaken = true
 		TakingDamage()
 		

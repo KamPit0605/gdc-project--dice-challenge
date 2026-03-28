@@ -4,6 +4,7 @@ extends Node
 
 @export var EnemyLowLevel: PackedScene
 @export var EnemyStrongLevel: PackedScene
+@export var EnemyBigLevel: PackedScene
 @export var targetPlayer: Node3D
 
 @export var TopPositionMarker: Node3D
@@ -15,6 +16,7 @@ var Spawning: bool
 var SpawnCount: int
 
 var RoundsSpawn: int #how many times the enemies spawned
+var _10RoundsSpawn: int #every 10 rounds...
 var SpawnRNG: int #the chance for different enemies
 
 var SpawnPosition: int
@@ -38,6 +40,9 @@ func _process(delta):
 	else:
 		SpawnCount = 0
 		Spawning = false
+		
+	#if _10RoundsSpawn > 10:
+		#_10RoundsSpawn = 0
 
 
 
@@ -60,6 +65,9 @@ func _instanceDifferentTypes():
 			_instancing(EnemyStrongLevel)
 	else:
 		_instancing(EnemyLowLevel)
+	if _10RoundsSpawn == 10:
+		_instancing(EnemyBigLevel)
+		_10RoundsSpawn = 0
 
 
 func _on_spawner_cooldown_timeout():
@@ -67,10 +75,13 @@ func _on_spawner_cooldown_timeout():
 	SpawnCount = randi_range(4,8)
 	if RoundsSpawn >= 10:
 		SpawnCount = randi_range(6,12)
-	if RoundsSpawn >= 20:
+	elif RoundsSpawn >= 20:
 		SpawnCount = randi_range(8,16)
+	elif RoundsSpawn >= 30:
+		SpawnCount = randi_range(12,24)
 	Spawning = true
 	TopPositionMarker.global_position = TopMidReset.global_position
 	BottomPositionMarker.global_position = BottomMidReset.global_position
 	RoundsSpawn += 1
+	_10RoundsSpawn += 1
 	SpawnerCooldown.start(10)
