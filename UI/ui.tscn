@@ -450,14 +450,14 @@ grow_horizontal = 2
 [node name="TimerUI" type="Label" parent="VBoxContainer" unique_id=1202270386]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "[0.00]"
+text = "[0:00]"
 label_settings = SubResource("LabelSettings_2fwl4")
 
 [node name="OverTimerUI" type="Label" parent="VBoxContainer" unique_id=1534136179]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-text = "[+0.00]"
+text = "[+0:00]"
 label_settings = SubResource("LabelSettings_c7tqi")
 
 [node name="Criticals" type="VBoxContainer" parent="VBoxContainer" unique_id=358116091]

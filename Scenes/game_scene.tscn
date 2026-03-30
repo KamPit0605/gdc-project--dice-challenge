@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://c3gqsqyeeb7wg" path="res://Scripts/Enemy/enemy_stationary_dice.gd" id="1_b6fju"]
 [ext_resource type="Texture2D" uid="uid://i0grr37p2mnk" path="res://Textures/Dice/DieSide1.png" id="2_6h5vk"]
 [ext_resource type="Texture2D" uid="uid://qutlpb3hl1m2" path="res://Textures/Dice/DieSide2.png" id="3_wywco"]
-[ext_resource type="PackedScene" uid="uid://dvt7pl443syw1" path="res://Scenes/Systems/game_system.tscn" id="4_fiftr"]
 [ext_resource type="Texture2D" uid="uid://c36ynu8r61eui" path="res://Textures/Dice/DieSide3.png" id="4_ldntv"]
 [ext_resource type="PackedScene" uid="uid://wkbtlxu64hlw" path="res://UI/ui.tscn" id="5_1ixah"]
 [ext_resource type="Texture2D" uid="uid://calotiwvbebbh" path="res://Textures/Dice/DieSide4.png" id="5_w8jfd"]
@@ -12,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bs8exio7gkbd2" path="res://Scripts/Dice/Global_DiceScript.gd" id="6_rgj8m"]
 [ext_resource type="PackedScene" uid="uid://7shbr518fxwl" path="res://Scenes/Systems/EnemySpawner.tscn" id="7_2fmhe"]
 [ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="7_8m72m"]
+[ext_resource type="Script" uid="uid://dkx18dduq5qu7" path="res://Scripts/Systems/Global_game_system.gd" id="11_4xiap"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6h5vk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -250,18 +250,6 @@ wait_time = 0.1
 
 [node name="HealthGainCooldown" type="Timer" parent="PlayerDice/Timers" unique_id=234975657]
 
-[node name="Text" type="Node" parent="PlayerDice" unique_id=1145853234]
-
-[node name="LevelUpText" type="Label3D" parent="PlayerDice/Text" unique_id=1589136182]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 2, 0)
-visible = false
-modulate = Color(0.15686275, 0.83137256, 0.78039217, 1)
-text = "LEVEL UP"
-font_size = 100
-
-[node name="TextCountdown" type="Timer" parent="PlayerDice/Text" unique_id=953081442]
-wait_time = 2.0
-
 [node name="Textures" type="Node3D" parent="PlayerDice" unique_id=1188324678]
 
 [node name="DiceSide1" type="Sprite3D" parent="PlayerDice/Textures" unique_id=1175760595]
@@ -293,6 +281,18 @@ texture = ExtResource("6_a7fet")
 transform = Transform3D(-0.255, -1.1146402e-08, -3.3439203e-08, -1.1146406e-08, 0.255, 2.2292806e-08, 3.3439203e-08, 2.2292808e-08, -0.255, 0.014164448, -0.0100726485, -0.5014418)
 modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
 texture = ExtResource("7_8m72m")
+
+[node name="Text" type="Node3D" parent="PlayerDice" unique_id=2049264908]
+
+[node name="LevelUpText" type="Label3D" parent="PlayerDice/Text" unique_id=1589136182]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 1, 0)
+visible = false
+modulate = Color(0.15686275, 0.83137256, 0.78039217, 1)
+text = "LEVEL UP"
+font_size = 100
+
+[node name="TextCountdown" type="Timer" parent="PlayerDice/Text" unique_id=953081442]
+wait_time = 2.0
 
 [node name="Environment" type="Node3D" parent="." unique_id=1783128640]
 
@@ -390,7 +390,14 @@ Player = NodePath("../PlayerDice")
 [node name="DiceScript" type="Node" parent="Globals" unique_id=1253299711]
 script = ExtResource("6_rgj8m")
 
-[node name="GameSystem" parent="Globals" unique_id=938242266 instance=ExtResource("4_fiftr")]
+[node name="GameSystem" type="Node" parent="Globals" unique_id=938242266]
+script = ExtResource("11_4xiap")
+
+[node name="Timers" type="Node" parent="Globals/GameSystem" unique_id=1808737333]
+
+[node name="Game_Timer" type="Timer" parent="Globals/GameSystem/Timers" unique_id=1987696111]
+
+[node name="Game_OverTimer" type="Timer" parent="Globals/GameSystem/Timers" unique_id=1385484908]
 
 [node name="Enemy Spawner" parent="." unique_id=1095715711 node_paths=PackedStringArray("targetPlayer", "TopPositionMarker", "BottomPositionMarker", "TopMidReset", "BottomMidReset") instance=ExtResource("7_2fmhe")]
 targetPlayer = NodePath("../PlayerDice")
@@ -407,7 +414,9 @@ BottomMidReset = NodePath("../PlayerDice/Position References/Bottom-Mid Reset")
 [connection signal="timeout" from="PlayerDice/Attacking/AttackCooldown" to="PlayerDice" method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="PlayerDice/Timers/DamageCooldown" to="PlayerDice" method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="PlayerDice/Timers/HealthGainCooldown" to="PlayerDice" method="_on_health_gain_cooldown_timeout"]
+[connection signal="timeout" from="PlayerDice/Text/TextCountdown" to="PlayerDice" method="_on_text_countdown_timeout"]
 [connection signal="area_entered" from="enemyStationary_dice/EnemyTrigger" to="enemyStationary_dice" method="_on_enemy_trigger_area_entered"]
 [connection signal="area_exited" from="enemyStationary_dice/EnemyTrigger" to="enemyStationary_dice" method="_on_enemy_trigger_area_exited"]
 [connection signal="timeout" from="enemyStationary_dice/DamageCooldown" to="enemyStationary_dice" method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="enemyStationary_dice/FollowingCooldown" to="enemyStationary_dice" method="_on_following_cooldown_timeout"]
+[connection signal="timeout" from="Globals/GameSystem/Timers/Game_Timer" to="UI" method="_on_game_timer_timeout"]

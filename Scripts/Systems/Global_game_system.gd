@@ -1,6 +1,7 @@
 extends Node
 
 @export var GameStart: bool
+@onready var GamePlaying: bool
 #--TIMERS--
 @onready var Game_Timer = $Timers/Game_Timer
 @onready var Game_OverTimer = $Timers/Game_OverTimer
@@ -13,4 +14,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if GameStart == true:
+		GamePlaying = true
+		GameStart = false

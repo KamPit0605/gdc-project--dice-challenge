@@ -185,10 +185,10 @@ wait_time = 0.1
 
 [node name="HealthGainCooldown" type="Timer" parent="Timers" unique_id=234975657]
 
-[node name="Text" type="Node" parent="." unique_id=1145853234]
+[node name="Text" type="Node3D" parent="." unique_id=2075652531]
 
 [node name="LevelUpText" type="Label3D" parent="Text" unique_id=1589136182]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 1, 0)
 visible = false
 modulate = Color(0.15686275, 0.83137256, 0.78039217, 1)
 text = "LEVEL UP"
@@ -237,3 +237,4 @@ texture = ExtResource("6_y20hb")
 [connection signal="timeout" from="Attacking/AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="Timers/DamageCooldown" to="." method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="Timers/HealthGainCooldown" to="." method="_on_health_gain_cooldown_timeout"]
+[connection signal="timeout" from="Text/TextCountdown" to="." method="_on_text_countdown_timeout"]

@@ -2,6 +2,7 @@ extends Control
 
 @export var Player = CharacterBody3D
 
+@onready var GameTimer = $"../Globals/GameSystem/Timers/Game_Timer" #direct reference
 #--TEXTS--
 @onready var HealthUI = $HealthLevelXP/HealthUI
 @onready var LevelUI = $HealthLevelXP/LevelUI
@@ -31,6 +32,7 @@ var CriticalBool:bool
 
 @onready var TimerUI = $VBoxContainer/TimerUI
 @onready var OverTimerUI = $VBoxContainer/OverTimerUI
+@export var timeInSeconds: int = 300
 #GlobalPlayerScript
 
 # Called when the node enters the scene tree for the first time.
@@ -67,6 +69,7 @@ func _process(_delta):
 	_showThoseDice()
 	_abiltyDieNames()
 	CriticalDisplay()
+	_timerSetup()
 	#pass
 
 func _takingDamage():
@@ -117,3 +120,15 @@ func CriticalDisplay():
 func _on_critical_timer_timeout():
 	CriticalRoleUI.visible = false
 	CriticalFailureUI.visible = false
+
+func _timerSetup():
+	if GlobalGameSystem.GameStart:
+		TimerUI.visible = true
+		GameTimer.start()
+
+
+func _on_game_timer_timeout():
+	timeInSeconds -= 1
+	var m = int(timeInSeconds/60.0)
+	var s = timeInSeconds - m * 60
+	TimerUI.text = '%01d:%02d' % [m,s]
