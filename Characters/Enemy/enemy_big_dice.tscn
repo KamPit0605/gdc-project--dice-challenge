@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://8mqndqcu3plk"]
 
 [ext_resource type="Script" uid="uid://7pdjkuaqua56" path="res://Scripts/Enemy/enemy_big_dice.gd" id="1_el3yh"]
+[ext_resource type="Texture2D" uid="uid://calotiwvbebbh" path="res://Textures/Dice/DieSide4.png" id="2_5fh3b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w0rp6"]
 size = Vector3(1.5, 1.5, 1.5)
@@ -41,6 +42,33 @@ text = "asdfsaefsadf"
 font_size = 50
 
 [node name="FollowingCooldown" type="Timer" parent="." unique_id=1520790909]
+
+[node name="Textures" type="Node3D" parent="." unique_id=1462640747]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="DiceSide(1)_1" type="Sprite3D" parent="Textures" unique_id=491812283]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0.5099685)
+texture = ExtResource("2_5fh3b")
+
+[node name="DiceSide(1)_2" type="Sprite3D" parent="Textures" unique_id=1408893653]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, -0.5041398)
+texture = ExtResource("2_5fh3b")
+
+[node name="DiceSide(1)_3" type="Sprite3D" parent="Textures" unique_id=1194217945]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, -0.255, 0, 0.255, -1.1146404e-08, 0, 0.5047648, -0.0023055375)
+texture = ExtResource("2_5fh3b")
+
+[node name="DiceSide(1)_4" type="Sprite3D" parent="Textures" unique_id=1742175343]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, -0.255, 0, 0.255, -1.1146404e-08, 0, -0.5026775, -0.0023055375)
+texture = ExtResource("2_5fh3b")
+
+[node name="DiceSide(1)_5" type="Sprite3D" parent="Textures" unique_id=572362975]
+transform = Transform3D(-1.1146404e-08, 0, 0.255, 0, 0.255, 0, -0.255, 0, -1.1146404e-08, -0.51649547, 0, 6.648898e-05)
+texture = ExtResource("2_5fh3b")
+
+[node name="DiceSide(1)_6" type="Sprite3D" parent="Textures" unique_id=1907491499]
+transform = Transform3D(-1.1146404e-08, 0, 0.255, 0, 0.255, 0, -0.255, 0, -1.1146404e-08, 0.50267863, 0, 6.648898e-05)
+texture = ExtResource("2_5fh3b")
 
 [connection signal="area_entered" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_entered"]
 [connection signal="area_exited" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_exited"]

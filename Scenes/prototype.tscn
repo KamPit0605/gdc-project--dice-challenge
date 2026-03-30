@@ -1,10 +1,16 @@
 [gd_scene format=3 uid="uid://01rc4wcxhoec"]
 
 [ext_resource type="Script" uid="uid://b51xaavwp77nu" path="res://Scripts/Player/player_dice.gd" id="2_6koui"]
+[ext_resource type="Texture2D" uid="uid://i0grr37p2mnk" path="res://Textures/Dice/DieSide1.png" id="2_fixtb"]
 [ext_resource type="Script" uid="uid://bs8exio7gkbd2" path="res://Scripts/Dice/Global_DiceScript.gd" id="2_uurmw"]
 [ext_resource type="PackedScene" uid="uid://wkbtlxu64hlw" path="res://UI/ui.tscn" id="3_3mrnv"]
 [ext_resource type="PackedScene" uid="uid://7shbr518fxwl" path="res://Scenes/Systems/EnemySpawner.tscn" id="3_6koui"]
+[ext_resource type="Texture2D" uid="uid://qutlpb3hl1m2" path="res://Textures/Dice/DieSide2.png" id="3_xnjhx"]
 [ext_resource type="PackedScene" uid="uid://ld1mxfj4vaxp" path="res://Scenes/Systems/dice_system.tscn" id="4_3mrnv"]
+[ext_resource type="Texture2D" uid="uid://c36ynu8r61eui" path="res://Textures/Dice/DieSide3.png" id="4_7dhkk"]
+[ext_resource type="Texture2D" uid="uid://calotiwvbebbh" path="res://Textures/Dice/DieSide4.png" id="5_bsdhg"]
+[ext_resource type="Texture2D" uid="uid://c1qsyl5hxn0tw" path="res://Textures/Dice/DieSide5.png" id="6_fixtb"]
+[ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="7_2mp60"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6ox75"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -251,6 +257,38 @@ wait_time = 2.0
 wait_time = 0.1
 
 [node name="HealthGainCooldown" type="Timer" parent="PlayerDice/Timers" unique_id=2082110432]
+
+[node name="Textures" type="Node3D" parent="PlayerDice" unique_id=2143777028]
+
+[node name="DiceSide1" type="Sprite3D" parent="PlayerDice/Textures" unique_id=294296381]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0.5099685)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("2_fixtb")
+
+[node name="DiceSide2" type="Sprite3D" parent="PlayerDice/Textures" unique_id=1434924105]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, 0.255, 0, -0.255, -1.1146404e-08, 0, 0.5027782, -0.014969945)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("3_xnjhx")
+
+[node name="DiceSide3" type="Sprite3D" parent="PlayerDice/Textures" unique_id=1613559343]
+transform = Transform3D(-1.1146404e-08, -1.1146404e-08, 0.255, -0.255, 4.872248e-16, -1.1146404e-08, 0, -0.255, -1.1146404e-08, 0.507203, -0.0100726485, -0.014969945)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("4_7dhkk")
+
+[node name="DiceSide4" type="Sprite3D" parent="PlayerDice/Textures" unique_id=1466336258]
+transform = Transform3D(3.343921e-08, 1.1146404e-08, -0.255, 0.255, -1.4616743e-15, 3.343921e-08, 5.399835e-23, -0.255, -1.1146404e-08, -0.50877106, -0.0100726485, -0.014969945)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("5_bsdhg")
+
+[node name="DiceSide5" type="Sprite3D" parent="PlayerDice/Textures" unique_id=1301298382]
+transform = Transform3D(-0.255, -1.1146402e-08, -3.34392e-08, 3.34392e-08, 1.1146404e-08, -0.255, 1.1146404e-08, -0.255, -1.1146402e-08, 0.014164448, -0.50094426, -0.0056890845)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("6_fixtb")
+
+[node name="DiceSide6" type="Sprite3D" parent="PlayerDice/Textures" unique_id=1331107883]
+transform = Transform3D(-0.255, -1.1146402e-08, -3.3439203e-08, -1.1146406e-08, 0.255, 2.2292806e-08, 3.3439203e-08, 2.2292808e-08, -0.255, 0.014164448, -0.0100726485, -0.5014418)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("7_2mp60")
 
 [node name="Globals" type="Node" parent="." unique_id=1647484007]
 

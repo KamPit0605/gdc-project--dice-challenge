@@ -18,7 +18,9 @@ func _ready():
 func _process(_delta):
 	if RollDice == true:
 		_rolldice()
-	
+	#AttackDNum = int
+	#DefenseDNum = int
+	#HealthDNum = int
 	acquiringDice()
 
 func _DiceNum(DiceNum):

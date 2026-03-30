@@ -23,6 +23,11 @@ extends Control
 @onready var AbilityDice = $DiceContainer2/AbilityDice
 @onready var AbilityDiceName = $DiceContainer2/AbilityDice/AName
 var AbilityNames: String = "Ability"
+
+@onready var CriticalRoleUI = $VBoxContainer/Criticals/CriticalRoleUI
+@onready var CriticalFailureUI = $VBoxContainer/Criticals/CriticalFailureUI
+@onready var CriticalTimer = $CriticalTimer
+var CriticalBool:bool 
 #GlobalPlayerScript
 
 # Called when the node enters the scene tree for the first time.
@@ -57,6 +62,7 @@ func _process(_delta):
 	_takingDamage()
 	_showThoseDice()
 	_abiltyDieNames()
+	CriticalDisplay()
 	#pass
 
 func _takingDamage():
@@ -92,3 +98,16 @@ func _abiltyDieNames():
 			AbilityNames="atk cldwn"
 		elif GlobalDiceScript.AbilityDRole >= 5:
 			AbilityNames="crit hit"
+
+func CriticalDisplay():
+	if !GlobalDiceScript.RollDice:
+		if ((GlobalDiceScript.AttackDNum == 6) && (GlobalDiceScript.DefenseDNum == 6) && (GlobalDiceScript.HealthDNum == 6)):
+			CriticalRoleUI.visible = true
+			CriticalTimer.start(2,0)
+		elif ((GlobalDiceScript.AttackDNum == 1) && (GlobalDiceScript.DefenseDNum == 1) && (GlobalDiceScript.HealthDNum == 1)):
+			CriticalFailureUI.visible = true
+			CriticalTimer.start(2.0)
+
+func _on_critical_timer_timeout():
+	CriticalRoleUI.visible = false
+	CriticalFailureUI.visible = false

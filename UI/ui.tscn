@@ -160,6 +160,18 @@ _data = {
 &"RESET": SubResource("Animation_dajm1")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_3sbvi"]
+font_size = 60
+font_color = Color(0.95686275, 0.95686275, 0, 0.95686275)
+outline_size = 15
+outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nm1m0"]
+font_size = 60
+font_color = Color(0.39215687, 0.2, 0.7411765, 0.95686275)
+outline_size = 15
+outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
 [node name="UI" type="Control" unique_id=20405237]
 layout_mode = 3
 anchors_preset = 15
@@ -173,67 +185,56 @@ metadata/_edit_lock_ = true
 [node name="HurtIndicator" type="Control" parent="." unique_id=1709179627]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchor_right = 1.0
+anchor_bottom = 0.98800004
+offset_bottom = 7.776001
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HitInd1" type="ColorRect" parent="HurtIndicator" unique_id=213715251]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = -7.6000004
-anchor_right = 0.5
-anchor_bottom = -7.6000004
-offset_left = -567.99994
-offset_right = 584.00006
-offset_bottom = 40.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
 grow_horizontal = 2
-grow_vertical = 0
 color = Color(1, 0.11764706, 0.11764706, 1)
 
 [node name="HitInd2" type="ColorRect" parent="HurtIndicator" unique_id=1698556784]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 8.6
-anchor_right = 0.5
-anchor_bottom = 8.6
-offset_left = -567.99994
-offset_top = -40.0
-offset_right = 584.00006
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
 color = Color(1, 0.11764706, 0.11764706, 1)
 
 [node name="HitInd3" type="ColorRect" parent="HurtIndicator" unique_id=2090397475]
-layout_mode = 0
-offset_left = -523.99994
-offset_top = -304.0
-offset_right = 123.14288
-offset_bottom = -264.0
-rotation = 1.5707964
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 50.0
+grow_vertical = 2
 color = Color(1, 0.11764706, 0.11764706, 1)
 
 [node name="HitInd4" type="ColorRect" parent="HurtIndicator" unique_id=1862255033]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 15.1
-anchor_right = 15.1
-offset_left = 6.1035156e-05
-offset_top = -304.0
-offset_right = 647.14294
-offset_bottom = -264.0
-rotation = 1.5707964
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_right = 2.0
+grow_horizontal = 0
+grow_vertical = 2
 color = Color(1, 0.11764706, 0.11764706, 1)
 
 [node name="HurtIndicatorTimer" type="Timer" parent="." unique_id=296221084]
 wait_time = 0.5
+
+[node name="CriticalTimer" type="Timer" parent="." unique_id=938970969]
 
 [node name="HealthLevelXP" type="VBoxContainer" parent="." unique_id=1239138341]
 layout_mode = 1
@@ -430,4 +431,40 @@ offset_bottom = 40.0
 root_node = NodePath("../../DiceContainer/AttackDice")
 libraries/ = SubResource("AnimationLibrary_e6gg6")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=270339400]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.5
+offset_right = 64.5
+offset_bottom = 88.0
+grow_horizontal = 2
+
+[node name="KillsTextUI" type="Label" parent="VBoxContainer" unique_id=1202270386]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "[0.00]"
+label_settings = SubResource("LabelSettings_2fwl4")
+
+[node name="Criticals" type="VBoxContainer" parent="VBoxContainer" unique_id=358116091]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CriticalRoleUI" type="Label" parent="VBoxContainer/Criticals" unique_id=1114336313]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CRITICAL!!!"
+label_settings = SubResource("LabelSettings_3sbvi")
+
+[node name="CriticalFailureUI" type="Label" parent="VBoxContainer/Criticals" unique_id=2110014071]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CRITICAL..."
+label_settings = SubResource("LabelSettings_nm1m0")
+
 [connection signal="timeout" from="HurtIndicatorTimer" to="." method="_on_hurt_indicator_timer_timeout"]
+[connection signal="timeout" from="CriticalTimer" to="." method="_on_critical_timer_timeout"]

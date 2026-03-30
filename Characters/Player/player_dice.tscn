@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://dl7nnhww37r8j"]
 
 [ext_resource type="Script" uid="uid://b51xaavwp77nu" path="res://Scripts/Player/player_dice.gd" id="1_72tq2"]
+[ext_resource type="Texture2D" uid="uid://i0grr37p2mnk" path="res://Textures/Dice/DieSide1.png" id="2_m8pjy"]
+[ext_resource type="Texture2D" uid="uid://qutlpb3hl1m2" path="res://Textures/Dice/DieSide2.png" id="3_qbb6i"]
+[ext_resource type="Texture2D" uid="uid://c36ynu8r61eui" path="res://Textures/Dice/DieSide3.png" id="4_qonha"]
+[ext_resource type="Texture2D" uid="uid://calotiwvbebbh" path="res://Textures/Dice/DieSide4.png" id="5_alv2v"]
+[ext_resource type="Texture2D" uid="uid://c1qsyl5hxn0tw" path="res://Textures/Dice/DieSide5.png" id="6_rthal"]
+[ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="6_y20hb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_avbah"]
 
@@ -190,6 +196,38 @@ font_size = 100
 
 [node name="TextCountdown" type="Timer" parent="Text" unique_id=953081442]
 wait_time = 2.0
+
+[node name="Textures" type="Node3D" parent="." unique_id=1188324678]
+
+[node name="DiceSide1" type="Sprite3D" parent="Textures" unique_id=1175760595]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0.5099685)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("2_m8pjy")
+
+[node name="DiceSide2" type="Sprite3D" parent="Textures" unique_id=457914870]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, 0.255, 0, -0.255, -1.1146404e-08, 0, 0.5027782, -0.014969945)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("3_qbb6i")
+
+[node name="DiceSide3" type="Sprite3D" parent="Textures" unique_id=1872182325]
+transform = Transform3D(-1.1146404e-08, -1.1146404e-08, 0.255, -0.255, 4.872248e-16, -1.1146404e-08, 0, -0.255, -1.1146404e-08, 0.507203, -0.0100726485, -0.014969945)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("4_qonha")
+
+[node name="DiceSide4" type="Sprite3D" parent="Textures" unique_id=58676242]
+transform = Transform3D(3.343921e-08, 1.1146404e-08, -0.255, 0.255, -1.4616743e-15, 3.343921e-08, 5.399835e-23, -0.255, -1.1146404e-08, -0.50877106, -0.0100726485, -0.014969945)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("5_alv2v")
+
+[node name="DiceSide5" type="Sprite3D" parent="Textures" unique_id=849430833]
+transform = Transform3D(-0.255, -1.1146402e-08, -3.34392e-08, 3.34392e-08, 1.1146404e-08, -0.255, 1.1146404e-08, -0.255, -1.1146402e-08, 0.014164448, -0.50094426, -0.0056890845)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("6_rthal")
+
+[node name="DiceSide6" type="Sprite3D" parent="Textures" unique_id=1356679105]
+transform = Transform3D(-0.255, -1.1146402e-08, -3.3439203e-08, -1.1146406e-08, 0.255, 2.2292806e-08, 3.3439203e-08, 2.2292808e-08, -0.255, 0.014164448, -0.0100726485, -0.5014418)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("6_y20hb")
 
 [connection signal="area_entered" from="PlayerTrigger" to="." method="_on_player_trigger_area_entered"]
 [connection signal="area_exited" from="PlayerTrigger" to="." method="_on_player_trigger_area_exited"]

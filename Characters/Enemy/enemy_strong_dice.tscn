@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dos88ftpsxo1b"]
 
 [ext_resource type="Script" uid="uid://dbe2tlcem6851" path="res://Scripts/Enemy/enemy_strong_dice.gd" id="1_xuio4"]
+[ext_resource type="Texture2D" uid="uid://c36ynu8r61eui" path="res://Textures/Dice/DieSide3.png" id="2_dmmn1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w0rp6"]
 
@@ -38,6 +39,32 @@ text = "asdfsaefsadf"
 font_size = 50
 
 [node name="FollowingCooldown" type="Timer" parent="." unique_id=1520790909]
+
+[node name="Textures" type="Node3D" parent="." unique_id=217290407]
+
+[node name="DiceSide(1)_1" type="Sprite3D" parent="Textures" unique_id=676585550]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0.5099685)
+texture = ExtResource("2_dmmn1")
+
+[node name="DiceSide(1)_2" type="Sprite3D" parent="Textures" unique_id=1940503627]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, -0.5041398)
+texture = ExtResource("2_dmmn1")
+
+[node name="DiceSide(1)_3" type="Sprite3D" parent="Textures" unique_id=1802090438]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, -0.255, 0, 0.255, -1.1146404e-08, 0, 0.5047648, -0.0023055375)
+texture = ExtResource("2_dmmn1")
+
+[node name="DiceSide(1)_4" type="Sprite3D" parent="Textures" unique_id=1956977087]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, -0.255, 0, 0.255, -1.1146404e-08, 0, -0.5026775, -0.0023055375)
+texture = ExtResource("2_dmmn1")
+
+[node name="DiceSide(1)_5" type="Sprite3D" parent="Textures" unique_id=438393546]
+transform = Transform3D(-1.1146404e-08, 0, 0.255, 0, 0.255, 0, -0.255, 0, -1.1146404e-08, -0.51649547, 0, 6.648898e-05)
+texture = ExtResource("2_dmmn1")
+
+[node name="DiceSide(1)_6" type="Sprite3D" parent="Textures" unique_id=716587213]
+transform = Transform3D(-1.1146404e-08, 0, 0.255, 0, 0.255, 0, -0.255, 0, -1.1146404e-08, 0.50267863, 0, 6.648898e-05)
+texture = ExtResource("2_dmmn1")
 
 [connection signal="area_entered" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_entered"]
 [connection signal="area_exited" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_exited"]
