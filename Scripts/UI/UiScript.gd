@@ -28,10 +28,14 @@ var AbilityNames: String = "Ability"
 @onready var CriticalFailureUI = $VBoxContainer/Criticals/CriticalFailureUI
 @onready var CriticalTimer = $CriticalTimer
 var CriticalBool:bool 
+
+@onready var TimerUI = $VBoxContainer/TimerUI
+@onready var OverTimerUI = $VBoxContainer/OverTimerUI
 #GlobalPlayerScript
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	AttackDice.visible = false
 	DefenseDice.visible = false
 	HealthDice.visible = false
 	AbilityDice.visible = false
@@ -79,6 +83,8 @@ func _on_hurt_indicator_timer_timeout():
 
 
 func _showThoseDice():
+	if GlobalPlayerScript.PlayerLevel >= 1:
+		AttackDice.visible = true
 	if GlobalPlayerScript.PlayerLevel >= 5:
 		AbilityDice.visible = true
 	if GlobalPlayerScript.PlayerLevel >= 6:

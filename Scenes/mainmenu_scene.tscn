@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cagwet5i0ua1v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oqyrl"]
+size = Vector3(200.02, 0.25, 300.045)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqyrl"]
+shading_mode = 0
+albedo_color = Color(3.218744e-07, 0.23033407, 0.0028132184, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x87qo"]
+material = SubResource("StandardMaterial3D_oqyrl")
+size = Vector3(200, 0.25, 300)
+
+[node name="GameScene" type="Node3D" unique_id=695069252]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=77190988]
+metadata/_edit_lock_ = true
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Floor" unique_id=954779797]
+shape = SubResource("BoxShape3D_oqyrl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/FloorCollision" unique_id=38178850]
+mesh = SubResource("BoxMesh_x87qo")

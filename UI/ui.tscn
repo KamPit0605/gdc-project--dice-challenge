@@ -160,6 +160,12 @@ _data = {
 &"RESET": SubResource("Animation_dajm1")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_c7tqi"]
+font_size = 30
+font_color = Color(0.05882353, 0.95686275, 0.95686275, 0.95686275)
+outline_size = 6
+outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_3sbvi"]
 font_size = 60
 font_color = Color(0.95686275, 0.95686275, 0, 0.95686275)
@@ -441,11 +447,18 @@ offset_right = 64.5
 offset_bottom = 88.0
 grow_horizontal = 2
 
-[node name="KillsTextUI" type="Label" parent="VBoxContainer" unique_id=1202270386]
+[node name="TimerUI" type="Label" parent="VBoxContainer" unique_id=1202270386]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "[0.00]"
 label_settings = SubResource("LabelSettings_2fwl4")
+
+[node name="OverTimerUI" type="Label" parent="VBoxContainer" unique_id=1534136179]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "[+0.00]"
+label_settings = SubResource("LabelSettings_c7tqi")
 
 [node name="Criticals" type="VBoxContainer" parent="VBoxContainer" unique_id=358116091]
 layout_mode = 2

@@ -31,7 +31,7 @@ func _ready():
 	#add_child(new_instance)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if (SpawnCount > 0) && (Spawning == true):
+	if (SpawnCount > 0) && (Spawning == true) && (GlobalGameSystem.GameStart == true):
 		#var EnemyLowSpawned = EnemyLowLevel.instantiate()
 		#add_child(EnemyLowSpawned)
 		SpawnPosition = randi_range(0,1)

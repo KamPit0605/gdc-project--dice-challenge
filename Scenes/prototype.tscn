@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://calotiwvbebbh" path="res://Textures/Dice/DieSide4.png" id="5_bsdhg"]
 [ext_resource type="Texture2D" uid="uid://c1qsyl5hxn0tw" path="res://Textures/Dice/DieSide5.png" id="6_fixtb"]
 [ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="7_2mp60"]
+[ext_resource type="PackedScene" uid="uid://dvt7pl443syw1" path="res://Scenes/Systems/game_system.tscn" id="12_xnjhx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6ox75"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -310,6 +311,9 @@ BottomMidReset = NodePath("../PlayerDice/Position References/Bottom-Mid Reset")
 Player = NodePath("../PlayerDice")
 
 [node name="DiceSystem" parent="." unique_id=87870044 instance=ExtResource("4_3mrnv")]
+
+[node name="GameSystem" parent="." unique_id=938242266 instance=ExtResource("12_xnjhx")]
+GameStart = true
 
 [connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]
 [connection signal="area_exited" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_exited"]
