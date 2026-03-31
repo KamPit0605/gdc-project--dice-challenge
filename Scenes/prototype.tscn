@@ -313,7 +313,6 @@ Player = NodePath("../PlayerDice")
 [node name="DiceSystem" parent="." unique_id=87870044 instance=ExtResource("4_3mrnv")]
 
 [node name="GameSystem" parent="." unique_id=938242266 instance=ExtResource("12_xnjhx")]
-GameStart = true
 
 [connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]
 [connection signal="area_exited" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_exited"]

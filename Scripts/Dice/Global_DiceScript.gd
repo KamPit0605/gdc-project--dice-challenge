@@ -12,15 +12,15 @@ var AbilityDRole: int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	RollDice = true
-	AcquiredDice = 0
+	AcquiredDice = 0 #(Change this anytime for debugging)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if RollDice == true:
 		_rolldice()
-	#AttackDNum = int
-	#DefenseDNum = int
-	#HealthDNum = int
+	#AttackDNum = 6
+	#DefenseDNum = 6
+	#HealthDNum = 6
 	acquiringDice()
 
 func _DiceNum(DiceNum):

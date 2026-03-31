@@ -28,11 +28,11 @@ var AbilityNames: String = "Ability"
 @onready var CriticalRoleUI = $VBoxContainer/Criticals/CriticalRoleUI
 @onready var CriticalFailureUI = $VBoxContainer/Criticals/CriticalFailureUI
 @onready var CriticalTimer = $CriticalTimer
-var CriticalBool:bool 
+var CriticalBool: bool = false 
 
 @onready var TimerUI = $VBoxContainer/TimerUI
 @onready var OverTimerUI = $VBoxContainer/OverTimerUI
-@export var timeInSeconds: int = 300
+@export var timeInSeconds: int = 301
 #GlobalPlayerScript
 
 # Called when the node enters the scene tree for the first time.
@@ -41,6 +41,8 @@ func _ready():
 	DefenseDice.visible = false
 	HealthDice.visible = false
 	AbilityDice.visible = false
+	if !GlobalGameSystem.GamePlaying:
+		TimerUI.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -87,7 +89,8 @@ func _on_hurt_indicator_timer_timeout():
 
 func _showThoseDice():
 	if GlobalPlayerScript.PlayerLevel >= 1:
-		AttackDice.visible = true
+		if GlobalGameSystem.GamePlaying == true:
+			AttackDice.visible = true
 	if GlobalPlayerScript.PlayerLevel >= 5:
 		AbilityDice.visible = true
 	if GlobalPlayerScript.PlayerLevel >= 6:
@@ -109,17 +112,21 @@ func _abiltyDieNames():
 			AbilityNames="crit hit"
 
 func CriticalDisplay():
-	if !GlobalDiceScript.RollDice:
+	if ((GlobalDiceScript.RollDice == false) && (CriticalBool == false)):
 		if ((GlobalDiceScript.AttackDNum == 6) && (GlobalDiceScript.DefenseDNum == 6) && (GlobalDiceScript.HealthDNum == 6)):
 			CriticalRoleUI.visible = true
-			CriticalTimer.start(2,0)
+			CriticalTimer.start(2.0)
+			CriticalBool = true
 		elif ((GlobalDiceScript.AttackDNum == 1) && (GlobalDiceScript.DefenseDNum == 1) && (GlobalDiceScript.HealthDNum == 1)):
 			CriticalFailureUI.visible = true
 			CriticalTimer.start(2.0)
+			CriticalBool = true
 
 func _on_critical_timer_timeout():
 	CriticalRoleUI.visible = false
 	CriticalFailureUI.visible = false
+	if GlobalDiceScript.RollDice == true:
+		CriticalBool = false
 
 func _timerSetup():
 	if GlobalGameSystem.GameStart:

@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://7shbr518fxwl" path="res://Scenes/Systems/EnemySpawner.tscn" id="7_2fmhe"]
 [ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="7_8m72m"]
 [ext_resource type="Script" uid="uid://dkx18dduq5qu7" path="res://Scripts/Systems/Global_game_system.gd" id="11_4xiap"]
+[ext_resource type="PackedScene" uid="uid://ld1mxfj4vaxp" path="res://Scenes/Systems/dice_system.tscn" id="12_wywco"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6h5vk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -110,6 +111,16 @@ albedo_color = Color(0.16078432, 0.12156863, 0, 1)
 material = SubResource("StandardMaterial3D_1ixah")
 size = Vector3(750, 0.25, 750)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wywco"]
+size = Vector3(100, 2.5, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldntv"]
+albedo_color = Color(0.31374374, 0.11467182, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w8jfd"]
+material = SubResource("StandardMaterial3D_ldntv")
+size = Vector3(100.065, 2.5, 30.005)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_w0rp6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wwsqc"]
@@ -121,6 +132,10 @@ albedo_color = Color(1, 0, 0, 1)
 size = Vector3(1.05, 1.05, 1.05)
 
 [node name="GameScene" type="Node3D" unique_id=695069252]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1749603284]
+transform = Transform3D(1, 0, 0, 0, 0.54007876, 0.8416145, 0, -0.8416145, 0.54007876, 0, 17.200483, 14.619564)
+doppler_tracking = 2
 
 [node name="Lighting" type="Node3D" parent="." unique_id=926546385]
 
@@ -139,10 +154,6 @@ PlayerTrigger = NodePath("PlayerTrigger")
 AttackTrigger = NodePath("Attacking/AttackTrigger")
 AttackingFloat = 0.15
 AttackCooldownFloat = 1.0
-
-[node name="Camera3D" type="Camera3D" parent="PlayerDice" unique_id=1749603284]
-transform = Transform3D(1, 0, 0, 0, 0.54007876, 0.8416145, 0, -0.8416145, 0.54007876, 0, 10.200483, 8.619564)
-doppler_tracking = 2
 
 [node name="CollisionShape" type="CollisionShape3D" parent="PlayerDice" unique_id=1879702523]
 shape = SubResource("BoxShape3D_avbah")
@@ -300,20 +311,59 @@ wait_time = 2.0
 metadata/_edit_lock_ = true
 
 [node name="FloorCollision" type="CollisionShape3D" parent="Environment/Floor" unique_id=954779797]
+visible = false
 shape = SubResource("BoxShape3D_oqyrl")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor/FloorCollision" unique_id=38178850]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor" unique_id=38178850]
 mesh = SubResource("BoxMesh_x87qo")
 
 [node name="Floor2" type="StaticBody3D" parent="Environment" unique_id=514970300]
 metadata/_edit_lock_ = true
 
-[node name="FloorCollision" type="CollisionShape3D" parent="Environment/Floor2" unique_id=1176979708]
+[node name="Area3D" type="Area3D" parent="Environment/Floor2" unique_id=1182287736]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Environment/Floor2/Area3D" unique_id=63010181]
 shape = SubResource("BoxShape3D_fiftr")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor2/FloorCollision" unique_id=1903357975]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor2/Area3D/FloorCollision" unique_id=1903357975]
 mesh = SubResource("BoxMesh_rgj8m")
+
+[node name="Edge1" type="StaticBody3D" parent="Environment" unique_id=1650013415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge1" unique_id=2008720312]
+shape = SubResource("BoxShape3D_wywco")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge1" unique_id=1429341238]
+mesh = SubResource("BoxMesh_w8jfd")
+
+[node name="Edge2" type="StaticBody3D" parent="Environment" unique_id=8564925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 30)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge2" unique_id=851759316]
+shape = SubResource("BoxShape3D_wywco")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge2" unique_id=1424393773]
+mesh = SubResource("BoxMesh_w8jfd")
+
+[node name="Edge3" type="StaticBody3D" parent="Environment" unique_id=1179171965]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -65, 1, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge3" unique_id=1964683161]
+shape = SubResource("BoxShape3D_wywco")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge3" unique_id=1237536605]
+mesh = SubResource("BoxMesh_w8jfd")
+
+[node name="Edge4" type="StaticBody3D" parent="Environment" unique_id=456516191]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 65, 1, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge4" unique_id=1069440844]
+shape = SubResource("BoxShape3D_wywco")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge4" unique_id=856936825]
+mesh = SubResource("BoxMesh_w8jfd")
 
 [node name="enemyStationary_dice" type="RigidBody3D" parent="." unique_id=1738791593 node_paths=PackedStringArray("Enemy", "EnemyTrigger", "Player") groups=["Enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -10)
@@ -398,6 +448,8 @@ script = ExtResource("11_4xiap")
 [node name="Game_Timer" type="Timer" parent="Globals/GameSystem/Timers" unique_id=1987696111]
 
 [node name="Game_OverTimer" type="Timer" parent="Globals/GameSystem/Timers" unique_id=1385484908]
+
+[node name="DiceSystem" parent="." unique_id=87870044 instance=ExtResource("12_wywco")]
 
 [node name="Enemy Spawner" parent="." unique_id=1095715711 node_paths=PackedStringArray("targetPlayer", "TopPositionMarker", "BottomPositionMarker", "TopMidReset", "BottomMidReset") instance=ExtResource("7_2fmhe")]
 targetPlayer = NodePath("../PlayerDice")

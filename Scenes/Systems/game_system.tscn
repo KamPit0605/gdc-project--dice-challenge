@@ -8,6 +8,5 @@ script = ExtResource("1_38n6m")
 [node name="Timers" type="Node" parent="." unique_id=1808737333]
 
 [node name="Game_Timer" type="Timer" parent="Timers" unique_id=1987696111]
-wait_time = 300.0
 
 [node name="Game_OverTimer" type="Timer" parent="Timers" unique_id=1385484908]

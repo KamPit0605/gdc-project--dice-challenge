@@ -241,6 +241,7 @@ color = Color(1, 0.11764706, 0.11764706, 1)
 wait_time = 0.5
 
 [node name="CriticalTimer" type="Timer" parent="." unique_id=938970969]
+autostart = true
 
 [node name="HealthLevelXP" type="VBoxContainer" parent="." unique_id=1239138341]
 layout_mode = 1
@@ -450,7 +451,7 @@ grow_horizontal = 2
 [node name="TimerUI" type="Label" parent="VBoxContainer" unique_id=1202270386]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "[0:00]"
+text = "0:00"
 label_settings = SubResource("LabelSettings_2fwl4")
 
 [node name="OverTimerUI" type="Label" parent="VBoxContainer" unique_id=1534136179]

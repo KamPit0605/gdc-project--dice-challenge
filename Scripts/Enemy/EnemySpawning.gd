@@ -90,4 +90,4 @@ func _on_spawner_cooldown_timeout():
 	BottomPositionMarker.global_position = BottomMidReset.global_position
 	RoundsSpawn += 1
 	_10RoundsSpawn += 1
-	SpawnerCooldown.start(10)
+	SpawnerCooldown.start(6)
