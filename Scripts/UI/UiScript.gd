@@ -25,6 +25,8 @@ extends Control
 @onready var AbilityDiceName = $DiceContainer2/AbilityDice/AName
 var AbilityNames: String = "Ability"
 
+@onready var MatchingUI = $"DiceContainer/DefenseDice/Matching!"
+
 @onready var CriticalRoleUI = $VBoxContainer/Criticals/CriticalRoleUI
 @onready var CriticalFailureUI = $VBoxContainer/Criticals/CriticalFailureUI
 @onready var CriticalTimer = $CriticalTimer
@@ -32,7 +34,10 @@ var CriticalBool: bool = false
 
 @onready var TimerUI = $VBoxContainer/TimerUI
 @onready var OverTimerUI = $VBoxContainer/OverTimerUI
-@export var timeInSeconds: int = 301
+@export var timeInSeconds: int = 2
+@export var overTimeInSeconds: int = 0
+var TimerBool: bool
+var OverTimerBool: bool
 #GlobalPlayerScript
 
 # Called when the node enters the scene tree for the first time.
@@ -43,6 +48,8 @@ func _ready():
 	AbilityDice.visible = false
 	if !GlobalGameSystem.GamePlaying:
 		TimerUI.visible = false
+		OverTimerUI.visible = false
+	TimerBool = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -66,12 +73,19 @@ func _process(_delta):
 	HealthDiceNum.text = str(GlobalDiceScript.HealthDNum)
 	AbilityDiceName.text = AbilityNames
 	
+	if ((GlobalDiceScript.AttackDNum == GlobalDiceScript.DefenseDNum) && (GlobalDiceScript.DefenseDNum == GlobalDiceScript.HealthDNum)):
+		if GlobalDiceScript.RollDice == false:
+			MatchingUI.visible = true
+		else:
+			MatchingUI.visible = false
+	
 	#--Functions--
 	_takingDamage()
 	_showThoseDice()
 	_abiltyDieNames()
 	CriticalDisplay()
 	_timerSetup()
+	_timeToOvertime()
 	#pass
 
 func _takingDamage():
@@ -133,9 +147,20 @@ func _timerSetup():
 		TimerUI.visible = true
 		GameTimer.start()
 
+func _timeToOvertime():
+	if timeInSeconds <= -1:
+		TimerUI.visible = false
+		OverTimerUI.visible = true
+		OverTimerBool = true
+		TimerBool = false
+		timeInSeconds = 0
 
 func _on_game_timer_timeout():
-	timeInSeconds -= 1
 	var m = int(timeInSeconds/60.0)
 	var s = timeInSeconds - m * 60
-	TimerUI.text = '%01d:%02d' % [m,s]
+	if TimerBool == true:
+		timeInSeconds -= 1
+		TimerUI.text = '%01d:%02d' % [m,s]
+	if OverTimerBool == true:
+		timeInSeconds += 1
+		OverTimerUI.text = "+"+'%01d:%02d' % [m,s]

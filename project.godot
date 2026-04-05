@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GDC Project: Dice Challenge"
-run/main_scene="uid://01rc4wcxhoec"
+run/main_scene="uid://ctckvq6qkfjvr"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

@@ -146,6 +146,20 @@ environment = SubResource("Environment_1ixah")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
+[node name="Position References" type="Node3D" parent="." unique_id=1335502231]
+
+[node name="UpPositionStagePosition" type="Marker3D" parent="Position References" unique_id=482426905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -40)
+
+[node name="DownPositionStagePosition" type="Marker3D" parent="Position References" unique_id=304081045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 30)
+
+[node name="LeftPositionStagePosition" type="Marker3D" parent="Position References" unique_id=572229477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66, 5, 0)
+
+[node name="RightPositionStagePosition" type="Marker3D" parent="Position References" unique_id=783419252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 5, 0)
+
 [node name="PlayerDice" type="CharacterBody3D" parent="." unique_id=1267587966 node_paths=PackedStringArray("player", "PlayerTrigger", "AttackTrigger")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_4xiap")
@@ -451,12 +465,16 @@ script = ExtResource("11_4xiap")
 
 [node name="DiceSystem" parent="." unique_id=87870044 instance=ExtResource("12_wywco")]
 
-[node name="Enemy Spawner" parent="." unique_id=1095715711 node_paths=PackedStringArray("targetPlayer", "TopPositionMarker", "BottomPositionMarker", "TopMidReset", "BottomMidReset") instance=ExtResource("7_2fmhe")]
+[node name="Enemy Spawner" parent="." unique_id=1095715711 node_paths=PackedStringArray("targetPlayer", "TopPositionMarker", "BottomPositionMarker", "TopMidReset", "BottomMidReset", "UpPositionStageMarker", "DownPositionStageMarker", "LeftPositionStageMarker", "RightPositionStageMarker") instance=ExtResource("7_2fmhe")]
 targetPlayer = NodePath("../PlayerDice")
 TopPositionMarker = NodePath("../PlayerDice/Position References/Top-Mid Position")
 BottomPositionMarker = NodePath("../PlayerDice/Position References/Bottom-Mid Position")
 TopMidReset = NodePath("../PlayerDice/Position References/Top-Mid Reset")
 BottomMidReset = NodePath("../PlayerDice/Position References/Bottom-Mid Reset")
+UpPositionStageMarker = NodePath("../Position References/UpPositionStagePosition")
+DownPositionStageMarker = NodePath("../Position References/DownPositionStagePosition")
+LeftPositionStageMarker = NodePath("../Position References/LeftPositionStagePosition")
+RightPositionStageMarker = NodePath("../Position References/RightPositionStagePosition")
 
 [connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]
 [connection signal="area_exited" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_exited"]

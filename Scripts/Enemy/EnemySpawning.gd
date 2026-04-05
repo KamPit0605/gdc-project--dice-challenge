@@ -13,6 +13,11 @@ extends Node
 @export var TopMidReset: Node3D
 @export var BottomMidReset: Node3D
 
+@export var UpPositionStageMarker: Node3D
+@export var DownPositionStageMarker: Node3D
+@export var LeftPositionStageMarker: Node3D
+@export var RightPositionStageMarker: Node3D
+
 var Spawning: bool
 var SpawnCount: int
 
@@ -34,7 +39,7 @@ func _process(delta):
 	if (SpawnCount > 0) && (Spawning == true) && (GlobalGameSystem.GamePlaying == true):
 		#var EnemyLowSpawned = EnemyLowLevel.instantiate()
 		#add_child(EnemyLowSpawned)
-		SpawnPosition = randi_range(0,1)
+		SpawnPosition = randi_range(0,5)
 		SpawnRNG = randi_range(0,50)
 		_instanceDifferentTypes()
 		SpawnCount -= 1
@@ -53,12 +58,20 @@ func _instancing(Enemy):
 	add_child(Instance_Level)
 	Instance_Level.Player = targetPlayer
 	if SpawnPosition == 0:
-		Instance_Level.position = Vector3(TopPositionMarker.position.x,6,TopPositionMarker.position.z)
+		Instance_Level.position = Vector3(TopPositionMarker.global_position.x,6,TopPositionMarker.global_position.z)
 		TopPositionMarker.translate(Vector3(randf_range(-5,5),0,randf_range(-5,2)))
 		#Instance_Lowlevel.translate(Vector3(randf_range(-5,5),6,randf_range(-5,5)))
 	elif SpawnPosition == 1:
-		Instance_Level.position = Vector3(BottomPositionMarker.position.x,6,BottomPositionMarker.position.z)
+		Instance_Level.position = Vector3(BottomPositionMarker.global_position.x,6,BottomPositionMarker.global_position.z)
 		BottomPositionMarker.translate(Vector3(randf_range(-5,5),0,randf_range(-5,2)))
+	elif SpawnPosition == 2:
+		Instance_Level.position = Vector3(UpPositionStageMarker.global_position.x,6,UpPositionStageMarker.global_position.z)
+	elif SpawnPosition == 3:
+		Instance_Level.position = Vector3(DownPositionStageMarker.global_position.x,6,DownPositionStageMarker.global_position.z)
+	elif SpawnPosition == 4:
+		Instance_Level.position = Vector3(LeftPositionStageMarker.global_position.x,6,LeftPositionStageMarker.global_position.z)
+	elif SpawnPosition == 5:
+		Instance_Level.position = Vector3(RightPositionStageMarker.global_position.x,6,RightPositionStageMarker.global_position.z)
 	#Instance_LowLevel.TopMidPosition = TopPositionMarker
 	#Instance_LowLevel.BottomMidPosition = BottomPositionMarker
 func _instanceDifferentTypes():

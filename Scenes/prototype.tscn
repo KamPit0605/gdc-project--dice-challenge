@@ -314,6 +314,20 @@ Player = NodePath("../PlayerDice")
 
 [node name="GameSystem" parent="." unique_id=938242266 instance=ExtResource("12_xnjhx")]
 
+[node name="Position References" type="Node3D" parent="." unique_id=283533359]
+
+[node name="UpPositionStagePosition" type="Marker3D" parent="Position References" unique_id=290956762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -15)
+
+[node name="DownPositionStagePosition" type="Marker3D" parent="Position References" unique_id=155714366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 18)
+
+[node name="LeftPositionStagePosition" type="Marker3D" parent="Position References" unique_id=365914281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 5, 0)
+
+[node name="RightPositionStagePosition" type="Marker3D" parent="Position References" unique_id=828682597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5, 0)
+
 [connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]
 [connection signal="area_exited" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_exited"]
 [connection signal="area_entered" from="PlayerDice/Attacking/AttackTrigger" to="PlayerDice" method="_on_attack_trigger_area_entered"]
