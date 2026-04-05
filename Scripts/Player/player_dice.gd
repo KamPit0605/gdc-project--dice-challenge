@@ -72,8 +72,10 @@ func _process(_delta):
 	if Input.is_action_just_pressed('Auto_Attack'):
 		if !EnableAutoAttack:
 			EnableAutoAttack = true
+			GlobalPlayerScript.autoAttacking_indicator = true
 		else:
 			EnableAutoAttack = false
+			GlobalPlayerScript.autoAttacking_indicator = false
 
 	PlayerHealth()
 	_defenseDice()

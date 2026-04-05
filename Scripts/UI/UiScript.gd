@@ -32,9 +32,11 @@ var AbilityNames: String = "Ability"
 @onready var CriticalTimer = $CriticalTimer
 var CriticalBool: bool = false 
 
+@onready var autoAttackUI = $AutoAttackIndicator/AutoAttack
+
 @onready var TimerUI = $VBoxContainer/TimerUI
 @onready var OverTimerUI = $VBoxContainer/OverTimerUI
-@export var timeInSeconds: int = 2
+@export var timeInSeconds: int = 300
 @export var overTimeInSeconds: int = 0
 var TimerBool: bool
 var OverTimerBool: bool
@@ -86,6 +88,7 @@ func _process(_delta):
 	CriticalDisplay()
 	_timerSetup()
 	_timeToOvertime()
+	autoAttacking()
 	#pass
 
 func _takingDamage():
@@ -164,3 +167,9 @@ func _on_game_timer_timeout():
 	if OverTimerBool == true:
 		timeInSeconds += 1
 		OverTimerUI.text = "+"+'%01d:%02d' % [m,s]
+
+func autoAttacking():
+	if GlobalPlayerScript.autoAttacking_indicator == true:
+		autoAttackUI.visible = true
+	else:
+		autoAttackUI.visible = false

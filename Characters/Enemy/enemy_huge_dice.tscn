@@ -15,8 +15,17 @@ albedo_color = Color(0.25882354, 0, 0.1764706, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_wwsqc"]
 size = Vector3(1.05, 1.05, 1.05)
 
-[node name="enemyHuge_dice" type="RigidBody3D" unique_id=1738791593 groups=["BossEnemy", "Enemies"]]
+[sub_resource type="BoxMesh" id="BoxMesh_cyxb2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s63ce"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rw8b6"]
+albedo_color = Color(0.44705883, 0.43529412, 1, 1)
+
+[node name="enemyHuge_dice" type="RigidBody3D" unique_id=1738791593 node_paths=PackedStringArray("AttackedMeshInstance", "CriticalAttackedMeshInstance") groups=["BossEnemy", "Enemies"]]
 script = ExtResource("1_t3ne1")
+AttackedMeshInstance = NodePath("Attacked/AttackedMeshInstance")
+CriticalAttackedMeshInstance = NodePath("Attacked/CriticalAttackedMeshInstance")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=506290660]
 shape = SubResource("BoxShape3D_w0rp6")
@@ -70,7 +79,23 @@ texture = ExtResource("2_cyxb2")
 transform = Transform3D(-1.1146404e-08, 0, 0.255, 0, 0.255, 0, -0.255, 0, -1.1146404e-08, 0.50267863, 0, 6.648898e-05)
 texture = ExtResource("2_cyxb2")
 
+[node name="Attacked" type="Node3D" parent="." unique_id=170417179]
+transform = Transform3D(3.1, 0, 0, 0, 3.1, 0, 0, 0, 3.1, 0, 0, 0)
+
+[node name="AttackedMeshInstance" type="MeshInstance3D" parent="Attacked" unique_id=1860294093]
+visible = false
+mesh = SubResource("BoxMesh_cyxb2")
+surface_material_override/0 = SubResource("StandardMaterial3D_s63ce")
+
+[node name="CriticalAttackedMeshInstance" type="MeshInstance3D" parent="Attacked" unique_id=553797645]
+visible = false
+mesh = SubResource("BoxMesh_cyxb2")
+surface_material_override/0 = SubResource("StandardMaterial3D_rw8b6")
+
+[node name="AtackedTimer" type="Timer" parent="Attacked" unique_id=1349855924]
+
 [connection signal="area_entered" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_entered"]
 [connection signal="area_exited" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_exited"]
 [connection signal="timeout" from="DamageCooldown" to="." method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="FollowingCooldown" to="." method="_on_following_cooldown_timeout"]
+[connection signal="timeout" from="Attacked/AtackedTimer" to="." method="_on_atacked_timer_timeout"]

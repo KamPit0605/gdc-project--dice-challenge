@@ -26,6 +26,10 @@ var CRIT: int = 1
 #--ATTACK DICE MULTIPLYER--
 var AttackDiceMult: float = 1.0
 
+#--ATTACKED--
+@export var AttackedMeshInstance = MeshInstance3D
+@export var CriticalAttackedMeshInstance = MeshInstance3D
+@onready var AttackedTimer = $Attacked/AtackedTimer
 
 #--PLAYER FOLLOW--
 var Player: CharacterBody3D #@export
@@ -63,6 +67,8 @@ func _process(delta):
 		DamageLabel.visible = true
 		_followcooldown(0.5)
 		#print("OUCH!")
+		AttackedTimer.start(0.25)
+		_attackvisual()
 		DamageCooldown = true
 	
 	_critical()
@@ -97,7 +103,7 @@ func _Health():
 
 func _critical():
 	if GlobalPlayerScript.criticalHit_indicator == true:
-		CRIT = 2
+		CRIT = 2 #damage multiplier
 	else:
 		CRIT = 1
 func _attackDiceMult():
@@ -110,6 +116,12 @@ func _attackDiceMult():
 			AttackDiceMult = 2.0
 		elif (GlobalDiceScript.AttackDNum == 1):
 			AttackDiceMult = 0.5
+
+func _attackvisual():
+	if CRIT == 2:
+		CriticalAttackedMeshInstance.visible = true
+	else:
+		AttackedMeshInstance.visible = true
 
 func _triggerAdjust():
 	pass
@@ -171,3 +183,8 @@ func _followcooldown(seconds):
 func _on_following_cooldown_timeout():
 	#if Cloned:
 		FollowPlayer = true
+
+
+func _on_atacked_timer_timeout():
+	AttackedMeshInstance.visible = false
+	CriticalAttackedMeshInstance.visible = false
