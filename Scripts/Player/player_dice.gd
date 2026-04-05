@@ -243,6 +243,10 @@ func _on_player_trigger_area_entered(area):
 			Damage = 45
 		if (area.is_in_group("BossEnemy")):
 			Damage = 75
+		if (area.is_in_group("GhostEnemy")):
+			Damage = 10
+		if (area.is_in_group("GhostStrongEnemy")):
+			Damage = 30
 		GlobalPlayerScript.DamageTaken = true
 		TakingDamage()
 		

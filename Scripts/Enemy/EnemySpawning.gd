@@ -1,11 +1,14 @@
 extends Node
 
 @onready var SpawnerCooldown = $SpawnerCooldown
+@onready var GhostSpawnerCooldown = $GhostSpawnerCooldown
 
 @export var EnemyLowLevel: PackedScene
 @export var EnemyStrongLevel: PackedScene
 @export var EnemyBigLevel: PackedScene
 @export var EnemyHugeLevel: PackedScene
+@export var EnemyGhostLevel: PackedScene
+@export var EnemyStrongGhostLevel: PackedScene
 @export var targetPlayer: Node3D
 
 @export var TopPositionMarker: Node3D
@@ -20,6 +23,7 @@ extends Node
 
 var Spawning: bool
 var SpawnCount: int
+var GhostSpawnCount: int
 
 var RoundsSpawn: int #how many times the enemies spawned
 var _10RoundsSpawn: int #every 10 rounds...
@@ -28,6 +32,10 @@ var SpawnRNG: int #the chance for different enemies
 
 var SpawnPosition: int
 
+var OvertimeStarted: bool
+var OvertimeRoundSpawn: int
+var OvertimeRoundCount: int
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SpawnCount = 6#randi_range(1,6)
@@ -35,7 +43,7 @@ func _ready():
 	#var new_instance = EnemyLowLevell.instantiate()
 	#add_child(new_instance)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if (SpawnCount > 0) && (Spawning == true) && (GlobalGameSystem.GamePlaying == true):
 		#var EnemyLowSpawned = EnemyLowLevel.instantiate()
 		#add_child(EnemyLowSpawned)
@@ -50,6 +58,12 @@ func _process(delta):
 		
 	#if _10RoundsSpawn > 10:
 		#_10RoundsSpawn = 0
+
+	if GlobalGameSystem.OVERTIME == true:
+		OvertimeStarted = true
+	
+	#print(OvertimeRoundSpawn)
+
 
 
 
@@ -87,6 +101,13 @@ func _instanceDifferentTypes():
 	if _10RoundCount == 3:
 		_instancing(EnemyHugeLevel)
 		_10RoundCount = 0
+	if OvertimeStarted == true:
+		_instancing(EnemyGhostLevel)
+		if OvertimeRoundSpawn >= 5:
+			_instancing(EnemyGhostLevel)
+			if OvertimeRoundSpawn >= 6:
+				_instancing(EnemyStrongGhostLevel)
+		
 
 
 func _on_spawner_cooldown_timeout():
@@ -103,4 +124,12 @@ func _on_spawner_cooldown_timeout():
 	BottomPositionMarker.global_position = BottomMidReset.global_position
 	RoundsSpawn += 1
 	_10RoundsSpawn += 1
+	if OvertimeStarted == true:
+		OvertimeRoundSpawn += 1
 	SpawnerCooldown.start(6)
+
+func _on_ghost_spawner_cooldown_timeout():
+	if OvertimeStarted == true:
+		GhostSpawnCount = randi_range(5,10)
+		Spawning = true
+		GhostSpawnerCooldown.start(3)

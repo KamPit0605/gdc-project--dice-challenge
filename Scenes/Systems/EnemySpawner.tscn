@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dos88ftpsxo1b" path="res://Characters/Enemy/enemy_strong_dice.tscn" id="3_x13wn"]
 [ext_resource type="PackedScene" uid="uid://8mqndqcu3plk" path="res://Characters/Enemy/enemy_big_dice.tscn" id="4_87pay"]
 [ext_resource type="PackedScene" uid="uid://np1s8332f1a4" path="res://Characters/Enemy/enemy_huge_dice.tscn" id="5_nqxk1"]
+[ext_resource type="PackedScene" uid="uid://dcgtk77c56ip6" path="res://Characters/Enemy/enemy_ghost_dice.tscn" id="6_crwle"]
+[ext_resource type="PackedScene" uid="uid://cvewr3ta8nngh" path="res://Characters/Enemy/enemy_strong-ghost_dice.tscn" id="7_1bwc8"]
 
 [node name="Enemy Spawner" type="Node3D" unique_id=1095715711]
 script = ExtResource("1_up1wc")
@@ -12,9 +14,14 @@ EnemyLowLevel = ExtResource("2_aoe3b")
 EnemyStrongLevel = ExtResource("3_x13wn")
 EnemyBigLevel = ExtResource("4_87pay")
 EnemyHugeLevel = ExtResource("5_nqxk1")
+EnemyGhostLevel = ExtResource("6_crwle")
+EnemyStrongGhostLevel = ExtResource("7_1bwc8")
 
 [node name="SpawnerCooldown" type="Timer" parent="." unique_id=1614421818]
 wait_time = 10.0
 autostart = true
 
+[node name="GhostSpawnerCooldown" type="Timer" parent="." unique_id=1292579060]
+
 [connection signal="timeout" from="SpawnerCooldown" to="." method="_on_spawner_cooldown_timeout"]
+[connection signal="timeout" from="GhostSpawnerCooldown" to="." method="_on_ghost_spawner_cooldown_timeout"]

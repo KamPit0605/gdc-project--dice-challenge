@@ -36,11 +36,13 @@ var CriticalBool: bool = false
 
 @onready var TimerUI = $VBoxContainer/TimerUI
 @onready var OverTimerUI = $VBoxContainer/OverTimerUI
-@export var timeInSeconds: int = 300
+@export var timeInSeconds: int = 3
 @export var overTimeInSeconds: int = 0
 var TimerBool: bool
 var OverTimerBool: bool
 #GlobalPlayerScript
+#GlobalDiceScript
+#GlobalGameSystem
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -157,6 +159,7 @@ func _timeToOvertime():
 		OverTimerBool = true
 		TimerBool = false
 		timeInSeconds = 0
+		GlobalGameSystem.OVERTIME = true
 
 func _on_game_timer_timeout():
 	var m = int(timeInSeconds/60.0)
