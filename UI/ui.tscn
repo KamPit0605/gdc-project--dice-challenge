@@ -184,6 +184,12 @@ font_color = Color(0.39215687, 0.2, 0.7411765, 0.95686275)
 outline_size = 15
 outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_4fiuh"]
+font_size = 60
+font_color = Color(0.0627451, 0.92156863, 0.92156863, 1)
+outline_size = 15
+outline_color = Color(0.015686275, 0.015686275, 1, 1)
+
 [node name="UI" type="Control" unique_id=20405237]
 layout_mode = 3
 anchors_preset = 15
@@ -476,7 +482,6 @@ text = "0:00"
 label_settings = SubResource("LabelSettings_2fwl4")
 
 [node name="OverTimerUI" type="Label" parent="VBoxContainer" unique_id=1534136179]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "+0:00"
@@ -500,6 +505,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "CRITICAL..."
 label_settings = SubResource("LabelSettings_nm1m0")
+
+[node name="Overtime" type="VBoxContainer" parent="VBoxContainer/Criticals" unique_id=390879067]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="OvertimeUI" type="Label" parent="VBoxContainer/Criticals/Overtime" unique_id=740190260]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "OVERTIME"
+label_settings = SubResource("LabelSettings_4fiuh")
 
 [node name="AutoAttackIndicator" type="Control" parent="." unique_id=291471462]
 layout_mode = 1

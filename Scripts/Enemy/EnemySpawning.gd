@@ -105,7 +105,7 @@ func _instanceDifferentTypes():
 		_instancing(EnemyGhostLevel)
 		if OvertimeRoundSpawn >= 5:
 			_instancing(EnemyGhostLevel)
-			if OvertimeRoundSpawn >= 6:
+			if OvertimeRoundSpawn >= 10:
 				_instancing(EnemyStrongGhostLevel)
 		
 

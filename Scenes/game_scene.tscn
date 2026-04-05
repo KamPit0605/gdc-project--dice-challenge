@@ -90,7 +90,7 @@ albedo_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
 material = SubResource("StandardMaterial3D_4ousu")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oqyrl"]
-size = Vector3(200.02, 0.25, 300.045)
+size = Vector3(200.02, 60, 300.045)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqyrl"]
 shading_mode = 0
@@ -325,7 +325,7 @@ wait_time = 2.0
 metadata/_edit_lock_ = true
 
 [node name="FloorCollision" type="CollisionShape3D" parent="Environment/Floor" unique_id=954779797]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -29.875, 0)
 shape = SubResource("BoxShape3D_oqyrl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor" unique_id=38178850]

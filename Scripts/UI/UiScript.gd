@@ -31,12 +31,14 @@ var AbilityNames: String = "Ability"
 @onready var CriticalFailureUI = $VBoxContainer/Criticals/CriticalFailureUI
 @onready var CriticalTimer = $CriticalTimer
 var CriticalBool: bool = false 
+@onready var OvertimeUI = $VBoxContainer/Criticals/Overtime/OvertimeUI
+var OverTimeUIDisplay: bool
 
 @onready var autoAttackUI = $AutoAttackIndicator/AutoAttack
 
 @onready var TimerUI = $VBoxContainer/TimerUI
 @onready var OverTimerUI = $VBoxContainer/OverTimerUI
-@export var timeInSeconds: int = 3
+@export var timeInSeconds: int = 300 #game timer set HERE
 @export var overTimeInSeconds: int = 0
 var TimerBool: bool
 var OverTimerBool: bool
@@ -54,6 +56,7 @@ func _ready():
 		TimerUI.visible = false
 		OverTimerUI.visible = false
 	TimerBool = true
+	MatchingUI.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -88,6 +91,7 @@ func _process(_delta):
 	_showThoseDice()
 	_abiltyDieNames()
 	CriticalDisplay()
+	OvertimeDisplay()
 	_timerSetup()
 	_timeToOvertime()
 	autoAttacking()
@@ -140,10 +144,16 @@ func CriticalDisplay():
 			CriticalFailureUI.visible = true
 			CriticalTimer.start(2.0)
 			CriticalBool = true
+func OvertimeDisplay():
+	if ((GlobalGameSystem.OVERTIME)&&(OverTimeUIDisplay == false)):
+		OvertimeUI.visible = true
+		OverTimeUIDisplay = true
+		CriticalTimer.start(2.0)
 
 func _on_critical_timer_timeout():
 	CriticalRoleUI.visible = false
 	CriticalFailureUI.visible = false
+	OvertimeUI.visible = false
 	if GlobalDiceScript.RollDice == true:
 		CriticalBool = false
 
