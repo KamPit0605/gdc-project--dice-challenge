@@ -89,6 +89,12 @@ albedo_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_m8pjy"]
 material = SubResource("StandardMaterial3D_4ousu")
 
+[sub_resource type="BoxMesh" id="BoxMesh_wywco"]
+size = Vector3(1.05, 1.05, 1.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8jfd"]
+albedo_color = Color(1, 0, 0, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_oqyrl"]
 size = Vector3(200.02, 60, 300.045)
 
@@ -160,12 +166,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66, 5, 0)
 [node name="RightPositionStagePosition" type="Marker3D" parent="Position References" unique_id=783419252]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 5, 0)
 
-[node name="PlayerDice" type="CharacterBody3D" parent="." unique_id=1267587966 node_paths=PackedStringArray("player", "PlayerTrigger", "AttackTrigger")]
+[node name="PlayerDice" type="CharacterBody3D" parent="." unique_id=1267587966 node_paths=PackedStringArray("player", "PlayerTrigger", "AttackTrigger", "HurtMeshInstance")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_4xiap")
 player = NodePath(".")
 PlayerTrigger = NodePath("PlayerTrigger")
 AttackTrigger = NodePath("Attacking/AttackTrigger")
+HurtMeshInstance = NodePath("Hurt/HurtMeshInstance")
 AttackingFloat = 0.15
 AttackCooldownFloat = 1.0
 
@@ -319,6 +326,15 @@ font_size = 100
 [node name="TextCountdown" type="Timer" parent="PlayerDice/Text" unique_id=953081442]
 wait_time = 2.0
 
+[node name="Hurt" type="Node3D" parent="PlayerDice" unique_id=1040598658]
+
+[node name="HurtMeshInstance" type="MeshInstance3D" parent="PlayerDice/Hurt" unique_id=1247393018]
+visible = false
+mesh = SubResource("BoxMesh_wywco")
+surface_material_override/0 = SubResource("StandardMaterial3D_w8jfd")
+
+[node name="HurtVisualTimer" type="Timer" parent="PlayerDice/Hurt" unique_id=1004542205]
+
 [node name="Environment" type="Node3D" parent="." unique_id=1783128640]
 
 [node name="Floor" type="StaticBody3D" parent="Environment" unique_id=77190988]
@@ -326,6 +342,7 @@ metadata/_edit_lock_ = true
 
 [node name="FloorCollision" type="CollisionShape3D" parent="Environment/Floor" unique_id=954779797]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -29.875, 0)
+visible = false
 shape = SubResource("BoxShape3D_oqyrl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor" unique_id=38178850]
@@ -485,6 +502,7 @@ RightPositionStageMarker = NodePath("../Position References/RightPositionStagePo
 [connection signal="timeout" from="PlayerDice/Timers/DamageCooldown" to="PlayerDice" method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="PlayerDice/Timers/HealthGainCooldown" to="PlayerDice" method="_on_health_gain_cooldown_timeout"]
 [connection signal="timeout" from="PlayerDice/Text/TextCountdown" to="PlayerDice" method="_on_text_countdown_timeout"]
+[connection signal="timeout" from="PlayerDice/Hurt/HurtVisualTimer" to="PlayerDice" method="_on_hurt_visual_timer_timeout"]
 [connection signal="area_entered" from="enemyStationary_dice/EnemyTrigger" to="enemyStationary_dice" method="_on_enemy_trigger_area_entered"]
 [connection signal="area_exited" from="enemyStationary_dice/EnemyTrigger" to="enemyStationary_dice" method="_on_enemy_trigger_area_exited"]
 [connection signal="timeout" from="enemyStationary_dice/DamageCooldown" to="enemyStationary_dice" method="_on_damage_cooldown_timeout"]

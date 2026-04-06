@@ -32,6 +32,10 @@ var HealthGainBool: bool
 @onready var HealthGainCooldown = $Timers/HealthGainCooldown
 var AbilityDiceHealhMult: int = 1
 
+#--HURT--
+@export var HurtMeshInstance: MeshInstance3D
+@onready var HurtVisualTimer = $Hurt/HurtVisualTimer
+
 #--DEFENSE DICE REDUCE--
 var DefenseDiceReduce: int = 1
 var AbilityDiceReduce: int = 0
@@ -66,6 +70,7 @@ func _ready():
 	AttackingFloat = 0.15
 	AttackCooldownFloat = 1.0
 	HealthGainBool = true
+	HurtMeshInstance.visible = false
 	return
 
 func _process(_delta):
@@ -233,6 +238,8 @@ func _abilityDice():
 
 func TakingDamage():
 	HEALTH -= Damage / (DefenseDiceReduce + AbilityDiceReduce)
+	HurtMeshInstance.visible = true
+	HurtVisualTimer.start(0.25)
 #other function
 func _on_player_trigger_area_entered(area):
 	if (area.is_in_group("Enemies") && DamageTaken == false):
@@ -262,3 +269,8 @@ func _on_text_countdown_timeout():
 
 func _on_player_trigger_area_exited(area):
 	pass # Replace with function body.
+
+
+
+func _on_hurt_visual_timer_timeout():
+	HurtMeshInstance.visible = false

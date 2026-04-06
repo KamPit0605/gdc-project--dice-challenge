@@ -108,6 +108,12 @@ albedo_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_4ousu"]
 material = SubResource("StandardMaterial3D_3mrnv")
 
+[sub_resource type="BoxMesh" id="BoxMesh_xnjhx"]
+size = Vector3(1.05, 1.05, 1.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dhkk"]
+albedo_color = Color(1, 0, 0, 1)
+
 [node name="Prototype" type="Node3D" unique_id=566195261]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1842385117]
@@ -291,6 +297,15 @@ transform = Transform3D(-0.255, -1.1146402e-08, -3.3439203e-08, -1.1146406e-08, 
 modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
 texture = ExtResource("7_2mp60")
 
+[node name="Hurt" type="Node3D" parent="PlayerDice" unique_id=1284662529]
+
+[node name="HurtMeshInstance" type="MeshInstance3D" parent="PlayerDice/Hurt" unique_id=578288343]
+visible = false
+mesh = SubResource("BoxMesh_xnjhx")
+surface_material_override/0 = SubResource("StandardMaterial3D_7dhkk")
+
+[node name="HurtVisualTimer" type="Timer" parent="PlayerDice/Hurt" unique_id=322979498]
+
 [node name="Globals" type="Node" parent="." unique_id=1647484007]
 
 [node name="EnemySpawning" type="Node" parent="Globals" unique_id=1794180242]
@@ -339,3 +354,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5, 0)
 [connection signal="timeout" from="PlayerDice/Text/TextCountdown" to="PlayerDice" method="_on_text_countdown_timeout"]
 [connection signal="timeout" from="PlayerDice/Timers/DamageCooldown" to="PlayerDice" method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="PlayerDice/Timers/HealthGainCooldown" to="PlayerDice" method="_on_health_gain_cooldown_timeout"]
+[connection signal="timeout" from="PlayerDice/Hurt/HurtVisualTimer" to="PlayerDice" method="_on_hurt_visual_timer_timeout"]

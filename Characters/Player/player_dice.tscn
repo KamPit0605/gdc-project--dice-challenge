@@ -71,11 +71,18 @@ albedo_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_m8pjy"]
 material = SubResource("StandardMaterial3D_4ousu")
 
-[node name="PlayerDice" type="CharacterBody3D" unique_id=1267587966 node_paths=PackedStringArray("player", "PlayerTrigger", "AttackTrigger")]
+[sub_resource type="BoxMesh" id="BoxMesh_rthal"]
+size = Vector3(1.05, 1.05, 1.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1edc"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="PlayerDice" type="CharacterBody3D" unique_id=1267587966 node_paths=PackedStringArray("player", "PlayerTrigger", "AttackTrigger", "HurtMeshInstance")]
 script = ExtResource("1_72tq2")
 player = NodePath(".")
 PlayerTrigger = NodePath("PlayerTrigger")
 AttackTrigger = NodePath("Attacking/AttackTrigger")
+HurtMeshInstance = NodePath("Hurt/HurtMeshInstance")
 AttackingFloat = 0.15
 AttackCooldownFloat = 1.0
 
@@ -229,6 +236,15 @@ transform = Transform3D(-0.255, -1.1146402e-08, -3.3439203e-08, -1.1146406e-08, 
 modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
 texture = ExtResource("6_y20hb")
 
+[node name="Hurt" type="Node3D" parent="." unique_id=1060187707]
+
+[node name="HurtMeshInstance" type="MeshInstance3D" parent="Hurt" unique_id=1317834905]
+visible = false
+mesh = SubResource("BoxMesh_rthal")
+surface_material_override/0 = SubResource("StandardMaterial3D_t1edc")
+
+[node name="HurtVisualTimer" type="Timer" parent="Hurt" unique_id=1455813126]
+
 [connection signal="area_entered" from="PlayerTrigger" to="." method="_on_player_trigger_area_entered"]
 [connection signal="area_exited" from="PlayerTrigger" to="." method="_on_player_trigger_area_exited"]
 [connection signal="area_entered" from="Attacking/AttackTrigger" to="." method="_on_attack_trigger_area_entered"]
@@ -238,3 +254,4 @@ texture = ExtResource("6_y20hb")
 [connection signal="timeout" from="Timers/DamageCooldown" to="." method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="Timers/HealthGainCooldown" to="." method="_on_health_gain_cooldown_timeout"]
 [connection signal="timeout" from="Text/TextCountdown" to="." method="_on_text_countdown_timeout"]
+[connection signal="timeout" from="Hurt/HurtVisualTimer" to="." method="_on_hurt_indicator_timeout"]

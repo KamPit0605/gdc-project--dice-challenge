@@ -25,6 +25,8 @@ extends Control
 @onready var AbilityDiceName = $DiceContainer2/AbilityDice/AName
 var AbilityNames: String = "Ability"
 
+
+
 @onready var MatchingUI = $"DiceContainer/DefenseDice/Matching!"
 
 @onready var CriticalRoleUI = $VBoxContainer/Criticals/CriticalRoleUI
@@ -61,18 +63,18 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	#--LowerUI--
-	HealthUI.text = str(Player.HEALTH) + " / " + str(Player.MaxHealth) 
+	if GlobalGameSystem.GamePlaying == true:
+		#--LowerUI--
+		HealthUI.text = str(Player.HEALTH) + " / " + str(Player.MaxHealth) 
+		LevelUI.text = str(GlobalPlayerScript.PlayerLevel)
 	
-	LevelUI.text = str(GlobalPlayerScript.PlayerLevel)
+		var LevelUpXPString = "%.0f" % GlobalPlayerScript.LevelUpXP
+		var PlayerXPString = "%.0f" % GlobalPlayerScript.PlayerXP
+		XPUI.text = str(LevelUpXPString) + " / " + str(GlobalPlayerScript.LevelUpQuota)
 	
-	var LevelUpXPString = "%.0f" % GlobalPlayerScript.LevelUpXP
-	var PlayerXPString = "%.0f" % GlobalPlayerScript.PlayerXP
-	XPUI.text = str(LevelUpXPString) + " / " + str(GlobalPlayerScript.LevelUpQuota)
-	
-	#--TopRightUI--
-	TotalXPUI.text = str(PlayerXPString)
-	KillsUI.text = str(GlobalPlayerScript.EnemyKills)
+		#--TopRightUI--
+		TotalXPUI.text = str(PlayerXPString)
+		KillsUI.text = str(GlobalPlayerScript.EnemyKills)
 	
 	#--Dices--
 	AttackDiceNum.text = str(GlobalDiceScript.AttackDNum)
@@ -80,7 +82,7 @@ func _process(_delta):
 	HealthDiceNum.text = str(GlobalDiceScript.HealthDNum)
 	AbilityDiceName.text = AbilityNames
 	
-	if ((GlobalDiceScript.AttackDNum == GlobalDiceScript.DefenseDNum) && (GlobalDiceScript.DefenseDNum == GlobalDiceScript.HealthDNum)):
+	if ((GlobalDiceScript.AcquiredDice >= 4) && (GlobalDiceScript.AttackDNum == GlobalDiceScript.DefenseDNum && GlobalDiceScript.DefenseDNum == GlobalDiceScript.HealthDNum)):
 		if GlobalDiceScript.RollDice == false:
 			MatchingUI.visible = true
 		else:
@@ -108,6 +110,7 @@ func _takingDamage():
 func _on_hurt_indicator_timer_timeout():
 	HurtIndicator.visible = false
 	
+
 
 
 func _showThoseDice():

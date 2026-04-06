@@ -21,3 +21,8 @@ func _process(_delta):
 		GamePlaying = true
 		GameStart = false
 	
+
+func _restart():
+	GameStart = false
+	GamePlaying = false
+	OVERTIME = false

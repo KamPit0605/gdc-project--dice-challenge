@@ -14,6 +14,7 @@ var DamageCooldownF: float = 0.5
 
 #--XP--
 var XP: int = 100
+var XPMult: int = 1
 
 #--MOVEMENT--
 var SPEED = 10.0
@@ -55,7 +56,7 @@ func _ready():
 	FollowingCooldownTimer.start(1)
 	#if Cloned:
 		#_ifSpawning()
-
+	XPMult = 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -93,13 +94,17 @@ func _on_damage_cooldown_timeout():
 	
 func _Health():
 	if Health <= 0:
-		GlobalPlayerScript.PlayerXP += XP
-		GlobalPlayerScript.LevelUpXP += XP
+		GlobalPlayerScript.PlayerXP += (XP * XPMult)
+		GlobalPlayerScript.LevelUpXP += (XP * XPMult)
 		GlobalPlayerScript.EnemyKills += 1
 		queue_free()
 		#self.visible = false
 		#FollowPlayer = false
 		#Health = 0
+
+func _XPMult():
+	if GlobalGameSystem.OVERTIME == true:
+		XPMult = 2
 
 func _critical():
 	if GlobalPlayerScript.criticalHit_indicator == true:
