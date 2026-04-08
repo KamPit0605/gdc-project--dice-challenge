@@ -87,6 +87,7 @@ func _process(_delta):
 	PlayerHealth()
 	_defenseDice()
 	_abilityDice()
+	_criticalChanges()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -218,9 +219,9 @@ func _on_health_gain_cooldown_timeout():
 
 func _abilityDice():
 	if ((GlobalDiceScript.AcquiredDice >= 2) && (GlobalDiceScript.RollDice == false)):
-		if GlobalDiceScript.AbilityDRole == 1: #SPEED Buff!
+		if GlobalDiceScript.AbilityDRole == 1:  #SPEED Buff!
 			SPEED = 7.0
-		else:
+		elif (!GlobalDiceScript.AbilityDRole == 1) || (!GlobalDiceScript.CriticalRoll):
 			SPEED = DefaultSPEED
 		
 		if GlobalDiceScript.AbilityDRole == 2: #SHIELD Buff!
@@ -235,13 +236,18 @@ func _abilityDice():
 		
 		if GlobalDiceScript.AbilityDRole == 4: #attack cooldown reduce
 			AttackCooldownFloat = 0.75
-		else:
+		elif (!GlobalDiceScript.AbilityDRole == 4) || (!GlobalDiceScript.CriticalRoll):
 			AttackCooldownFloat = 1.0
 		
 		if GlobalDiceScript.AbilityDRole >= 5:
 			criticalRate = 0.75
 		else:
 			criticalRate = defaultCriticalRate
+
+func _criticalChanges():
+	if GlobalDiceScript.CriticalRoll:
+		SPEED = 9.0
+		AttackCooldownFloat = 0.5
 
 func TakingDamage():
 	HEALTH -= Damage / (DefenseDiceReduce + AbilityDiceReduce)

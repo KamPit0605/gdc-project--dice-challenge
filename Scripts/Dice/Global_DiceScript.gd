@@ -9,6 +9,8 @@ var DefenseDNum: int
 var HealthDNum: int
 var AbilityDRole: int
 
+var CriticalRoll: bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	RollDice = true
@@ -22,6 +24,7 @@ func _process(_delta):
 	#DefenseDNum = 6
 	#HealthDNum = 6
 	acquiringDice()
+	_criticalroll()
 
 func _DiceNum(DiceNum):
 	DiceNum = randi_range(1,6)
@@ -50,3 +53,9 @@ func _rolldice():
 		DefenseDNum = randi_range(1,6)
 	if AcquiredDice >= 4:
 		HealthDNum = randi_range(1,6)
+
+func _criticalroll():
+	if (!RollDice) && ((AttackDNum == 6) && (DefenseDNum == 6) && (HealthDNum == 6)):
+		CriticalRoll = true
+	else:
+		CriticalRoll = false
