@@ -141,6 +141,7 @@ func AttackingFunc():
 		EnableAttack = true
 		if criticalHit == true:
 			CriticalMesh.visible = true
+			Input.start_joy_vibration(0,0.5,0.5,0.15)
 		EnableAttackCooldown = true
 
 
@@ -263,6 +264,7 @@ func _on_player_trigger_area_entered(area):
 		GlobalPlayerScript.DamageTaken = true
 		TakingDamage()
 		
+		Input.start_joy_vibration(0,1.0,1.0,0.2)
 		DamageCooldown.start(DamageCooldownFloat)
 		DamageTaken = true
 func _on_damage_cooldown_timeout():
