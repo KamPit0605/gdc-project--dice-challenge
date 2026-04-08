@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GlobalPlayerScript="*uid://dg8cv8c1b0lk7"
 GlobalDiceScript="*uid://bs8exio7gkbd2"
 GlobalGameSystem="*uid://dkx18dduq5qu7"
+GlobalUi="*uid://boy5hopivoqgh"
 
 [global_group]
 

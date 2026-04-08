@@ -4,6 +4,8 @@ extends CharacterBody3D
 	#GlobalPlayerScript
 	#GlobalDiceScript
 
+signal endGame
+
 @export var player = CharacterBody3D
 #@export var PlayerMesh = Node3D
 @export var rotationSpeed : float = 15
@@ -179,6 +181,10 @@ func PlayerHealth():
 		
 	if ((GlobalDiceScript.RollDice == false) && (GlobalDiceScript.AcquiredDice >= 4)):
 		GainingHealth()
+		
+	if HEALTH <= 0:
+		GlobalPlayerScript.DeathPosition = global_position
+		emit_signal("endGame")
 
 func GainingHealth():
 	if HealthGainBool == true:

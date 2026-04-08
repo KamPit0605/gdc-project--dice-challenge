@@ -493,6 +493,7 @@ DownPositionStageMarker = NodePath("../Position References/DownPositionStagePosi
 LeftPositionStageMarker = NodePath("../Position References/LeftPositionStagePosition")
 RightPositionStageMarker = NodePath("../Position References/RightPositionStagePosition")
 
+[connection signal="endGame" from="PlayerDice" to="Globals/GameSystem" method="_on_player_dice_end_game"]
 [connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]
 [connection signal="area_exited" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_exited"]
 [connection signal="area_entered" from="PlayerDice/Attacking/AttackTrigger" to="PlayerDice" method="_on_attack_trigger_area_entered"]

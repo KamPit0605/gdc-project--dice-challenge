@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://ky2g1r3qhiax"]
+
+[ext_resource type="Script" uid="uid://br5trdkvh7tja" path="res://Scripts/UI/UiResultsScript.gd" id="1_jjaw5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e6gg6"]
+font_size = 50
+font_color = Color(0.13236082, 0.941846, 0.7419551, 1)
+outline_size = 6
+outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hat8c"]
+font_size = 30
+font_color = Color(0.8, 0.9137255, 0, 1)
+outline_size = 6
+outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2fwl4"]
+font_size = 50
+font_color = Color(0.95686275, 0.95686275, 0.95686275, 0.95686275)
+outline_size = 6
+outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c7tqi"]
+font_size = 30
+font_color = Color(0.05882353, 0.95686275, 0.95686275, 0.95686275)
+outline_size = 6
+outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3sbvi"]
+font_size = 60
+font_color = Color(0.95686275, 0.95686275, 0, 0.95686275)
+outline_size = 15
+outline_color = Color(0.41564935, 0.41564932, 5.7756904e-07, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nm1m0"]
+font_size = 60
+font_color = Color(1, 0.2, 0, 0.95686275)
+outline_size = 15
+outline_color = Color(0.34117648, 0.015686275, 0.015686275, 1)
+
+[node name="UIResults" type="Control" unique_id=20405237]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jjaw5")
+metadata/_edit_lock_ = true
+
+[node name="XPCoinsKills" type="VBoxContainer" parent="." unique_id=689159536]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -59.0
+offset_top = -88.0
+offset_right = 59.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TotalXPUI" type="Label" parent="XPCoinsKills" unique_id=468318670]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Total XP"
+label_settings = SubResource("LabelSettings_e6gg6")
+
+[node name="CoinsUI" type="BoxContainer" parent="XPCoinsKills" unique_id=359472514]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CoinsTextUI" type="Label" parent="XPCoinsKills/CoinsUI" unique_id=660983662]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Coins"
+label_settings = SubResource("LabelSettings_hat8c")
+
+[node name="KillsUI" type="BoxContainer" parent="XPCoinsKills" unique_id=2092537323]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="KillsTextUI" type="Label" parent="XPCoinsKills/KillsUI" unique_id=1814406104]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Kills"
+label_settings = SubResource("LabelSettings_2fwl4")
+
+[node name="Animations" type="Control" parent="." unique_id=40189467]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=270339400]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.5
+offset_right = 64.5
+offset_bottom = 88.0
+grow_horizontal = 2
+
+[node name="TimerUI" type="Label" parent="VBoxContainer" unique_id=1202270386]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0:00"
+label_settings = SubResource("LabelSettings_2fwl4")
+
+[node name="OverTimerUI" type="Label" parent="VBoxContainer" unique_id=1534136179]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "+0:00"
+label_settings = SubResource("LabelSettings_c7tqi")
+
+[node name="Challenge" type="VBoxContainer" parent="VBoxContainer" unique_id=358116091]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ChallengePassedUI" type="Label" parent="VBoxContainer/Challenge" unique_id=1114336313]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CHALLENGE PASSED"
+label_settings = SubResource("LabelSettings_3sbvi")
+
+[node name="ChallengeOverUI" type="Label" parent="VBoxContainer/Challenge" unique_id=2110014071]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CHALLENGE OVER"
+label_settings = SubResource("LabelSettings_nm1m0")
+
+[node name="Timer" type="Timer" parent="." unique_id=2035650808]
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

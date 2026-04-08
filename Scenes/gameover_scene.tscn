@@ -1,0 +1,236 @@
+[gd_scene format=3 uid="uid://d0igk73u5635d"]
+
+[ext_resource type="Script" uid="uid://dclb2b2t13hx7" path="res://Scripts/Player/dead_player_dice.gd" id="1_3g8cy"]
+[ext_resource type="Script" uid="uid://d2xlp4366s0e5" path="res://Scripts/death_camera.gd" id="1_tq8oo"]
+[ext_resource type="Texture2D" uid="uid://i0grr37p2mnk" path="res://Textures/Dice/DieSide1.png" id="2_b76nl"]
+[ext_resource type="Texture2D" uid="uid://qutlpb3hl1m2" path="res://Textures/Dice/DieSide2.png" id="3_r3a24"]
+[ext_resource type="Texture2D" uid="uid://c36ynu8r61eui" path="res://Textures/Dice/DieSide3.png" id="4_nfyr2"]
+[ext_resource type="Texture2D" uid="uid://calotiwvbebbh" path="res://Textures/Dice/DieSide4.png" id="5_41bvs"]
+[ext_resource type="Texture2D" uid="uid://c1qsyl5hxn0tw" path="res://Textures/Dice/DieSide5.png" id="6_ipysv"]
+[ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="7_yywdj"]
+[ext_resource type="PackedScene" uid="uid://ky2g1r3qhiax" path="res://UI/uiResults.tscn" id="10_f6agg"]
+[ext_resource type="Script" uid="uid://dkx18dduq5qu7" path="res://Scripts/Systems/Global_game_system.gd" id="11_oe601"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f6agg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6h5vk"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_fiftr"]
+sky_material = SubResource("ProceduralSkyMaterial_6h5vk")
+
+[sub_resource type="Environment" id="Environment_1ixah"]
+background_mode = 2
+sky = SubResource("Sky_fiftr")
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_avbah"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_72tq2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8pjy"]
+albedo_color = Color(0.83889705, 0.83889705, 0.838897, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tq8oo"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oqyrl"]
+size = Vector3(200.02, 60, 300.045)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqyrl"]
+shading_mode = 0
+albedo_color = Color(0.07683582, 0.07683582, 0.07683582, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x87qo"]
+material = SubResource("StandardMaterial3D_oqyrl")
+size = Vector3(200, 0.25, 300)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fiftr"]
+size = Vector3(200.02, 0.25, 300.045)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ixah"]
+shading_mode = 0
+albedo_color = Color(0.16078432, 0.12156863, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rgj8m"]
+material = SubResource("StandardMaterial3D_1ixah")
+size = Vector3(750, 0.25, 750)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wywco"]
+size = Vector3(100, 2.5, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldntv"]
+albedo_color = Color(0.07058824, 0.07058824, 0.07058824, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w8jfd"]
+material = SubResource("StandardMaterial3D_ldntv")
+size = Vector3(100.065, 2.5, 30.005)
+
+[node name="GameOverScene" type="Node3D" unique_id=695069252]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1749603284 node_paths=PackedStringArray("AreaTrigger", "PlayerMarker")]
+transform = Transform3D(1, 0, 0, 0, 0.54007876, 0.8416145, 0, -0.8416145, 0.54007876, 0, 17.200483, 14.619564)
+doppler_tracking = 2
+script = ExtResource("1_tq8oo")
+AreaTrigger = NodePath("CameraArea")
+PlayerMarker = NodePath("../PlayerDice(Dead)/CameraDicePosition")
+
+[node name="Timer" type="Timer" parent="Camera3D" unique_id=1353360005]
+wait_time = 2.0
+autostart = true
+
+[node name="CameraArea" type="Area3D" parent="Camera3D" unique_id=61448890]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/CameraArea" unique_id=1087529981]
+shape = SubResource("BoxShape3D_f6agg")
+
+[node name="Lighting" type="Node3D" parent="." unique_id=926546385]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting" unique_id=578306137]
+environment = SubResource("Environment_1ixah")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting" unique_id=640609644]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Position References" type="Node3D" parent="." unique_id=1335502231]
+
+[node name="DownPositionStagePosition" type="Marker3D" parent="Position References" unique_id=304081045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 30)
+
+[node name="LeftPositionStagePosition" type="Marker3D" parent="Position References" unique_id=572229477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66, 5, 0)
+
+[node name="RightPositionStagePosition" type="Marker3D" parent="Position References" unique_id=783419252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 5, 0)
+
+[node name="PlayerDice(Dead)" type="CharacterBody3D" parent="." unique_id=1267587966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_3g8cy")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="PlayerDice(Dead)" unique_id=1879702523]
+shape = SubResource("BoxShape3D_avbah")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerDice(Dead)" unique_id=141839529]
+mesh = SubResource("BoxMesh_72tq2")
+surface_material_override/0 = SubResource("StandardMaterial3D_m8pjy")
+
+[node name="Textures" type="Node3D" parent="PlayerDice(Dead)" unique_id=1188324678]
+
+[node name="DiceSide1" type="Sprite3D" parent="PlayerDice(Dead)/Textures" unique_id=1175760595]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0.5099685)
+modulate = Color(0.027857922, 0.027548563, 0.18180817, 1)
+texture = ExtResource("2_b76nl")
+
+[node name="DiceSide2" type="Sprite3D" parent="PlayerDice(Dead)/Textures" unique_id=457914870]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, 0.255, 0, -0.255, -1.1146404e-08, 0, 0.5027782, -0.014969945)
+modulate = Color(0.027857922, 0.027548563, 0.18180817, 1)
+texture = ExtResource("3_r3a24")
+
+[node name="DiceSide3" type="Sprite3D" parent="PlayerDice(Dead)/Textures" unique_id=1872182325]
+transform = Transform3D(-1.1146404e-08, -1.1146404e-08, 0.255, -0.255, 4.872248e-16, -1.1146404e-08, 0, -0.255, -1.1146404e-08, 0.507203, -0.0100726485, -0.014969945)
+modulate = Color(0.027857922, 0.027548563, 0.18180817, 1)
+texture = ExtResource("4_nfyr2")
+
+[node name="DiceSide4" type="Sprite3D" parent="PlayerDice(Dead)/Textures" unique_id=58676242]
+transform = Transform3D(3.343921e-08, 1.1146404e-08, -0.255, 0.255, -1.4616743e-15, 3.343921e-08, 5.399835e-23, -0.255, -1.1146404e-08, -0.50877106, -0.0100726485, -0.014969945)
+modulate = Color(0.027857922, 0.027548563, 0.18180817, 1)
+texture = ExtResource("5_41bvs")
+
+[node name="DiceSide5" type="Sprite3D" parent="PlayerDice(Dead)/Textures" unique_id=849430833]
+transform = Transform3D(-0.255, -1.1146402e-08, -3.34392e-08, 3.34392e-08, 1.1146404e-08, -0.255, 1.1146404e-08, -0.255, -1.1146402e-08, 0.014164448, -0.50094426, -0.0056890845)
+modulate = Color(0.027857922, 0.027548563, 0.18180817, 1)
+texture = ExtResource("6_ipysv")
+
+[node name="DiceSide6" type="Sprite3D" parent="PlayerDice(Dead)/Textures" unique_id=1356679105]
+transform = Transform3D(-0.255, -1.1146402e-08, -3.3439203e-08, -1.1146406e-08, 0.255, 2.2292806e-08, 3.3439203e-08, 2.2292808e-08, -0.255, 0.014164448, -0.0100726485, -0.5014418)
+modulate = Color(0.027857922, 0.027548563, 0.18180817, 1)
+texture = ExtResource("7_yywdj")
+
+[node name="CameraDicePosition" type="Marker3D" parent="PlayerDice(Dead)" unique_id=482426905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 3)
+
+[node name="Area3D" type="Area3D" parent="PlayerDice(Dead)/CameraDicePosition" unique_id=1970234517 groups=["Player"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDice(Dead)/CameraDicePosition/Area3D" unique_id=491638410 groups=["Player"]]
+shape = SubResource("BoxShape3D_tq8oo")
+
+[node name="Environment" type="Node3D" parent="." unique_id=1783128640]
+
+[node name="Floor" type="StaticBody3D" parent="Environment" unique_id=77190988]
+metadata/_edit_lock_ = true
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Environment/Floor" unique_id=954779797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -29.875, 0)
+visible = false
+shape = SubResource("BoxShape3D_oqyrl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor" unique_id=38178850]
+mesh = SubResource("BoxMesh_x87qo")
+
+[node name="Floor2" type="StaticBody3D" parent="Environment" unique_id=514970300]
+metadata/_edit_lock_ = true
+
+[node name="Area3D" type="Area3D" parent="Environment/Floor2" unique_id=1182287736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Environment/Floor2/Area3D" unique_id=63010181]
+shape = SubResource("BoxShape3D_fiftr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor2/Area3D/FloorCollision" unique_id=1903357975]
+mesh = SubResource("BoxMesh_rgj8m")
+
+[node name="Edge1" type="StaticBody3D" parent="Environment" unique_id=1650013415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge1" unique_id=2008720312]
+shape = SubResource("BoxShape3D_wywco")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge1" unique_id=1429341238]
+mesh = SubResource("BoxMesh_w8jfd")
+
+[node name="Edge2" type="StaticBody3D" parent="Environment" unique_id=8564925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 30)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge2" unique_id=851759316]
+shape = SubResource("BoxShape3D_wywco")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge2" unique_id=1424393773]
+mesh = SubResource("BoxMesh_w8jfd")
+
+[node name="Edge3" type="StaticBody3D" parent="Environment" unique_id=1179171965]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -65, 1, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge3" unique_id=1964683161]
+shape = SubResource("BoxShape3D_wywco")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge3" unique_id=1237536605]
+mesh = SubResource("BoxMesh_w8jfd")
+
+[node name="Edge4" type="StaticBody3D" parent="Environment" unique_id=456516191]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 65, 1, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge4" unique_id=1069440844]
+shape = SubResource("BoxShape3D_wywco")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge4" unique_id=856936825]
+mesh = SubResource("BoxMesh_w8jfd")
+
+[node name="Globals" type="Node" parent="." unique_id=245397322]
+
+[node name="PlayerScript" type="Node" parent="Globals" unique_id=1347533220]
+
+[node name="GameSystem" type="Node" parent="Globals" unique_id=938242266]
+script = ExtResource("11_oe601")
+
+[node name="Timers" type="Node" parent="Globals/GameSystem" unique_id=1808737333]
+
+[node name="Game_Timer" type="Timer" parent="Globals/GameSystem/Timers" unique_id=1987696111]
+
+[node name="Game_OverTimer" type="Timer" parent="Globals/GameSystem/Timers" unique_id=1385484908]
+
+[node name="UIResults" parent="." unique_id=20405237 instance=ExtResource("10_f6agg")]
+
+[connection signal="timeout" from="Camera3D/Timer" to="Camera3D" method="_on_timer_timeout"]
+[connection signal="area_entered" from="Camera3D/CameraArea" to="Camera3D" method="_on_camera_area_area_entered"]

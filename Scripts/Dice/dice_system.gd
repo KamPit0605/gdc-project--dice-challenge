@@ -15,7 +15,7 @@ func _process(delta):
 	#print("Roll until  " + str(RollingDiceCooldown))
 	
 	if GlobalDiceScript.RollDice == true:
-		RollingDiceCooldown = 5
+		RollingDiceCooldown = 8
 		#RollingDiceTimer will be counting down
 	
 	if RollingDiceCooldown <= 0:
