@@ -33,7 +33,7 @@ tonemap_mode = 2
 albedo_color = Color(0.83889705, 0.83889705, 0.838897, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tq8oo"]
-size = Vector3(0.25, 0.25, 0.25)
+size = Vector3(0.15, 0.15, 0.15)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oqyrl"]
 size = Vector3(200.02, 60, 300.045)

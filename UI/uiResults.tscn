@@ -38,7 +38,11 @@ font_color = Color(1, 0.2, 0, 0.95686275)
 outline_size = 15
 outline_color = Color(0.34117648, 0.015686275, 0.015686275, 1)
 
-[node name="UIResults" type="Control" unique_id=20405237]
+[sub_resource type="LabelSettings" id="LabelSettings_fsdo4"]
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.5568628)
+
+[node name="UIResults" type="Control" unique_id=20405237 node_paths=PackedStringArray("PlayAgainMenu", "MainMenuMenu", "PlayAgainButton", "MainMenuButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,6 +50,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjaw5")
+PlayAgainMenu = NodePath("Menu/PlayAgain")
+MainMenuMenu = NodePath("Menu/MainMenu")
+PlayAgainButton = NodePath("Menu/PlayAgain/PlayAgainButton")
+MainMenuButton = NodePath("Menu/MainMenu/MainMenuButton")
 metadata/_edit_lock_ = true
 
 [node name="XPCoinsKills" type="VBoxContainer" parent="." unique_id=689159536]
@@ -138,4 +146,55 @@ label_settings = SubResource("LabelSettings_nm1m0")
 wait_time = 4.0
 autostart = true
 
+[node name="Menu" type="BoxContainer" parent="." unique_id=49435302]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -20.0
+offset_right = 172.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+theme_override_constants/separation = 500
+
+[node name="PlayAgain" type="VBoxContainer" parent="Menu" unique_id=858022740]
+layout_mode = 2
+
+[node name="PlayAgainButton" type="Button" parent="Menu/PlayAgain" unique_id=1357956895]
+layout_mode = 2
+text = "Play Again"
+
+[node name="PlayAgainLabel" type="Label" parent="Menu/PlayAgain" unique_id=1138751806]
+layout_mode = 2
+text = "[Space]
+(A) | (X)"
+label_settings = SubResource("LabelSettings_fsdo4")
+horizontal_alignment = 1
+
+[node name="MainMenu" type="VBoxContainer" parent="Menu" unique_id=1249056666]
+layout_mode = 2
+
+[node name="MainMenuButton" type="Button" parent="Menu/MainMenu" unique_id=484833263]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Label" type="Label" parent="Menu/MainMenu" unique_id=1098696670]
+layout_mode = 2
+text = "[Esc]
+(B) | (O)"
+label_settings = SubResource("LabelSettings_fsdo4")
+horizontal_alignment = 1
+
+[node name="SelectCooldown" type="Timer" parent="." unique_id=1016607443]
+wait_time = 5.0
+autostart = true
+
+[connection signal="MainMenuSelect" from="." to="." method="_on_main_menu_select"]
+[connection signal="PlayAgainSelect" from="." to="." method="_on_play_again_select"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SelectCooldown" to="." method="_on_select_cooldown_timeout"]
