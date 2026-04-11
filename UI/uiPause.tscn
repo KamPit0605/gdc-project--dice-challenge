@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://wpf7vtcpjbaf"]
+
+[ext_resource type="Script" uid="uid://bxmmxtb16qwi6" path="res://Scripts/UI/UiPauseScript.gd" id="1_gkunx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3sbvi"]
+font_size = 60
+font_color = Color(0.95686275, 0.95686275, 1, 0.95686275)
+outline_size = 15
+outline_color = Color(0.41568628, 0.41568628, 1, 1)
+
+[node name="UIResults" type="Control" unique_id=20405237 node_paths=PackedStringArray("Menu", "ResumeButton", "PlayAgainButton", "MainMenuButton")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gkunx")
+Menu = NodePath("Menu")
+ResumeButton = NodePath("Menu/Resume/ResumeButton")
+PlayAgainButton = NodePath("Menu/Restart/RestartButton")
+MainMenuButton = NodePath("Menu/MainMenu/MainMenuButton")
+metadata/_edit_lock_ = true
+
+[node name="Animations" type="Control" parent="." unique_id=40189467]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=270339400]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.5
+offset_right = 64.5
+offset_bottom = 88.0
+grow_horizontal = 2
+
+[node name="Pause" type="VBoxContainer" parent="VBoxContainer" unique_id=358116091]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PauseUI" type="Label" parent="VBoxContainer/Pause" unique_id=1114336313]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_3sbvi")
+
+[node name="Menu" type="VBoxContainer" parent="." unique_id=1399438827]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -148.0
+offset_right = 172.0
+offset_bottom = 65.33331
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Resume" type="VBoxContainer" parent="Menu" unique_id=1974413170]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="Menu/Resume" unique_id=1177764586]
+layout_mode = 2
+text = "Resume"
+
+[node name="Restart" type="VBoxContainer" parent="Menu" unique_id=858022740]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="Menu/Restart" unique_id=1357956895]
+layout_mode = 2
+text = "Restart"
+
+[node name="MainMenu" type="VBoxContainer" parent="Menu" unique_id=1249056666]
+layout_mode = 2
+
+[node name="MainMenuButton" type="Button" parent="Menu/MainMenu" unique_id=484833263]
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="Menu/Resume/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Menu/Restart/RestartButton" to="." method="_on_restart_button_pressed"]

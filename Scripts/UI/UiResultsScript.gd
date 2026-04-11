@@ -38,9 +38,9 @@ func _process(_delta):
 	KillsUI.text = str(GlobalPlayerScript.EnemyKills)
 
 	if SelectCooldown == false:
-		if Input.is_action_just_pressed("Confirm") :
+		if Input.is_action_just_pressed("ui_accept") :
 			PlayAgainSelect.emit()
-		if Input.is_action_just_pressed("Decline"):
+		if Input.is_action_just_pressed("ui_cancel"):
 			MainMenuSelect.emit()
 		PlayAgainButton.pressed.connect(_playagain)
 		MainMenuButton.pressed.connect(_mainmenu)

@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="7_8m72m"]
 [ext_resource type="Script" uid="uid://dkx18dduq5qu7" path="res://Scripts/Systems/Global_game_system.gd" id="11_4xiap"]
 [ext_resource type="PackedScene" uid="uid://ld1mxfj4vaxp" path="res://Scenes/Systems/dice_system.tscn" id="12_wywco"]
+[ext_resource type="PackedScene" uid="uid://wpf7vtcpjbaf" path="res://UI/uiPause.tscn" id="14_ldntv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6h5vk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -545,6 +546,8 @@ UpPositionStageMarker = NodePath("../Position References/UpPositionStagePosition
 DownPositionStageMarker = NodePath("../Position References/DownPositionStagePosition")
 LeftPositionStageMarker = NodePath("../Position References/LeftPositionStagePosition")
 RightPositionStageMarker = NodePath("../Position References/RightPositionStagePosition")
+
+[node name="UIResults" parent="." unique_id=521938894 instance=ExtResource("14_ldntv")]
 
 [connection signal="endGame" from="PlayerDice" to="Globals/GameSystem" method="_on_player_dice_end_game"]
 [connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]

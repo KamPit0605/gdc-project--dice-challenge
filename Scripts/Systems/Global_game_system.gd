@@ -30,7 +30,7 @@ func _process(_delta):
 		GameStart = false
 	
 	_endGame()
-	print (GameStart)
+	
 	if GameReset == true:
 		GameReset = false
 
