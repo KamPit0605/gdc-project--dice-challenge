@@ -40,7 +40,8 @@ var OverTimeUIDisplay: bool
 
 @onready var TimerUI = $VBoxContainer/TimerUI
 @onready var OverTimerUI = $VBoxContainer/OverTimerUI
-@export var timeInSeconds: int = 300 #game timer set HERE
+@export var timeInSeconds: int #game timer set HERE
+var timeDefault: int = 300
 @export var overTimeInSeconds: int = 0
 var TimerBool: bool
 var OverTimerBool: bool
@@ -50,6 +51,7 @@ var OverTimerBool: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	timeInSeconds = timeDefault
 	AttackDice.visible = false
 	DefenseDice.visible = false
 	HealthDice.visible = false
@@ -189,3 +191,7 @@ func autoAttacking():
 		autoAttackUI.visible = true
 	else:
 		autoAttackUI.visible = false
+
+func GameReset():
+	if GlobalGameSystem.GameReset:
+		timeInSeconds = timeDefault

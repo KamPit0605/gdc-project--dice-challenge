@@ -17,6 +17,7 @@ signal PlayAgainSelect
 signal MainMenuSelect
 var game_scene = preload("res://Scenes/game_scene.tscn")
 #var mainMenu_scene
+#var ConnectButtons: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,6 +28,7 @@ func _ready():
 	KillsUI.visible = false
 	PlayAgainMenu.visible = false
 	MainMenuMenu.visible = false
+	GlobalGameSystem.GamePlaying = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,6 +44,7 @@ func _process(_delta):
 			MainMenuSelect.emit()
 		PlayAgainButton.pressed.connect(_playagain)
 		MainMenuButton.pressed.connect(_mainmenu)
+		
 
 func _on_timer_timeout():
 	XPUI.visible = true
@@ -51,6 +54,16 @@ func _on_timer_timeout():
 	else:
 		COverUI.visible = true
 
+func UiScoreResets():
+	GlobalDiceScript.AcquiredDice = 0
+	GlobalPlayerScript.PlayerLevel = 1
+	GlobalPlayerScript.PlayerXP = 0
+	GlobalPlayerScript.LevelUpXP = 0
+	GlobalPlayerScript.LevelUpQuota = GlobalPlayerScript.LevelUp1stQuota
+	GlobalPlayerScript.EnemyKills = 0
+	GlobalPlayerScript.autoAttacking_indicator = false
+	GlobalGameSystem.GameReset = 0
+	
 
 func _on_select_cooldown_timeout():
 	PlayAgainMenu.visible = true
@@ -63,7 +76,9 @@ func _mainmenu():
 	pass
 
 func _on_play_again_select():
+	GlobalGameSystem._restart()
+	UiScoreResets()
 	get_tree().change_scene_to_packed(game_scene)
 
 func _on_main_menu_select():
-	pass # Replace with function body.
+	GlobalDiceScript.AcquiredDice = 0

@@ -9,7 +9,7 @@ extends Node
 @onready var OVERTIME: bool
 
 @onready var endGame: bool = false
-
+@onready var GameReset: bool = false
 
 #--SCENES--
 var gameOverScene = "res://Scenes/gameover_scene.tscn"
@@ -30,10 +30,14 @@ func _process(_delta):
 		GameStart = false
 	
 	_endGame()
+	print (GameStart)
+	if GameReset == true:
+		GameReset = false
 
 func _restart():
-	GameStart = false
 	GamePlaying = false
+	GameReset = true
+	GameStart = false
 	OVERTIME = false
 
 	
@@ -41,7 +45,11 @@ func _restart():
 func _endGame():
 	if endGame == true:
 		get_tree().change_scene_to_file(gameOverScene)
-		
+		endGame = false
 
 func _on_player_dice_end_game():
 	endGame = true
+
+
+func _on_ui_results_play_again_select():
+	_restart()

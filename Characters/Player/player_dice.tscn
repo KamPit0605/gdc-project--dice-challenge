@@ -36,18 +36,41 @@ albedo_color = Color(0.08071878, 0.36173758, 0.99999994, 0.6862745)
 height = 0.5
 radius = 2.175
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_qbb6i"]
-top_radius = 1.25
-bottom_radius = 1.25
+[sub_resource type="CylinderMesh" id="CylinderMesh_rthal"]
+top_radius = 2.175
+bottom_radius = 2.175
 height = 0.15
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qonha"]
 transparency = 1
 albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t1edc"]
+height = 0.5
+radius = 2.55
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lx13o"]
+top_radius = 2.55
+bottom_radius = 2.55
+height = 0.15
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rthal"]
+height = 0.5
+radius = 1.75
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t1edc"]
+top_radius = 1.75
+bottom_radius = 1.75
+height = 0.15
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_m8pjy"]
 height = 0.5
 radius = 1.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qbb6i"]
+top_radius = 1.25
+bottom_radius = 1.25
+height = 0.15
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72tq2"]
 transparency = 1
@@ -131,7 +154,33 @@ debug_color = Color(0.99607843, 0, 0.19607843, 1)
 [node name="AttackMesh" type="MeshInstance3D" parent="Attacking/AttackCloseTrigger" unique_id=1059308147]
 editor_description = "Attack visibility"
 visible = false
-mesh = SubResource("CylinderMesh_qbb6i")
+mesh = SubResource("CylinderMesh_rthal")
+surface_material_override/0 = SubResource("StandardMaterial3D_qonha")
+
+[node name="AttackClose2Trigger" type="Area3D" parent="Attacking" unique_id=672639758 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attacking/AttackClose2Trigger" unique_id=571638845]
+shape = SubResource("CylinderShape3D_t1edc")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="Attacking/AttackClose2Trigger" unique_id=405037555]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_lx13o")
+surface_material_override/0 = SubResource("StandardMaterial3D_qonha")
+
+[node name="AttackClose3Trigger" type="Area3D" parent="Attacking" unique_id=697178493 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attacking/AttackClose3Trigger" unique_id=2147393662]
+shape = SubResource("CylinderShape3D_rthal")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="Attacking/AttackClose3Trigger" unique_id=8753270]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_t1edc")
 surface_material_override/0 = SubResource("StandardMaterial3D_qonha")
 
 [node name="AttackCloserTrigger" type="Area3D" parent="Attacking" unique_id=1990762667 groups=["AttackTrigger"]]

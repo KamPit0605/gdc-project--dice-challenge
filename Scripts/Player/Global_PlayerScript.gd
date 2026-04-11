@@ -8,6 +8,7 @@ var PlayerLevel: int = 1
 var PlayerXP: float = 0
 var LevelUpXP: float = 0
 var LevelUpQuota: int = 300
+const LevelUp1stQuota: int = 300
 
 var EnemyKills: int = 0
 

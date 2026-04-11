@@ -234,3 +234,4 @@ script = ExtResource("11_oe601")
 
 [connection signal="timeout" from="Camera3D/Timer" to="Camera3D" method="_on_timer_timeout"]
 [connection signal="area_entered" from="Camera3D/CameraArea" to="Camera3D" method="_on_camera_area_area_entered"]
+[connection signal="PlayAgainSelect" from="UIResults" to="Globals/GameSystem" method="_on_ui_results_play_again_select"]

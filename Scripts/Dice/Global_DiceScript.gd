@@ -13,7 +13,7 @@ var CriticalRoll: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	RollDice = true
+	#RollDice = true
 	AcquiredDice = 0 #(Change this anytime for debugging)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
