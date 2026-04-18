@@ -8,7 +8,7 @@ font_color = Color(0.95686275, 0.95686275, 1, 0.95686275)
 outline_size = 15
 outline_color = Color(0.41568628, 0.41568628, 1, 1)
 
-[node name="UIResults" type="Control" unique_id=20405237 node_paths=PackedStringArray("Menu", "ResumeButton", "PlayAgainButton", "MainMenuButton")]
+[node name="UIPause" type="Control" unique_id=20405237 node_paths=PackedStringArray("Menu", "ResumeButton", "PlayAgainButton", "MainMenuButton")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -21,7 +21,6 @@ Menu = NodePath("Menu")
 ResumeButton = NodePath("Menu/Resume/ResumeButton")
 PlayAgainButton = NodePath("Menu/Restart/RestartButton")
 MainMenuButton = NodePath("Menu/MainMenu/MainMenuButton")
-metadata/_edit_lock_ = true
 
 [node name="Animations" type="Control" parent="." unique_id=40189467]
 anchors_preset = 0
@@ -89,3 +88,4 @@ text = "Main Menu"
 
 [connection signal="pressed" from="Menu/Resume/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Menu/Restart/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Menu/MainMenu/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

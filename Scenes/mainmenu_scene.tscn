@@ -1,5 +1,19 @@
 [gd_scene format=3 uid="uid://cagwet5i0ua1v"]
 
+[ext_resource type="PackedScene" uid="uid://d3f2t05kkkj3k" path="res://UI/ui_mainmenu.tscn" id="1_c5pir"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c5pir"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_qxhg5"]
+sky_material = SubResource("ProceduralSkyMaterial_c5pir")
+
+[sub_resource type="Environment" id="Environment_3ihj7"]
+background_mode = 2
+sky = SubResource("Sky_qxhg5")
+tonemap_mode = 2
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_oqyrl"]
 size = Vector3(200.02, 0.25, 300.045)
 
@@ -43,7 +57,16 @@ albedo_color = Color(0.31374374, 0.11467182, 0, 1)
 material = SubResource("StandardMaterial3D_ldntv")
 size = Vector3(100.065, 2.5, 30.005)
 
-[node name="GameScene" type="Node3D" unique_id=695069252]
+[node name="MainMenuScene" type="Node3D" unique_id=695069252]
+
+[node name="Lighting" type="Node3D" parent="." unique_id=2002824742]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting" unique_id=1515708575]
+environment = SubResource("Environment_3ihj7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting" unique_id=858994056]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1496525851]
 transform = Transform3D(1, 0, 0, 0, 0.54007876, 0.8416145, 0, -0.8416145, 0.54007876, 0, 17.200483, 14.619564)
@@ -118,3 +141,5 @@ shape = SubResource("BoxShape3D_nk3rs")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge4" unique_id=555082359]
 mesh = SubResource("BoxMesh_4y444")
+
+[node name="UIMainMenu" parent="." unique_id=20405237 instance=ExtResource("1_c5pir")]

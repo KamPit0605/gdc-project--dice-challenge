@@ -20,12 +20,12 @@
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="Sky" id="Sky_fiftr"]
+[sub_resource type="Sky" id="Sky_w8jfd"]
 sky_material = SubResource("ProceduralSkyMaterial_6h5vk")
 
 [sub_resource type="Environment" id="Environment_1ixah"]
 background_mode = 2
-sky = SubResource("Sky_fiftr")
+sky = SubResource("Sky_w8jfd")
 tonemap_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_avbah"]
@@ -1033,7 +1033,7 @@ DownPositionStageMarker = NodePath("../Position References/DownPositionStagePosi
 LeftPositionStageMarker = NodePath("../Position References/LeftPositionStagePosition")
 RightPositionStageMarker = NodePath("../Position References/RightPositionStagePosition")
 
-[node name="UIResults" parent="." unique_id=521938894 instance=ExtResource("14_ldntv")]
+[node name="UIPause" parent="." unique_id=521938894 instance=ExtResource("14_ldntv")]
 
 [node name="Tutorial" type="Node3D" parent="." unique_id=43473999]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)

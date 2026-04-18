@@ -8,7 +8,12 @@ var Pausing = false
 @export var ResumeButton: Button
 @export var PlayAgainButton: Button
 @export var MainMenuButton: Button
-var game_scene = preload("res://Scenes/game_scene.tscn")
+@export var game_scene = preload("res://Scenes/game_scene.tscn")
+@export var mainmenu_scene = preload("res://Scenes/mainmenu_scene.tscn")
+signal ResumeSelect
+signal RestartSelect
+signal MainmenuSelect
+
 #var mainMenu_scene
 #var ConnectButtons: bool = false
 
@@ -65,7 +70,9 @@ func PauseMenu():
 
 
 func _on_main_menu_select():
-	GlobalDiceScript.AcquiredDice = 0
+	GlobalGameSystem._restart()
+	UiScoreResets()
+	get_tree().change_scene_to_packed(mainmenu_scene)
 
 func _resuming():
 	_Pausing()
@@ -79,3 +86,7 @@ func _on_restart_button_pressed():
 	GlobalGameSystem._restart()
 	UiScoreResets()
 	get_tree().reload_current_scene()
+
+
+func _on_main_menu_button_pressed():
+	_on_main_menu_select()

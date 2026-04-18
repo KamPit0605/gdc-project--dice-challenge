@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GDC Project: Dice Challenge"
-run/main_scene="uid://ctckvq6qkfjvr"
+run/main_scene="uid://cagwet5i0ua1v"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,7 @@ GlobalPlayerScript="*uid://dg8cv8c1b0lk7"
 GlobalDiceScript="*uid://bs8exio7gkbd2"
 GlobalGameSystem="*uid://dkx18dduq5qu7"
 GlobalUi="*uid://boy5hopivoqgh"
+GlobalSceneStorage="*uid://c1ohk4p6oyn6x"
 
 [global_group]
 

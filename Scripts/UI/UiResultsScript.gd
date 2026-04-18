@@ -16,6 +16,7 @@ var SelectCooldown: bool = true
 signal PlayAgainSelect
 signal MainMenuSelect
 var game_scene = preload("res://Scenes/game_scene.tscn")
+var mainmenu_scene = preload("res://Scenes/mainmenu_scene.tscn")
 #var mainMenu_scene
 #var ConnectButtons: bool = false
 
@@ -73,7 +74,7 @@ func _on_select_cooldown_timeout():
 func _playagain():
 	PlayAgainSelect.emit()
 func _mainmenu():
-	pass
+	MainMenuSelect.emit()
 
 func _on_play_again_select():
 	GlobalGameSystem._restart()
@@ -82,3 +83,4 @@ func _on_play_again_select():
 
 func _on_main_menu_select():
 	GlobalDiceScript.AcquiredDice = 0
+	get_tree().change_scene_to_packed(mainmenu_scene)
