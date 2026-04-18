@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dkx18dduq5qu7" path="res://Scripts/Systems/Global_game_system.gd" id="11_4xiap"]
 [ext_resource type="PackedScene" uid="uid://ld1mxfj4vaxp" path="res://Scenes/Systems/dice_system.tscn" id="12_wywco"]
 [ext_resource type="PackedScene" uid="uid://wpf7vtcpjbaf" path="res://UI/uiPause.tscn" id="14_ldntv"]
+[ext_resource type="Script" uid="uid://b1vq61j17bfi5" path="res://Scripts/tutorial&controls.gd" id="15_w8jfd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6h5vk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -126,33 +127,33 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_oqyrl"]
 size = Vector3(200.02, 60, 300.045)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqyrl"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aq00n"]
 shading_mode = 0
 albedo_color = Color(3.218744e-07, 0.23033407, 0.0028132184, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_x87qo"]
-material = SubResource("StandardMaterial3D_oqyrl")
+material = SubResource("StandardMaterial3D_aq00n")
 size = Vector3(200, 0.25, 300)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fiftr"]
 size = Vector3(200.02, 0.25, 300.045)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ixah"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_817jg"]
 shading_mode = 0
 albedo_color = Color(0.16078432, 0.12156863, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rgj8m"]
-material = SubResource("StandardMaterial3D_1ixah")
+material = SubResource("StandardMaterial3D_817jg")
 size = Vector3(750, 0.25, 750)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wywco"]
 size = Vector3(100, 2.5, 30)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldntv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtwju"]
 albedo_color = Color(0.31374374, 0.11467182, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_w8jfd"]
-material = SubResource("StandardMaterial3D_ldntv")
+material = SubResource("StandardMaterial3D_vtwju")
 size = Vector3(100.065, 2.5, 30.005)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w0rp6"]
@@ -164,6 +165,491 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wwsqc"]
 size = Vector3(1.05, 1.05, 1.05)
+
+[sub_resource type="FontFile" id="FontFile_ldntv"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/35/0/ascent = 0.0
+cache/0/35/0/descent = 0.0
+cache/0/35/0/underline_position = 0.0
+cache/0/35/0/underline_thickness = 0.0
+cache/0/35/0/scale = 1.0
+cache/0/43/0/ascent = 0.0
+cache/0/43/0/descent = 0.0
+cache/0/43/0/underline_position = 0.0
+cache/0/43/0/underline_thickness = 0.0
+cache/0/43/0/scale = 1.0
+cache/0/51/0/ascent = 0.0
+cache/0/51/0/descent = 0.0
+cache/0/51/0/underline_position = 0.0
+cache/0/51/0/underline_thickness = 0.0
+cache/0/51/0/scale = 1.0
+cache/0/57/0/ascent = 0.0
+cache/0/57/0/descent = 0.0
+cache/0/57/0/underline_position = 0.0
+cache/0/57/0/underline_thickness = 0.0
+cache/0/57/0/scale = 1.0
+cache/0/59/0/ascent = 0.0
+cache/0/59/0/descent = 0.0
+cache/0/59/0/underline_position = 0.0
+cache/0/59/0/underline_thickness = 0.0
+cache/0/59/0/scale = 1.0
+cache/0/60/0/ascent = 0.0
+cache/0/60/0/descent = 0.0
+cache/0/60/0/underline_position = 0.0
+cache/0/60/0/underline_thickness = 0.0
+cache/0/60/0/scale = 1.0
+cache/0/61/0/ascent = 0.0
+cache/0/61/0/descent = 0.0
+cache/0/61/0/underline_position = 0.0
+cache/0/61/0/underline_thickness = 0.0
+cache/0/61/0/scale = 1.0
+cache/0/62/0/ascent = 0.0
+cache/0/62/0/descent = 0.0
+cache/0/62/0/underline_position = 0.0
+cache/0/62/0/underline_thickness = 0.0
+cache/0/62/0/scale = 1.0
+cache/0/63/0/ascent = 0.0
+cache/0/63/0/descent = 0.0
+cache/0/63/0/underline_position = 0.0
+cache/0/63/0/underline_thickness = 0.0
+cache/0/63/0/scale = 1.0
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
+cache/0/65/0/ascent = 0.0
+cache/0/65/0/descent = 0.0
+cache/0/65/0/underline_position = 0.0
+cache/0/65/0/underline_thickness = 0.0
+cache/0/65/0/scale = 1.0
+cache/0/66/0/ascent = 0.0
+cache/0/66/0/descent = 0.0
+cache/0/66/0/underline_position = 0.0
+cache/0/66/0/underline_thickness = 0.0
+cache/0/66/0/scale = 1.0
+cache/0/68/0/ascent = 0.0
+cache/0/68/0/descent = 0.0
+cache/0/68/0/underline_position = 0.0
+cache/0/68/0/underline_thickness = 0.0
+cache/0/68/0/scale = 1.0
+cache/0/70/0/ascent = 0.0
+cache/0/70/0/descent = 0.0
+cache/0/70/0/underline_position = 0.0
+cache/0/70/0/underline_thickness = 0.0
+cache/0/70/0/scale = 1.0
+cache/0/72/0/ascent = 0.0
+cache/0/72/0/descent = 0.0
+cache/0/72/0/underline_position = 0.0
+cache/0/72/0/underline_thickness = 0.0
+cache/0/72/0/scale = 1.0
+cache/0/74/0/ascent = 0.0
+cache/0/74/0/descent = 0.0
+cache/0/74/0/underline_position = 0.0
+cache/0/74/0/underline_thickness = 0.0
+cache/0/74/0/scale = 1.0
+cache/0/77/0/ascent = 0.0
+cache/0/77/0/descent = 0.0
+cache/0/77/0/underline_position = 0.0
+cache/0/77/0/underline_thickness = 0.0
+cache/0/77/0/scale = 1.0
+cache/0/79/0/ascent = 0.0
+cache/0/79/0/descent = 0.0
+cache/0/79/0/underline_position = 0.0
+cache/0/79/0/underline_thickness = 0.0
+cache/0/79/0/scale = 1.0
+cache/0/82/0/ascent = 0.0
+cache/0/82/0/descent = 0.0
+cache/0/82/0/underline_position = 0.0
+cache/0/82/0/underline_thickness = 0.0
+cache/0/82/0/scale = 1.0
+cache/0/84/0/ascent = 0.0
+cache/0/84/0/descent = 0.0
+cache/0/84/0/underline_position = 0.0
+cache/0/84/0/underline_thickness = 0.0
+cache/0/84/0/scale = 1.0
+cache/0/86/0/ascent = 0.0
+cache/0/86/0/descent = 0.0
+cache/0/86/0/underline_position = 0.0
+cache/0/86/0/underline_thickness = 0.0
+cache/0/86/0/scale = 1.0
+cache/0/88/0/ascent = 0.0
+cache/0/88/0/descent = 0.0
+cache/0/88/0/underline_position = 0.0
+cache/0/88/0/underline_thickness = 0.0
+cache/0/88/0/scale = 1.0
+cache/0/89/0/ascent = 0.0
+cache/0/89/0/descent = 0.0
+cache/0/89/0/underline_position = 0.0
+cache/0/89/0/underline_thickness = 0.0
+cache/0/89/0/scale = 1.0
+cache/0/91/0/ascent = 0.0
+cache/0/91/0/descent = 0.0
+cache/0/91/0/underline_position = 0.0
+cache/0/91/0/underline_thickness = 0.0
+cache/0/91/0/scale = 1.0
+cache/0/92/0/ascent = 0.0
+cache/0/92/0/descent = 0.0
+cache/0/92/0/underline_position = 0.0
+cache/0/92/0/underline_thickness = 0.0
+cache/0/92/0/scale = 1.0
+cache/0/93/0/ascent = 0.0
+cache/0/93/0/descent = 0.0
+cache/0/93/0/underline_position = 0.0
+cache/0/93/0/underline_thickness = 0.0
+cache/0/93/0/scale = 1.0
+cache/0/94/0/ascent = 0.0
+cache/0/94/0/descent = 0.0
+cache/0/94/0/underline_position = 0.0
+cache/0/94/0/underline_thickness = 0.0
+cache/0/94/0/scale = 1.0
+cache/0/100/0/ascent = 0.0
+cache/0/100/0/descent = 0.0
+cache/0/100/0/underline_position = 0.0
+cache/0/100/0/underline_thickness = 0.0
+cache/0/100/0/scale = 1.0
+cache/0/103/0/ascent = 0.0
+cache/0/103/0/descent = 0.0
+cache/0/103/0/underline_position = 0.0
+cache/0/103/0/underline_thickness = 0.0
+cache/0/103/0/scale = 1.0
+cache/0/111/0/ascent = 0.0
+cache/0/111/0/descent = 0.0
+cache/0/111/0/underline_position = 0.0
+cache/0/111/0/underline_thickness = 0.0
+cache/0/111/0/scale = 1.0
+cache/0/117/0/ascent = 0.0
+cache/0/117/0/descent = 0.0
+cache/0/117/0/underline_position = 0.0
+cache/0/117/0/underline_thickness = 0.0
+cache/0/117/0/scale = 1.0
+cache/0/124/0/ascent = 0.0
+cache/0/124/0/descent = 0.0
+cache/0/124/0/underline_position = 0.0
+cache/0/124/0/underline_thickness = 0.0
+cache/0/124/0/scale = 1.0
+cache/0/133/0/ascent = 0.0
+cache/0/133/0/descent = 0.0
+cache/0/133/0/underline_position = 0.0
+cache/0/133/0/underline_thickness = 0.0
+cache/0/133/0/scale = 1.0
+cache/0/138/0/ascent = 0.0
+cache/0/138/0/descent = 0.0
+cache/0/138/0/underline_position = 0.0
+cache/0/138/0/underline_thickness = 0.0
+cache/0/138/0/scale = 1.0
+cache/0/142/0/ascent = 0.0
+cache/0/142/0/descent = 0.0
+cache/0/142/0/underline_position = 0.0
+cache/0/142/0/underline_thickness = 0.0
+cache/0/142/0/scale = 1.0
+cache/0/144/0/ascent = 0.0
+cache/0/144/0/descent = 0.0
+cache/0/144/0/underline_position = 0.0
+cache/0/144/0/underline_thickness = 0.0
+cache/0/144/0/scale = 1.0
+cache/0/145/0/ascent = 0.0
+cache/0/145/0/descent = 0.0
+cache/0/145/0/underline_position = 0.0
+cache/0/145/0/underline_thickness = 0.0
+cache/0/145/0/scale = 1.0
+cache/0/147/0/ascent = 0.0
+cache/0/147/0/descent = 0.0
+cache/0/147/0/underline_position = 0.0
+cache/0/147/0/underline_thickness = 0.0
+cache/0/147/0/scale = 1.0
+cache/0/148/0/ascent = 0.0
+cache/0/148/0/descent = 0.0
+cache/0/148/0/underline_position = 0.0
+cache/0/148/0/underline_thickness = 0.0
+cache/0/148/0/scale = 1.0
+cache/0/149/0/ascent = 0.0
+cache/0/149/0/descent = 0.0
+cache/0/149/0/underline_position = 0.0
+cache/0/149/0/underline_thickness = 0.0
+cache/0/149/0/scale = 1.0
+cache/0/151/0/ascent = 0.0
+cache/0/151/0/descent = 0.0
+cache/0/151/0/underline_position = 0.0
+cache/0/151/0/underline_thickness = 0.0
+cache/0/151/0/scale = 1.0
+cache/0/152/0/ascent = 0.0
+cache/0/152/0/descent = 0.0
+cache/0/152/0/underline_position = 0.0
+cache/0/152/0/underline_thickness = 0.0
+cache/0/152/0/scale = 1.0
+cache/0/154/0/ascent = 0.0
+cache/0/154/0/descent = 0.0
+cache/0/154/0/underline_position = 0.0
+cache/0/154/0/underline_thickness = 0.0
+cache/0/154/0/scale = 1.0
+cache/0/155/0/ascent = 0.0
+cache/0/155/0/descent = 0.0
+cache/0/155/0/underline_position = 0.0
+cache/0/155/0/underline_thickness = 0.0
+cache/0/155/0/scale = 1.0
+cache/0/156/0/ascent = 0.0
+cache/0/156/0/descent = 0.0
+cache/0/156/0/underline_position = 0.0
+cache/0/156/0/underline_thickness = 0.0
+cache/0/156/0/scale = 1.0
+cache/0/158/0/ascent = 0.0
+cache/0/158/0/descent = 0.0
+cache/0/158/0/underline_position = 0.0
+cache/0/158/0/underline_thickness = 0.0
+cache/0/158/0/scale = 1.0
+cache/0/160/0/ascent = 0.0
+cache/0/160/0/descent = 0.0
+cache/0/160/0/underline_position = 0.0
+cache/0/160/0/underline_thickness = 0.0
+cache/0/160/0/scale = 1.0
+cache/0/164/0/ascent = 0.0
+cache/0/164/0/descent = 0.0
+cache/0/164/0/underline_position = 0.0
+cache/0/164/0/underline_thickness = 0.0
+cache/0/164/0/scale = 1.0
+cache/0/169/0/ascent = 0.0
+cache/0/169/0/descent = 0.0
+cache/0/169/0/underline_position = 0.0
+cache/0/169/0/underline_thickness = 0.0
+cache/0/169/0/scale = 1.0
+cache/0/174/0/ascent = 0.0
+cache/0/174/0/descent = 0.0
+cache/0/174/0/underline_position = 0.0
+cache/0/174/0/underline_thickness = 0.0
+cache/0/174/0/scale = 1.0
+cache/0/180/0/ascent = 0.0
+cache/0/180/0/descent = 0.0
+cache/0/180/0/underline_position = 0.0
+cache/0/180/0/underline_thickness = 0.0
+cache/0/180/0/scale = 1.0
+cache/0/189/0/ascent = 0.0
+cache/0/189/0/descent = 0.0
+cache/0/189/0/underline_position = 0.0
+cache/0/189/0/underline_thickness = 0.0
+cache/0/189/0/scale = 1.0
+cache/0/199/0/ascent = 0.0
+cache/0/199/0/descent = 0.0
+cache/0/199/0/underline_position = 0.0
+cache/0/199/0/underline_thickness = 0.0
+cache/0/199/0/scale = 1.0
+cache/0/211/0/ascent = 0.0
+cache/0/211/0/descent = 0.0
+cache/0/211/0/underline_position = 0.0
+cache/0/211/0/underline_thickness = 0.0
+cache/0/211/0/scale = 1.0
+cache/0/221/0/ascent = 0.0
+cache/0/221/0/descent = 0.0
+cache/0/221/0/underline_position = 0.0
+cache/0/221/0/underline_thickness = 0.0
+cache/0/221/0/scale = 1.0
+cache/0/229/0/ascent = 0.0
+cache/0/229/0/descent = 0.0
+cache/0/229/0/underline_position = 0.0
+cache/0/229/0/underline_thickness = 0.0
+cache/0/229/0/scale = 1.0
+cache/0/235/0/ascent = 0.0
+cache/0/235/0/descent = 0.0
+cache/0/235/0/underline_position = 0.0
+cache/0/235/0/underline_thickness = 0.0
+cache/0/235/0/scale = 1.0
+cache/0/237/0/ascent = 0.0
+cache/0/237/0/descent = 0.0
+cache/0/237/0/underline_position = 0.0
+cache/0/237/0/underline_thickness = 0.0
+cache/0/237/0/scale = 1.0
+cache/0/236/0/ascent = 0.0
+cache/0/236/0/descent = 0.0
+cache/0/236/0/underline_position = 0.0
+cache/0/236/0/underline_thickness = 0.0
+cache/0/236/0/scale = 1.0
+cache/0/234/0/ascent = 0.0
+cache/0/234/0/descent = 0.0
+cache/0/234/0/underline_position = 0.0
+cache/0/234/0/underline_thickness = 0.0
+cache/0/234/0/scale = 1.0
+cache/0/233/0/ascent = 0.0
+cache/0/233/0/descent = 0.0
+cache/0/233/0/underline_position = 0.0
+cache/0/233/0/underline_thickness = 0.0
+cache/0/233/0/scale = 1.0
+cache/0/232/0/ascent = 0.0
+cache/0/232/0/descent = 0.0
+cache/0/232/0/underline_position = 0.0
+cache/0/232/0/underline_thickness = 0.0
+cache/0/232/0/scale = 1.0
+cache/0/231/0/ascent = 0.0
+cache/0/231/0/descent = 0.0
+cache/0/231/0/underline_position = 0.0
+cache/0/231/0/underline_thickness = 0.0
+cache/0/231/0/scale = 1.0
+cache/0/250/0/ascent = 0.0
+cache/0/250/0/descent = 0.0
+cache/0/250/0/underline_position = 0.0
+cache/0/250/0/underline_thickness = 0.0
+cache/0/250/0/scale = 1.0
+cache/0/247/0/ascent = 0.0
+cache/0/247/0/descent = 0.0
+cache/0/247/0/underline_position = 0.0
+cache/0/247/0/underline_thickness = 0.0
+cache/0/247/0/scale = 1.0
+cache/0/245/0/ascent = 0.0
+cache/0/245/0/descent = 0.0
+cache/0/245/0/underline_position = 0.0
+cache/0/245/0/underline_thickness = 0.0
+cache/0/245/0/scale = 1.0
+cache/0/244/0/ascent = 0.0
+cache/0/244/0/descent = 0.0
+cache/0/244/0/underline_position = 0.0
+cache/0/244/0/underline_thickness = 0.0
+cache/0/244/0/scale = 1.0
+cache/0/243/0/ascent = 0.0
+cache/0/243/0/descent = 0.0
+cache/0/243/0/underline_position = 0.0
+cache/0/243/0/underline_thickness = 0.0
+cache/0/243/0/scale = 1.0
+cache/0/240/0/ascent = 0.0
+cache/0/240/0/descent = 0.0
+cache/0/240/0/underline_position = 0.0
+cache/0/240/0/underline_thickness = 0.0
+cache/0/240/0/scale = 1.0
+cache/0/238/0/ascent = 0.0
+cache/0/238/0/descent = 0.0
+cache/0/238/0/underline_position = 0.0
+cache/0/238/0/underline_thickness = 0.0
+cache/0/238/0/scale = 1.0
+cache/0/225/0/ascent = 0.0
+cache/0/225/0/descent = 0.0
+cache/0/225/0/underline_position = 0.0
+cache/0/225/0/underline_thickness = 0.0
+cache/0/225/0/scale = 1.0
+cache/0/219/0/ascent = 0.0
+cache/0/219/0/descent = 0.0
+cache/0/219/0/underline_position = 0.0
+cache/0/219/0/underline_thickness = 0.0
+cache/0/219/0/scale = 1.0
+cache/0/218/0/ascent = 0.0
+cache/0/218/0/descent = 0.0
+cache/0/218/0/underline_position = 0.0
+cache/0/218/0/underline_thickness = 0.0
+cache/0/218/0/scale = 1.0
+cache/0/217/0/ascent = 0.0
+cache/0/217/0/descent = 0.0
+cache/0/217/0/underline_position = 0.0
+cache/0/217/0/underline_thickness = 0.0
+cache/0/217/0/scale = 1.0
+cache/0/216/0/ascent = 0.0
+cache/0/216/0/descent = 0.0
+cache/0/216/0/underline_position = 0.0
+cache/0/216/0/underline_thickness = 0.0
+cache/0/216/0/scale = 1.0
+cache/0/215/0/ascent = 0.0
+cache/0/215/0/descent = 0.0
+cache/0/215/0/underline_position = 0.0
+cache/0/215/0/underline_thickness = 0.0
+cache/0/215/0/scale = 1.0
+cache/0/214/0/ascent = 0.0
+cache/0/214/0/descent = 0.0
+cache/0/214/0/underline_position = 0.0
+cache/0/214/0/underline_thickness = 0.0
+cache/0/214/0/scale = 1.0
+cache/0/213/0/ascent = 0.0
+cache/0/213/0/descent = 0.0
+cache/0/213/0/underline_position = 0.0
+cache/0/213/0/underline_thickness = 0.0
+cache/0/213/0/scale = 1.0
+cache/0/212/0/ascent = 0.0
+cache/0/212/0/descent = 0.0
+cache/0/212/0/underline_position = 0.0
+cache/0/212/0/underline_thickness = 0.0
+cache/0/212/0/scale = 1.0
+cache/0/210/0/ascent = 0.0
+cache/0/210/0/descent = 0.0
+cache/0/210/0/underline_position = 0.0
+cache/0/210/0/underline_thickness = 0.0
+cache/0/210/0/scale = 1.0
+cache/0/209/0/ascent = 0.0
+cache/0/209/0/descent = 0.0
+cache/0/209/0/underline_position = 0.0
+cache/0/209/0/underline_thickness = 0.0
+cache/0/209/0/scale = 1.0
+cache/0/208/0/ascent = 0.0
+cache/0/208/0/descent = 0.0
+cache/0/208/0/underline_position = 0.0
+cache/0/208/0/underline_thickness = 0.0
+cache/0/208/0/scale = 1.0
+cache/0/207/0/ascent = 0.0
+cache/0/207/0/descent = 0.0
+cache/0/207/0/underline_position = 0.0
+cache/0/207/0/underline_thickness = 0.0
+cache/0/207/0/scale = 1.0
+cache/0/206/0/ascent = 0.0
+cache/0/206/0/descent = 0.0
+cache/0/206/0/underline_position = 0.0
+cache/0/206/0/underline_thickness = 0.0
+cache/0/206/0/scale = 1.0
+cache/0/205/0/ascent = 0.0
+cache/0/205/0/descent = 0.0
+cache/0/205/0/underline_position = 0.0
+cache/0/205/0/underline_thickness = 0.0
+cache/0/205/0/scale = 1.0
+cache/0/204/0/ascent = 0.0
+cache/0/204/0/descent = 0.0
+cache/0/204/0/underline_position = 0.0
+cache/0/204/0/underline_thickness = 0.0
+cache/0/204/0/scale = 1.0
+cache/0/203/0/ascent = 0.0
+cache/0/203/0/descent = 0.0
+cache/0/203/0/underline_position = 0.0
+cache/0/203/0/underline_thickness = 0.0
+cache/0/203/0/scale = 1.0
+cache/0/202/0/ascent = 0.0
+cache/0/202/0/descent = 0.0
+cache/0/202/0/underline_position = 0.0
+cache/0/202/0/underline_thickness = 0.0
+cache/0/202/0/scale = 1.0
+cache/0/201/0/ascent = 0.0
+cache/0/201/0/descent = 0.0
+cache/0/201/0/underline_position = 0.0
+cache/0/201/0/underline_thickness = 0.0
+cache/0/201/0/scale = 1.0
+cache/0/200/0/ascent = 0.0
+cache/0/200/0/descent = 0.0
+cache/0/200/0/underline_position = 0.0
+cache/0/200/0/underline_thickness = 0.0
+cache/0/200/0/scale = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ldntv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8m72m"]
+albedo_color = Color(1, 0.05490196, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtbs0"]
+albedo_color = Color(1.8770993e-06, 0.2415165, 0.6201579, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_np3vi"]
+albedo_color = Color(8.4228816e-08, 0.40900773, 1.4439225e-06, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mipjh"]
+albedo_color = Color(0.5242769, 0.30215442, 0, 1)
 
 [node name="GameScene" type="Node3D" unique_id=695069252]
 
@@ -548,6 +1034,118 @@ LeftPositionStageMarker = NodePath("../Position References/LeftPositionStagePosi
 RightPositionStageMarker = NodePath("../Position References/RightPositionStagePosition")
 
 [node name="UIResults" parent="." unique_id=521938894 instance=ExtResource("14_ldntv")]
+
+[node name="Tutorial" type="Node3D" parent="." unique_id=43473999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+script = ExtResource("15_w8jfd")
+
+[node name="dices" type="Node3D" parent="Tutorial" unique_id=279741217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="DiceText" type="Label3D" parent="Tutorial/dices" unique_id=2140776508]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -11, 0.099999994, -2)
+text = "Dices"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+
+[node name="AttackDie" type="Node3D" parent="Tutorial/dices" unique_id=57076995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+
+[node name="AttackDieVisual" type="MeshInstance3D" parent="Tutorial/dices/AttackDie" unique_id=1848467998]
+mesh = SubResource("PlaneMesh_ldntv")
+surface_material_override/0 = SubResource("StandardMaterial3D_8m72m")
+
+[node name="AttackDieText" type="Label3D" parent="Tutorial/dices/AttackDie" unique_id=400007329]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.1, 0)
+text = "Attack"
+font = SubResource("FontFile_ldntv")
+font_size = 100
+
+[node name="DefenseDie" type="Node3D" parent="Tutorial/dices" unique_id=123487372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 0)
+
+[node name="DefenseDieVisual" type="MeshInstance3D" parent="Tutorial/dices/DefenseDie" unique_id=1912620973]
+mesh = SubResource("PlaneMesh_ldntv")
+surface_material_override/0 = SubResource("StandardMaterial3D_gtbs0")
+
+[node name="DefenseDieText" type="Label3D" parent="Tutorial/dices/DefenseDie" unique_id=651779225]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.1, 0)
+text = "Defense"
+font = SubResource("FontFile_ldntv")
+font_size = 100
+
+[node name="HealthDie" type="Node3D" parent="Tutorial/dices" unique_id=1922394266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
+
+[node name="HealthDieVisual" type="MeshInstance3D" parent="Tutorial/dices/HealthDie" unique_id=1166054011]
+mesh = SubResource("PlaneMesh_ldntv")
+surface_material_override/0 = SubResource("StandardMaterial3D_np3vi")
+
+[node name="HealthDieText" type="Label3D" parent="Tutorial/dices/HealthDie" unique_id=1244063051]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.1, 0)
+text = "Health"
+font = SubResource("FontFile_ldntv")
+font_size = 100
+
+[node name="AbilityDie" type="Node3D" parent="Tutorial/dices" unique_id=54415919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 2)
+
+[node name="AbilityDieVisual" type="MeshInstance3D" parent="Tutorial/dices/AbilityDie" unique_id=427391115]
+mesh = SubResource("PlaneMesh_ldntv")
+surface_material_override/0 = SubResource("StandardMaterial3D_mipjh")
+
+[node name="AbilityDieText" type="Label3D" parent="Tutorial/dices/AbilityDie" unique_id=1099435356]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.1, 0)
+text = "Abilities"
+font = SubResource("FontFile_ldntv")
+font_size = 100
+
+[node name="Other text" type="Node3D" parent="Tutorial" unique_id=1705690897]
+
+[node name="TheObjective" type="Label3D" parent="Tutorial/Other text" unique_id=176560763]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 3)
+text = "Can you survive for
+5 minutes?"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+outline_size = 50
+
+[node name="KillDie" type="Label3D" parent="Tutorial/Other text" unique_id=146170771]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, -8)
+modulate = Color(1, 1, 0, 1)
+text = "KILL this Die to START"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+outline_size = 50
+
+[node name="Controls" type="Node3D" parent="Tutorial" unique_id=1398600904]
+
+[node name="Move" type="Node3D" parent="Tutorial/Controls" unique_id=1499171567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0)
+
+[node name="DiceText" type="Label3D" parent="Tutorial/Controls/Move" unique_id=1262921386]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, -2)
+modulate = Color(0, 1, 1, 1)
+text = "Move"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+
+[node name="Attack" type="Node3D" parent="Tutorial/Controls" unique_id=759329812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 0)
+
+[node name="AttackText" type="Label3D" parent="Tutorial/Controls/Attack" unique_id=1146960380]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, -2)
+modulate = Color(0, 1, 1, 1)
+text = "Attack"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+
+[node name="AutoAttackText" type="Label3D" parent="Tutorial/Controls/Attack" unique_id=743292253]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 6)
+modulate = Color(0, 1, 1, 1)
+text = "(Enable Auto-Attacking)"
+font = SubResource("FontFile_ldntv")
+font_size = 200
 
 [connection signal="endGame" from="PlayerDice" to="Globals/GameSystem" method="_on_player_dice_end_game"]
 [connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]
