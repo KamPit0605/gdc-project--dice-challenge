@@ -12,7 +12,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	PlayButton.grab_focus()
 	#TitleUI.visible = false
 	#Menu.visible = false
 	#get_tree().paused = false
