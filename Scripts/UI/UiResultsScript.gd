@@ -6,6 +6,8 @@ extends Control
 @onready var XPUI = $XPCoinsKills/TotalXPUI
 @onready var KillsUI = $XPCoinsKills/KillsUI/KillsTextUI
 
+@onready var BaffledText = $Baffled
+
 @onready var SelectCooldownTimer = $SelectCooldown
 var SelectCooldown: bool = true
 
@@ -30,6 +32,7 @@ func _ready():
 	PlayAgainMenu.visible = false
 	MainMenuMenu.visible = false
 	GlobalGameSystem.GamePlaying = false
+	BaffledText.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,6 +51,7 @@ func _process(_delta):
 		
 
 func _on_timer_timeout():
+	_beforeStarting()
 	XPUI.visible = true
 	KillsUI.visible = true
 	if GlobalGameSystem.OVERTIME == true:
@@ -84,3 +88,7 @@ func _on_play_again_select():
 func _on_main_menu_select():
 	GlobalDiceScript.AcquiredDice = 0
 	get_tree().change_scene_to_packed(mainmenu_scene)
+
+func _beforeStarting():
+	if GlobalPlayerScript.EnemyKills <= 0:
+		BaffledText.visible = true

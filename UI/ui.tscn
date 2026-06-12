@@ -270,6 +270,12 @@ font_color = Color(0.0627451, 0.92156863, 0.92156863, 1)
 outline_size = 15
 outline_color = Color(0.015686275, 0.015686275, 1, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_h81ot"]
+font_size = 60
+font_color = Color(1, 0.92156863, 0.92156863, 1)
+outline_size = 15
+outline_color = Color(0.53271234, 0.53271246, 0, 1)
+
 [node name="UI" type="Control" unique_id=20405237]
 layout_mode = 3
 anchors_preset = 15
@@ -829,6 +835,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "OVERTIME"
 label_settings = SubResource("LabelSettings_4fiuh")
+
+[node name="Time Alert" type="VBoxContainer" parent="VBoxContainer/Criticals" unique_id=448046924]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="1MinuteUI" type="Label" parent="VBoxContainer/Criticals/Time Alert" unique_id=2017028555]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "1 Minute Remaining!"
+label_settings = SubResource("LabelSettings_h81ot")
 
 [node name="AutoAttackIndicator" type="Control" parent="." unique_id=291471462]
 layout_mode = 1

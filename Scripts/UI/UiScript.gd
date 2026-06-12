@@ -35,6 +35,8 @@ var AbilityNames: String = "Ability"
 var CriticalBool: bool = false 
 @onready var OvertimeUI = $VBoxContainer/Criticals/Overtime/OvertimeUI
 var OverTimeUIDisplay: bool
+@onready var _1MinuteUI = $"VBoxContainer/Criticals/Time Alert/1MinuteUI"
+var _1MinuteUIDisplay:bool
 
 @onready var autoAttackUI = $AutoAttackIndicator/AutoAttack
 
@@ -90,12 +92,15 @@ func _process(_delta):
 		else:
 			MatchingUI.visible = false
 	
+	#timeInSeconds = 63
+	
 	#--Functions--
 	_takingDamage()
 	_showThoseDice()
 	_abiltyDieNames()
 	CriticalDisplay()
 	OvertimeDisplay()
+	_1MinuteDisplay()
 	_timerSetup()
 	_timeToOvertime()
 	autoAttacking()
@@ -154,11 +159,17 @@ func OvertimeDisplay():
 		OvertimeUI.visible = true
 		OverTimeUIDisplay = true
 		CriticalTimer.start(2.0)
+func _1MinuteDisplay():
+	if (((timeInSeconds >= 58) && (timeInSeconds <= 59))&&(OverTimeUIDisplay == false)):
+		_1MinuteUI.visible = true
+		OverTimeUIDisplay = true
+		CriticalTimer.start(2.0)
 
 func _on_critical_timer_timeout():
 	CriticalRoleUI.visible = false
 	CriticalFailureUI.visible = false
 	OvertimeUI.visible = false
+	_1MinuteUI.visible = false
 	if GlobalDiceScript.RollDice == true:
 		CriticalBool = false
 

@@ -167,6 +167,9 @@ albedo_color = Color(1, 0, 0, 1)
 size = Vector3(1.05, 1.05, 1.05)
 
 [sub_resource type="FontFile" id="FontFile_ldntv"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
 cache/0/embolden = 0.0
@@ -1143,7 +1146,7 @@ font_size = 250
 [node name="AutoAttackText" type="Label3D" parent="Tutorial/Controls/Attack" unique_id=743292253]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 6)
 modulate = Color(0, 1, 1, 1)
-text = "(Enable Auto-Attacking)"
+text = "(Enable Auto-Attacking*)"
 font = SubResource("FontFile_ldntv")
 font_size = 200
 
