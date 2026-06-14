@@ -92,7 +92,7 @@ func _process(_delta):
 		else:
 			MatchingUI.visible = false
 	
-	#timeInSeconds = 63
+	#timeInSeconds = 5
 	
 	#--Functions--
 	_takingDamage()
@@ -155,7 +155,7 @@ func CriticalDisplay():
 			CriticalTimer.start(2.0)
 			CriticalBool = true
 func OvertimeDisplay():
-	if ((GlobalGameSystem.OVERTIME)&&(OverTimeUIDisplay == false)):
+	if ((GlobalGameSystem.OVERTIME || OverTimerBool)&&(OverTimeUIDisplay == false)):
 		OvertimeUI.visible = true
 		OverTimeUIDisplay = true
 		CriticalTimer.start(2.0)
