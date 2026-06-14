@@ -36,7 +36,7 @@ var CriticalBool: bool = false
 @onready var OvertimeUI = $VBoxContainer/Criticals/Overtime/OvertimeUI
 var OverTimeUIDisplay: bool
 @onready var _1MinuteUI = $"VBoxContainer/Criticals/Time Alert/1MinuteUI"
-var _1MinuteUIDisplay:bool
+var _1MinuteUIDisplay:bool = false
 
 @onready var autoAttackUI = $AutoAttackIndicator/AutoAttack
 
@@ -160,9 +160,9 @@ func OvertimeDisplay():
 		OverTimeUIDisplay = true
 		CriticalTimer.start(2.0)
 func _1MinuteDisplay():
-	if (((timeInSeconds >= 58) && (timeInSeconds <= 59))&&(OverTimeUIDisplay == false)):
+	if (((timeInSeconds >= 58) && (timeInSeconds <= 59))&&(_1MinuteUIDisplay == false)):
 		_1MinuteUI.visible = true
-		OverTimeUIDisplay = true
+		_1MinuteUIDisplay = true
 		CriticalTimer.start(2.0)
 
 func _on_critical_timer_timeout():

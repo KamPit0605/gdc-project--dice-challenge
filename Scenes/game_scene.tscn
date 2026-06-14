@@ -654,6 +654,23 @@ albedo_color = Color(8.4228816e-08, 0.40900773, 1.4439225e-06, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mipjh"]
 albedo_color = Color(0.5242769, 0.30215442, 0, 1)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w8jfd"]
+load_path = "res://.godot/imported/WASDInputVisual.png-3e0d5205f435deb0fe5c75bd2c12f888.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a7fet"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/ComputerMouse-LeftClickVisual.png-49b5c29260e67b0c05855cdb5848191d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_np3vi"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/ComputerMouse_MiddleClickVisual.png-4d1cc9a2fefb340ca9a03bb942cbedfc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8m72m"]
+load_path = "res://.godot/imported/F-KeyInputVisual.png-36e58090f53cc1716cb3a9d9a316d2a8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gtbs0"]
+load_path = "res://.godot/imported/Z-KeyInputVisual.png-96a6b52e9ab0318ba600c4f5d1a9b461.ctex"
+
 [node name="GameScene" type="Node3D" unique_id=695069252]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1749603284]
@@ -1126,12 +1143,19 @@ outline_size = 50
 [node name="Move" type="Node3D" parent="Tutorial/Controls" unique_id=1499171567]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0)
 
-[node name="DiceText" type="Label3D" parent="Tutorial/Controls/Move" unique_id=1262921386]
+[node name="MoveText" type="Label3D" parent="Tutorial/Controls/Move" unique_id=1262921386]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, -2)
 modulate = Color(0, 1, 1, 1)
 text = "Move"
 font = SubResource("FontFile_ldntv")
 font_size = 250
+
+[node name="WASD" type="Node3D" parent="Tutorial/Controls/Move" unique_id=325736420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="WASD Keys" type="Sprite3D" parent="Tutorial/Controls/Move/WASD" unique_id=1093975532]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 0, 0, -1)
+texture = SubResource("CompressedTexture2D_w8jfd")
 
 [node name="Attack" type="Node3D" parent="Tutorial/Controls" unique_id=759329812]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 0)
@@ -1143,12 +1167,46 @@ text = "Attack"
 font = SubResource("FontFile_ldntv")
 font_size = 250
 
+[node name="OrText" type="Label3D" parent="Tutorial/Controls/Attack" unique_id=326037012]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 0)
+text = "or"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+outline_size = 50
+
 [node name="AutoAttackText" type="Label3D" parent="Tutorial/Controls/Attack" unique_id=743292253]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 6)
 modulate = Color(0, 1, 1, 1)
 text = "(Enable Auto-Attacking*)"
 font = SubResource("FontFile_ldntv")
 font_size = 200
+
+[node name="OrText2" type="Label3D" parent="Tutorial/Controls/Attack" unique_id=930544919]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 8)
+text = "or"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+outline_size = 50
+
+[node name="Mouse" type="Node3D" parent="Tutorial/Controls/Attack" unique_id=1484833306]
+
+[node name="LeftClick" type="Sprite3D" parent="Tutorial/Controls/Attack/Mouse" unique_id=727531686]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2, 0, 0)
+texture = SubResource("CompressedTexture2D_a7fet")
+
+[node name="MiddleClick" type="Sprite3D" parent="Tutorial/Controls/Attack/Mouse" unique_id=889981012]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2, 0, 8)
+texture = SubResource("CompressedTexture2D_np3vi")
+
+[node name="Keyboard" type="Node3D" parent="Tutorial/Controls/Attack" unique_id=137956561]
+
+[node name="F Key" type="Sprite3D" parent="Tutorial/Controls/Attack/Keyboard" unique_id=588965453]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 2, 0, 0)
+texture = SubResource("CompressedTexture2D_8m72m")
+
+[node name="Z Key" type="Sprite3D" parent="Tutorial/Controls/Attack/Keyboard" unique_id=657916064]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 2, 0, 8)
+texture = SubResource("CompressedTexture2D_gtbs0")
 
 [connection signal="endGame" from="PlayerDice" to="Globals/GameSystem" method="_on_player_dice_end_game"]
 [connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]
