@@ -657,6 +657,12 @@ albedo_color = Color(0.5242769, 0.30215442, 0, 1)
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w8jfd"]
 load_path = "res://.godot/imported/WASDInputVisual.png-3e0d5205f435deb0fe5c75bd2c12f888.s3tc.ctex"
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mipjh"]
+load_path = "res://.godot/imported/XboxController-Left Stick Visual.png-d8cc10f7fb3ac3d99046d704dbf5553a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aq00n"]
+load_path = "res://.godot/imported/PSController-Left Stick Visual.png-b827ba13c77e0244171741015e360ca4.ctex"
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a7fet"]
 resource_local_to_scene = true
 load_path = "res://.godot/imported/ComputerMouse-LeftClickVisual.png-49b5c29260e67b0c05855cdb5848191d.ctex"
@@ -670,6 +676,26 @@ load_path = "res://.godot/imported/F-KeyInputVisual.png-36e58090f53cc1716cb3a9d9
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gtbs0"]
 load_path = "res://.godot/imported/Z-KeyInputVisual.png-96a6b52e9ab0318ba600c4f5d1a9b461.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_817jg"]
+load_path = "res://.godot/imported/XboxController-B Button Visual.png-fd1490b187452d97f25ec7e7d4089e3f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vtwju"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/XboxController-Right Trigger Visual.png-90c83f669d0acd20e3545dbb4d29e16c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kiiqx"]
+load_path = "res://.godot/imported/XboxController-Right Stick Button Visual.png-aa2db112e73c179ead590edc06651070.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fnr0w"]
+load_path = "res://.godot/imported/PSController-Circle Button Visual.png-6c3da269dafbaac9560ca52974a2987a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gqlrj"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/PSController-Right Trigger (R2) Visual.png-968b8453d3cb066096332cb016679b2b.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m8c54"]
+load_path = "res://.godot/imported/PSController-Right Stick Button (R3) Visual.png-c3f2cc9391a579613499f2b321fd5a81.ctex"
 
 [node name="GameScene" type="Node3D" unique_id=695069252]
 
@@ -1157,6 +1183,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 0, 0, -1)
 texture = SubResource("CompressedTexture2D_w8jfd")
 
+[node name="Xbox & PS" type="Node3D" parent="Tutorial/Controls/Move" unique_id=1708311884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Xbox Left Stick" type="Sprite3D" parent="Tutorial/Controls/Move/Xbox & PS" unique_id=1434162296]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, -1, 0, 0)
+texture = SubResource("CompressedTexture2D_mipjh")
+
+[node name="PS Left Stick" type="Sprite3D" parent="Tutorial/Controls/Move/Xbox & PS" unique_id=1821417448]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 1, 0, 0)
+texture = SubResource("CompressedTexture2D_aq00n")
+
 [node name="Attack" type="Node3D" parent="Tutorial/Controls" unique_id=759329812]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 0)
 
@@ -1207,6 +1244,60 @@ texture = SubResource("CompressedTexture2D_8m72m")
 [node name="Z Key" type="Sprite3D" parent="Tutorial/Controls/Attack/Keyboard" unique_id=657916064]
 transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 2, 0, 8)
 texture = SubResource("CompressedTexture2D_gtbs0")
+
+[node name="Xbox" type="Node3D" parent="Tutorial/Controls/Attack" unique_id=531636312]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Attack" type="Node3D" parent="Tutorial/Controls/Attack/Xbox" unique_id=1627120974]
+
+[node name="OrText" type="Label3D" parent="Tutorial/Controls/Attack/Xbox/Attack" unique_id=75601258]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 0)
+text = "or"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+outline_size = 50
+
+[node name="Xbox B" type="Sprite3D" parent="Tutorial/Controls/Attack/Xbox/Attack" unique_id=1268060362]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 2, 0, 0)
+texture = SubResource("CompressedTexture2D_817jg")
+
+[node name="Xbox Right Trigger" type="Sprite3D" parent="Tutorial/Controls/Attack/Xbox/Attack" unique_id=1056324321]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, -2, 0, 0)
+texture = SubResource("CompressedTexture2D_vtwju")
+
+[node name="AutoAttack" type="Node3D" parent="Tutorial/Controls/Attack/Xbox" unique_id=544429992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 8)
+
+[node name="Xbox Right Stick Button" type="Sprite3D" parent="Tutorial/Controls/Attack/Xbox/AutoAttack" unique_id=1337201914]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 0, 0, 0)
+texture = SubResource("CompressedTexture2D_kiiqx")
+
+[node name="PS" type="Node3D" parent="Tutorial/Controls/Attack" unique_id=1001563966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Attack" type="Node3D" parent="Tutorial/Controls/Attack/PS" unique_id=1837217430]
+
+[node name="OrText" type="Label3D" parent="Tutorial/Controls/Attack/PS/Attack" unique_id=606230088]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 0)
+text = "or"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+outline_size = 50
+
+[node name="PS Circle" type="Sprite3D" parent="Tutorial/Controls/Attack/PS/Attack" unique_id=66606281]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 2, 0, 0)
+texture = SubResource("CompressedTexture2D_fnr0w")
+
+[node name="PS Right Trigger" type="Sprite3D" parent="Tutorial/Controls/Attack/PS/Attack" unique_id=1285098984]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, -2, 0, 0)
+texture = SubResource("CompressedTexture2D_gqlrj")
+
+[node name="AutoAttack" type="Node3D" parent="Tutorial/Controls/Attack/PS" unique_id=1423396793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6)
+
+[node name="Xbox Right Stick Button" type="Sprite3D" parent="Tutorial/Controls/Attack/PS/AutoAttack" unique_id=2115326310]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 0, 0, 0)
+texture = SubResource("CompressedTexture2D_m8c54")
 
 [connection signal="endGame" from="PlayerDice" to="Globals/GameSystem" method="_on_player_dice_end_game"]
 [connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]
