@@ -29,8 +29,8 @@ func _process(_delta):
 	LevelingUp()
 	XPXP(PlayerLevel)
 	#print()
-	#if Input.is_action_just_pressed("Level Up"):
-		#PlayerLevel += 1
+	if Input.is_action_just_pressed("Level Up"):
+		PlayerLevel += 1
 	
 
 func LevelingUp():

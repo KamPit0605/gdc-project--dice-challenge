@@ -149,10 +149,12 @@ func CriticalDisplay():
 		if ((GlobalDiceScript.AttackDNum == 6) && (GlobalDiceScript.DefenseDNum == 6) && (GlobalDiceScript.HealthDNum == 6)):
 			CriticalRoleUI.visible = true
 			CriticalTimer.start(2.0)
+			GlobalUi.CriticalRoleRate = 1
 			CriticalBool = true
 		elif ((GlobalDiceScript.AttackDNum == 1) && (GlobalDiceScript.DefenseDNum == 1) && (GlobalDiceScript.HealthDNum == 1)):
 			CriticalFailureUI.visible = true
 			CriticalTimer.start(2.0)
+			GlobalUi.CriticalRoleRate = 2
 			CriticalBool = true
 func OvertimeDisplay():
 	if ((GlobalGameSystem.OVERTIME || OverTimerBool)&&(OverTimeUIDisplay == false)):
@@ -172,6 +174,7 @@ func _on_critical_timer_timeout():
 	_1MinuteUI.visible = false
 	if GlobalDiceScript.RollDice == true:
 		CriticalBool = false
+		GlobalUi.CriticalRoleRate = 0
 
 func _timerSetup():
 	if GlobalGameSystem.GameStart:

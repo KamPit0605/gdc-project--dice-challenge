@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cagwet5i0ua1v"]
 
 [ext_resource type="PackedScene" uid="uid://d3f2t05kkkj3k" path="res://UI/ui_mainmenu.tscn" id="1_c5pir"]
+[ext_resource type="Script" uid="uid://c6mlg0b5ikpvp" path="res://Scripts/Scenes/mainmenu_scene.gd" id="1_qxhg5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c5pir"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -58,6 +59,7 @@ material = SubResource("StandardMaterial3D_ldntv")
 size = Vector3(100.065, 2.5, 30.005)
 
 [node name="MainMenuScene" type="Node3D" unique_id=695069252]
+script = ExtResource("1_qxhg5")
 
 [node name="Lighting" type="Node3D" parent="." unique_id=2002824742]
 

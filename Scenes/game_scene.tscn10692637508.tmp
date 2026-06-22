@@ -1,0 +1,1317 @@
+[gd_scene format=3 uid="uid://ctckvq6qkfjvr"]
+
+[ext_resource type="Script" uid="uid://b51xaavwp77nu" path="res://Scripts/Player/player_dice.gd" id="1_4xiap"]
+[ext_resource type="Script" uid="uid://c3gqsqyeeb7wg" path="res://Scripts/Enemy/enemy_stationary_dice.gd" id="1_b6fju"]
+[ext_resource type="Texture2D" uid="uid://i0grr37p2mnk" path="res://Textures/Dice/DieSide1.png" id="2_6h5vk"]
+[ext_resource type="Texture2D" uid="uid://qutlpb3hl1m2" path="res://Textures/Dice/DieSide2.png" id="3_wywco"]
+[ext_resource type="Texture2D" uid="uid://c36ynu8r61eui" path="res://Textures/Dice/DieSide3.png" id="4_ldntv"]
+[ext_resource type="PackedScene" uid="uid://wkbtlxu64hlw" path="res://UI/ui.tscn" id="5_1ixah"]
+[ext_resource type="Texture2D" uid="uid://calotiwvbebbh" path="res://Textures/Dice/DieSide4.png" id="5_w8jfd"]
+[ext_resource type="Texture2D" uid="uid://c1qsyl5hxn0tw" path="res://Textures/Dice/DieSide5.png" id="6_a7fet"]
+[ext_resource type="Script" uid="uid://bs8exio7gkbd2" path="res://Scripts/Dice/Global_DiceScript.gd" id="6_rgj8m"]
+[ext_resource type="PackedScene" uid="uid://7shbr518fxwl" path="res://Scenes/Systems/EnemySpawner.tscn" id="7_2fmhe"]
+[ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="7_8m72m"]
+[ext_resource type="Script" uid="uid://dkx18dduq5qu7" path="res://Scripts/Systems/Global_game_system.gd" id="11_4xiap"]
+[ext_resource type="PackedScene" uid="uid://ld1mxfj4vaxp" path="res://Scenes/Systems/dice_system.tscn" id="12_wywco"]
+[ext_resource type="PackedScene" uid="uid://wpf7vtcpjbaf" path="res://UI/uiPause.tscn" id="14_ldntv"]
+[ext_resource type="Script" uid="uid://b1vq61j17bfi5" path="res://Scripts/tutorial&controls.gd" id="15_w8jfd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6h5vk"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_w8jfd"]
+sky_material = SubResource("ProceduralSkyMaterial_6h5vk")
+
+[sub_resource type="Environment" id="Environment_1ixah"]
+background_mode = 2
+sky = SubResource("Sky_w8jfd")
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_avbah"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_72tq2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8pjy"]
+albedo_color = Color(0.83889705, 0.83889705, 0.838897, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_72tq2"]
+height = 0.15
+radius = 3.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_72tq2"]
+top_radius = 2.5
+bottom_radius = 3.0
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbb6i"]
+transparency = 1
+albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_alv2v"]
+transparency = 1
+albedo_color = Color(0.08071878, 0.36173758, 0.99999994, 0.6862745)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qbb6i"]
+height = 0.5
+radius = 2.175
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wywco"]
+top_radius = 2.175
+bottom_radius = 2.175
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qonha"]
+transparency = 1
+albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wywco"]
+height = 0.5
+radius = 2.55
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ldntv"]
+top_radius = 2.55
+bottom_radius = 2.55
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7fet"]
+transparency = 1
+albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8m72m"]
+height = 0.5
+radius = 1.75
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gtbs0"]
+top_radius = 1.75
+bottom_radius = 1.75
+height = 0.15
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m8pjy"]
+height = 0.5
+radius = 1.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qbb6i"]
+top_radius = 1.25
+bottom_radius = 1.25
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72tq2"]
+transparency = 1
+albedo_color = Color(0.95686275, 0.95686275, 0.95686275, 0.54901963)
+
+[sub_resource type="TorusMesh" id="TorusMesh_m8pjy"]
+material = SubResource("StandardMaterial3D_72tq2")
+inner_radius = 2.9
+outer_radius = 3.0
+ring_segments = 3
+
+[sub_resource type="TorusMesh" id="TorusMesh_qbb6i"]
+material = SubResource("StandardMaterial3D_72tq2")
+inner_radius = 1.2
+outer_radius = 1.25
+ring_segments = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ousu"]
+albedo_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m8pjy"]
+material = SubResource("StandardMaterial3D_4ousu")
+
+[sub_resource type="BoxMesh" id="BoxMesh_wywco"]
+size = Vector3(1.05, 1.05, 1.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8jfd"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oqyrl"]
+size = Vector3(200.02, 60, 300.045)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aq00n"]
+shading_mode = 0
+albedo_color = Color(3.218744e-07, 0.23033407, 0.0028132184, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x87qo"]
+material = SubResource("StandardMaterial3D_aq00n")
+size = Vector3(200, 0.25, 300)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fiftr"]
+size = Vector3(200.02, 0.25, 300.045)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_817jg"]
+shading_mode = 0
+albedo_color = Color(0.16078432, 0.12156863, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rgj8m"]
+material = SubResource("StandardMaterial3D_817jg")
+size = Vector3(750, 0.25, 750)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wywco"]
+size = Vector3(100, 2.5, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtwju"]
+albedo_color = Color(0.31374374, 0.11467182, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w8jfd"]
+material = SubResource("StandardMaterial3D_vtwju")
+size = Vector3(100.065, 2.5, 30.005)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w0rp6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wwsqc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fowbw"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wwsqc"]
+size = Vector3(1.05, 1.05, 1.05)
+
+[sub_resource type="FontFile" id="FontFile_ldntv"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/35/0/ascent = 0.0
+cache/0/35/0/descent = 0.0
+cache/0/35/0/underline_position = 0.0
+cache/0/35/0/underline_thickness = 0.0
+cache/0/35/0/scale = 1.0
+cache/0/43/0/ascent = 0.0
+cache/0/43/0/descent = 0.0
+cache/0/43/0/underline_position = 0.0
+cache/0/43/0/underline_thickness = 0.0
+cache/0/43/0/scale = 1.0
+cache/0/51/0/ascent = 0.0
+cache/0/51/0/descent = 0.0
+cache/0/51/0/underline_position = 0.0
+cache/0/51/0/underline_thickness = 0.0
+cache/0/51/0/scale = 1.0
+cache/0/57/0/ascent = 0.0
+cache/0/57/0/descent = 0.0
+cache/0/57/0/underline_position = 0.0
+cache/0/57/0/underline_thickness = 0.0
+cache/0/57/0/scale = 1.0
+cache/0/59/0/ascent = 0.0
+cache/0/59/0/descent = 0.0
+cache/0/59/0/underline_position = 0.0
+cache/0/59/0/underline_thickness = 0.0
+cache/0/59/0/scale = 1.0
+cache/0/60/0/ascent = 0.0
+cache/0/60/0/descent = 0.0
+cache/0/60/0/underline_position = 0.0
+cache/0/60/0/underline_thickness = 0.0
+cache/0/60/0/scale = 1.0
+cache/0/61/0/ascent = 0.0
+cache/0/61/0/descent = 0.0
+cache/0/61/0/underline_position = 0.0
+cache/0/61/0/underline_thickness = 0.0
+cache/0/61/0/scale = 1.0
+cache/0/62/0/ascent = 0.0
+cache/0/62/0/descent = 0.0
+cache/0/62/0/underline_position = 0.0
+cache/0/62/0/underline_thickness = 0.0
+cache/0/62/0/scale = 1.0
+cache/0/63/0/ascent = 0.0
+cache/0/63/0/descent = 0.0
+cache/0/63/0/underline_position = 0.0
+cache/0/63/0/underline_thickness = 0.0
+cache/0/63/0/scale = 1.0
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
+cache/0/65/0/ascent = 0.0
+cache/0/65/0/descent = 0.0
+cache/0/65/0/underline_position = 0.0
+cache/0/65/0/underline_thickness = 0.0
+cache/0/65/0/scale = 1.0
+cache/0/66/0/ascent = 0.0
+cache/0/66/0/descent = 0.0
+cache/0/66/0/underline_position = 0.0
+cache/0/66/0/underline_thickness = 0.0
+cache/0/66/0/scale = 1.0
+cache/0/68/0/ascent = 0.0
+cache/0/68/0/descent = 0.0
+cache/0/68/0/underline_position = 0.0
+cache/0/68/0/underline_thickness = 0.0
+cache/0/68/0/scale = 1.0
+cache/0/70/0/ascent = 0.0
+cache/0/70/0/descent = 0.0
+cache/0/70/0/underline_position = 0.0
+cache/0/70/0/underline_thickness = 0.0
+cache/0/70/0/scale = 1.0
+cache/0/72/0/ascent = 0.0
+cache/0/72/0/descent = 0.0
+cache/0/72/0/underline_position = 0.0
+cache/0/72/0/underline_thickness = 0.0
+cache/0/72/0/scale = 1.0
+cache/0/74/0/ascent = 0.0
+cache/0/74/0/descent = 0.0
+cache/0/74/0/underline_position = 0.0
+cache/0/74/0/underline_thickness = 0.0
+cache/0/74/0/scale = 1.0
+cache/0/77/0/ascent = 0.0
+cache/0/77/0/descent = 0.0
+cache/0/77/0/underline_position = 0.0
+cache/0/77/0/underline_thickness = 0.0
+cache/0/77/0/scale = 1.0
+cache/0/79/0/ascent = 0.0
+cache/0/79/0/descent = 0.0
+cache/0/79/0/underline_position = 0.0
+cache/0/79/0/underline_thickness = 0.0
+cache/0/79/0/scale = 1.0
+cache/0/82/0/ascent = 0.0
+cache/0/82/0/descent = 0.0
+cache/0/82/0/underline_position = 0.0
+cache/0/82/0/underline_thickness = 0.0
+cache/0/82/0/scale = 1.0
+cache/0/84/0/ascent = 0.0
+cache/0/84/0/descent = 0.0
+cache/0/84/0/underline_position = 0.0
+cache/0/84/0/underline_thickness = 0.0
+cache/0/84/0/scale = 1.0
+cache/0/86/0/ascent = 0.0
+cache/0/86/0/descent = 0.0
+cache/0/86/0/underline_position = 0.0
+cache/0/86/0/underline_thickness = 0.0
+cache/0/86/0/scale = 1.0
+cache/0/88/0/ascent = 0.0
+cache/0/88/0/descent = 0.0
+cache/0/88/0/underline_position = 0.0
+cache/0/88/0/underline_thickness = 0.0
+cache/0/88/0/scale = 1.0
+cache/0/89/0/ascent = 0.0
+cache/0/89/0/descent = 0.0
+cache/0/89/0/underline_position = 0.0
+cache/0/89/0/underline_thickness = 0.0
+cache/0/89/0/scale = 1.0
+cache/0/91/0/ascent = 0.0
+cache/0/91/0/descent = 0.0
+cache/0/91/0/underline_position = 0.0
+cache/0/91/0/underline_thickness = 0.0
+cache/0/91/0/scale = 1.0
+cache/0/92/0/ascent = 0.0
+cache/0/92/0/descent = 0.0
+cache/0/92/0/underline_position = 0.0
+cache/0/92/0/underline_thickness = 0.0
+cache/0/92/0/scale = 1.0
+cache/0/93/0/ascent = 0.0
+cache/0/93/0/descent = 0.0
+cache/0/93/0/underline_position = 0.0
+cache/0/93/0/underline_thickness = 0.0
+cache/0/93/0/scale = 1.0
+cache/0/94/0/ascent = 0.0
+cache/0/94/0/descent = 0.0
+cache/0/94/0/underline_position = 0.0
+cache/0/94/0/underline_thickness = 0.0
+cache/0/94/0/scale = 1.0
+cache/0/100/0/ascent = 0.0
+cache/0/100/0/descent = 0.0
+cache/0/100/0/underline_position = 0.0
+cache/0/100/0/underline_thickness = 0.0
+cache/0/100/0/scale = 1.0
+cache/0/103/0/ascent = 0.0
+cache/0/103/0/descent = 0.0
+cache/0/103/0/underline_position = 0.0
+cache/0/103/0/underline_thickness = 0.0
+cache/0/103/0/scale = 1.0
+cache/0/111/0/ascent = 0.0
+cache/0/111/0/descent = 0.0
+cache/0/111/0/underline_position = 0.0
+cache/0/111/0/underline_thickness = 0.0
+cache/0/111/0/scale = 1.0
+cache/0/117/0/ascent = 0.0
+cache/0/117/0/descent = 0.0
+cache/0/117/0/underline_position = 0.0
+cache/0/117/0/underline_thickness = 0.0
+cache/0/117/0/scale = 1.0
+cache/0/124/0/ascent = 0.0
+cache/0/124/0/descent = 0.0
+cache/0/124/0/underline_position = 0.0
+cache/0/124/0/underline_thickness = 0.0
+cache/0/124/0/scale = 1.0
+cache/0/133/0/ascent = 0.0
+cache/0/133/0/descent = 0.0
+cache/0/133/0/underline_position = 0.0
+cache/0/133/0/underline_thickness = 0.0
+cache/0/133/0/scale = 1.0
+cache/0/138/0/ascent = 0.0
+cache/0/138/0/descent = 0.0
+cache/0/138/0/underline_position = 0.0
+cache/0/138/0/underline_thickness = 0.0
+cache/0/138/0/scale = 1.0
+cache/0/142/0/ascent = 0.0
+cache/0/142/0/descent = 0.0
+cache/0/142/0/underline_position = 0.0
+cache/0/142/0/underline_thickness = 0.0
+cache/0/142/0/scale = 1.0
+cache/0/144/0/ascent = 0.0
+cache/0/144/0/descent = 0.0
+cache/0/144/0/underline_position = 0.0
+cache/0/144/0/underline_thickness = 0.0
+cache/0/144/0/scale = 1.0
+cache/0/145/0/ascent = 0.0
+cache/0/145/0/descent = 0.0
+cache/0/145/0/underline_position = 0.0
+cache/0/145/0/underline_thickness = 0.0
+cache/0/145/0/scale = 1.0
+cache/0/147/0/ascent = 0.0
+cache/0/147/0/descent = 0.0
+cache/0/147/0/underline_position = 0.0
+cache/0/147/0/underline_thickness = 0.0
+cache/0/147/0/scale = 1.0
+cache/0/148/0/ascent = 0.0
+cache/0/148/0/descent = 0.0
+cache/0/148/0/underline_position = 0.0
+cache/0/148/0/underline_thickness = 0.0
+cache/0/148/0/scale = 1.0
+cache/0/149/0/ascent = 0.0
+cache/0/149/0/descent = 0.0
+cache/0/149/0/underline_position = 0.0
+cache/0/149/0/underline_thickness = 0.0
+cache/0/149/0/scale = 1.0
+cache/0/151/0/ascent = 0.0
+cache/0/151/0/descent = 0.0
+cache/0/151/0/underline_position = 0.0
+cache/0/151/0/underline_thickness = 0.0
+cache/0/151/0/scale = 1.0
+cache/0/152/0/ascent = 0.0
+cache/0/152/0/descent = 0.0
+cache/0/152/0/underline_position = 0.0
+cache/0/152/0/underline_thickness = 0.0
+cache/0/152/0/scale = 1.0
+cache/0/154/0/ascent = 0.0
+cache/0/154/0/descent = 0.0
+cache/0/154/0/underline_position = 0.0
+cache/0/154/0/underline_thickness = 0.0
+cache/0/154/0/scale = 1.0
+cache/0/155/0/ascent = 0.0
+cache/0/155/0/descent = 0.0
+cache/0/155/0/underline_position = 0.0
+cache/0/155/0/underline_thickness = 0.0
+cache/0/155/0/scale = 1.0
+cache/0/156/0/ascent = 0.0
+cache/0/156/0/descent = 0.0
+cache/0/156/0/underline_position = 0.0
+cache/0/156/0/underline_thickness = 0.0
+cache/0/156/0/scale = 1.0
+cache/0/158/0/ascent = 0.0
+cache/0/158/0/descent = 0.0
+cache/0/158/0/underline_position = 0.0
+cache/0/158/0/underline_thickness = 0.0
+cache/0/158/0/scale = 1.0
+cache/0/160/0/ascent = 0.0
+cache/0/160/0/descent = 0.0
+cache/0/160/0/underline_position = 0.0
+cache/0/160/0/underline_thickness = 0.0
+cache/0/160/0/scale = 1.0
+cache/0/164/0/ascent = 0.0
+cache/0/164/0/descent = 0.0
+cache/0/164/0/underline_position = 0.0
+cache/0/164/0/underline_thickness = 0.0
+cache/0/164/0/scale = 1.0
+cache/0/169/0/ascent = 0.0
+cache/0/169/0/descent = 0.0
+cache/0/169/0/underline_position = 0.0
+cache/0/169/0/underline_thickness = 0.0
+cache/0/169/0/scale = 1.0
+cache/0/174/0/ascent = 0.0
+cache/0/174/0/descent = 0.0
+cache/0/174/0/underline_position = 0.0
+cache/0/174/0/underline_thickness = 0.0
+cache/0/174/0/scale = 1.0
+cache/0/180/0/ascent = 0.0
+cache/0/180/0/descent = 0.0
+cache/0/180/0/underline_position = 0.0
+cache/0/180/0/underline_thickness = 0.0
+cache/0/180/0/scale = 1.0
+cache/0/189/0/ascent = 0.0
+cache/0/189/0/descent = 0.0
+cache/0/189/0/underline_position = 0.0
+cache/0/189/0/underline_thickness = 0.0
+cache/0/189/0/scale = 1.0
+cache/0/199/0/ascent = 0.0
+cache/0/199/0/descent = 0.0
+cache/0/199/0/underline_position = 0.0
+cache/0/199/0/underline_thickness = 0.0
+cache/0/199/0/scale = 1.0
+cache/0/211/0/ascent = 0.0
+cache/0/211/0/descent = 0.0
+cache/0/211/0/underline_position = 0.0
+cache/0/211/0/underline_thickness = 0.0
+cache/0/211/0/scale = 1.0
+cache/0/221/0/ascent = 0.0
+cache/0/221/0/descent = 0.0
+cache/0/221/0/underline_position = 0.0
+cache/0/221/0/underline_thickness = 0.0
+cache/0/221/0/scale = 1.0
+cache/0/229/0/ascent = 0.0
+cache/0/229/0/descent = 0.0
+cache/0/229/0/underline_position = 0.0
+cache/0/229/0/underline_thickness = 0.0
+cache/0/229/0/scale = 1.0
+cache/0/235/0/ascent = 0.0
+cache/0/235/0/descent = 0.0
+cache/0/235/0/underline_position = 0.0
+cache/0/235/0/underline_thickness = 0.0
+cache/0/235/0/scale = 1.0
+cache/0/237/0/ascent = 0.0
+cache/0/237/0/descent = 0.0
+cache/0/237/0/underline_position = 0.0
+cache/0/237/0/underline_thickness = 0.0
+cache/0/237/0/scale = 1.0
+cache/0/236/0/ascent = 0.0
+cache/0/236/0/descent = 0.0
+cache/0/236/0/underline_position = 0.0
+cache/0/236/0/underline_thickness = 0.0
+cache/0/236/0/scale = 1.0
+cache/0/234/0/ascent = 0.0
+cache/0/234/0/descent = 0.0
+cache/0/234/0/underline_position = 0.0
+cache/0/234/0/underline_thickness = 0.0
+cache/0/234/0/scale = 1.0
+cache/0/233/0/ascent = 0.0
+cache/0/233/0/descent = 0.0
+cache/0/233/0/underline_position = 0.0
+cache/0/233/0/underline_thickness = 0.0
+cache/0/233/0/scale = 1.0
+cache/0/232/0/ascent = 0.0
+cache/0/232/0/descent = 0.0
+cache/0/232/0/underline_position = 0.0
+cache/0/232/0/underline_thickness = 0.0
+cache/0/232/0/scale = 1.0
+cache/0/231/0/ascent = 0.0
+cache/0/231/0/descent = 0.0
+cache/0/231/0/underline_position = 0.0
+cache/0/231/0/underline_thickness = 0.0
+cache/0/231/0/scale = 1.0
+cache/0/250/0/ascent = 0.0
+cache/0/250/0/descent = 0.0
+cache/0/250/0/underline_position = 0.0
+cache/0/250/0/underline_thickness = 0.0
+cache/0/250/0/scale = 1.0
+cache/0/247/0/ascent = 0.0
+cache/0/247/0/descent = 0.0
+cache/0/247/0/underline_position = 0.0
+cache/0/247/0/underline_thickness = 0.0
+cache/0/247/0/scale = 1.0
+cache/0/245/0/ascent = 0.0
+cache/0/245/0/descent = 0.0
+cache/0/245/0/underline_position = 0.0
+cache/0/245/0/underline_thickness = 0.0
+cache/0/245/0/scale = 1.0
+cache/0/244/0/ascent = 0.0
+cache/0/244/0/descent = 0.0
+cache/0/244/0/underline_position = 0.0
+cache/0/244/0/underline_thickness = 0.0
+cache/0/244/0/scale = 1.0
+cache/0/243/0/ascent = 0.0
+cache/0/243/0/descent = 0.0
+cache/0/243/0/underline_position = 0.0
+cache/0/243/0/underline_thickness = 0.0
+cache/0/243/0/scale = 1.0
+cache/0/240/0/ascent = 0.0
+cache/0/240/0/descent = 0.0
+cache/0/240/0/underline_position = 0.0
+cache/0/240/0/underline_thickness = 0.0
+cache/0/240/0/scale = 1.0
+cache/0/238/0/ascent = 0.0
+cache/0/238/0/descent = 0.0
+cache/0/238/0/underline_position = 0.0
+cache/0/238/0/underline_thickness = 0.0
+cache/0/238/0/scale = 1.0
+cache/0/225/0/ascent = 0.0
+cache/0/225/0/descent = 0.0
+cache/0/225/0/underline_position = 0.0
+cache/0/225/0/underline_thickness = 0.0
+cache/0/225/0/scale = 1.0
+cache/0/219/0/ascent = 0.0
+cache/0/219/0/descent = 0.0
+cache/0/219/0/underline_position = 0.0
+cache/0/219/0/underline_thickness = 0.0
+cache/0/219/0/scale = 1.0
+cache/0/218/0/ascent = 0.0
+cache/0/218/0/descent = 0.0
+cache/0/218/0/underline_position = 0.0
+cache/0/218/0/underline_thickness = 0.0
+cache/0/218/0/scale = 1.0
+cache/0/217/0/ascent = 0.0
+cache/0/217/0/descent = 0.0
+cache/0/217/0/underline_position = 0.0
+cache/0/217/0/underline_thickness = 0.0
+cache/0/217/0/scale = 1.0
+cache/0/216/0/ascent = 0.0
+cache/0/216/0/descent = 0.0
+cache/0/216/0/underline_position = 0.0
+cache/0/216/0/underline_thickness = 0.0
+cache/0/216/0/scale = 1.0
+cache/0/215/0/ascent = 0.0
+cache/0/215/0/descent = 0.0
+cache/0/215/0/underline_position = 0.0
+cache/0/215/0/underline_thickness = 0.0
+cache/0/215/0/scale = 1.0
+cache/0/214/0/ascent = 0.0
+cache/0/214/0/descent = 0.0
+cache/0/214/0/underline_position = 0.0
+cache/0/214/0/underline_thickness = 0.0
+cache/0/214/0/scale = 1.0
+cache/0/213/0/ascent = 0.0
+cache/0/213/0/descent = 0.0
+cache/0/213/0/underline_position = 0.0
+cache/0/213/0/underline_thickness = 0.0
+cache/0/213/0/scale = 1.0
+cache/0/212/0/ascent = 0.0
+cache/0/212/0/descent = 0.0
+cache/0/212/0/underline_position = 0.0
+cache/0/212/0/underline_thickness = 0.0
+cache/0/212/0/scale = 1.0
+cache/0/210/0/ascent = 0.0
+cache/0/210/0/descent = 0.0
+cache/0/210/0/underline_position = 0.0
+cache/0/210/0/underline_thickness = 0.0
+cache/0/210/0/scale = 1.0
+cache/0/209/0/ascent = 0.0
+cache/0/209/0/descent = 0.0
+cache/0/209/0/underline_position = 0.0
+cache/0/209/0/underline_thickness = 0.0
+cache/0/209/0/scale = 1.0
+cache/0/208/0/ascent = 0.0
+cache/0/208/0/descent = 0.0
+cache/0/208/0/underline_position = 0.0
+cache/0/208/0/underline_thickness = 0.0
+cache/0/208/0/scale = 1.0
+cache/0/207/0/ascent = 0.0
+cache/0/207/0/descent = 0.0
+cache/0/207/0/underline_position = 0.0
+cache/0/207/0/underline_thickness = 0.0
+cache/0/207/0/scale = 1.0
+cache/0/206/0/ascent = 0.0
+cache/0/206/0/descent = 0.0
+cache/0/206/0/underline_position = 0.0
+cache/0/206/0/underline_thickness = 0.0
+cache/0/206/0/scale = 1.0
+cache/0/205/0/ascent = 0.0
+cache/0/205/0/descent = 0.0
+cache/0/205/0/underline_position = 0.0
+cache/0/205/0/underline_thickness = 0.0
+cache/0/205/0/scale = 1.0
+cache/0/204/0/ascent = 0.0
+cache/0/204/0/descent = 0.0
+cache/0/204/0/underline_position = 0.0
+cache/0/204/0/underline_thickness = 0.0
+cache/0/204/0/scale = 1.0
+cache/0/203/0/ascent = 0.0
+cache/0/203/0/descent = 0.0
+cache/0/203/0/underline_position = 0.0
+cache/0/203/0/underline_thickness = 0.0
+cache/0/203/0/scale = 1.0
+cache/0/202/0/ascent = 0.0
+cache/0/202/0/descent = 0.0
+cache/0/202/0/underline_position = 0.0
+cache/0/202/0/underline_thickness = 0.0
+cache/0/202/0/scale = 1.0
+cache/0/201/0/ascent = 0.0
+cache/0/201/0/descent = 0.0
+cache/0/201/0/underline_position = 0.0
+cache/0/201/0/underline_thickness = 0.0
+cache/0/201/0/scale = 1.0
+cache/0/200/0/ascent = 0.0
+cache/0/200/0/descent = 0.0
+cache/0/200/0/underline_position = 0.0
+cache/0/200/0/underline_thickness = 0.0
+cache/0/200/0/scale = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ldntv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8m72m"]
+albedo_color = Color(1, 0.05490196, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtbs0"]
+albedo_color = Color(1.8770993e-06, 0.2415165, 0.6201579, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_np3vi"]
+albedo_color = Color(8.4228816e-08, 0.40900773, 1.4439225e-06, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mipjh"]
+albedo_color = Color(0.5242769, 0.30215442, 0, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w8jfd"]
+load_path = "res://.godot/imported/WASDInputVisual.png-3e0d5205f435deb0fe5c75bd2c12f888.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mipjh"]
+load_path = "res://.godot/imported/XboxController-Left Stick Visual.png-d8cc10f7fb3ac3d99046d704dbf5553a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aq00n"]
+load_path = "res://.godot/imported/PSController-Left Stick Visual.png-b827ba13c77e0244171741015e360ca4.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a7fet"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/ComputerMouse-LeftClickVisual.png-49b5c29260e67b0c05855cdb5848191d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_np3vi"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/ComputerMouse_MiddleClickVisual.png-4d1cc9a2fefb340ca9a03bb942cbedfc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8m72m"]
+load_path = "res://.godot/imported/F-KeyInputVisual.png-36e58090f53cc1716cb3a9d9a316d2a8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gtbs0"]
+load_path = "res://.godot/imported/Z-KeyInputVisual.png-96a6b52e9ab0318ba600c4f5d1a9b461.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_817jg"]
+load_path = "res://.godot/imported/XboxController-B Button Visual.png-fd1490b187452d97f25ec7e7d4089e3f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vtwju"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/XboxController-Right Trigger Visual.png-90c83f669d0acd20e3545dbb4d29e16c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kiiqx"]
+load_path = "res://.godot/imported/XboxController-Right Stick Button Visual.png-aa2db112e73c179ead590edc06651070.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fnr0w"]
+load_path = "res://.godot/imported/PSController-Circle Button Visual.png-6c3da269dafbaac9560ca52974a2987a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gqlrj"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/PSController-Right Trigger (R2) Visual.png-968b8453d3cb066096332cb016679b2b.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m8c54"]
+load_path = "res://.godot/imported/PSController-Right Stick Button (R3) Visual.png-c3f2cc9391a579613499f2b321fd5a81.ctex"
+
+[node name="GameScene" type="Node3D" unique_id=695069252]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1749603284]
+transform = Transform3D(1, 0, 0, 0, 0.54007876, 0.8416145, 0, -0.8416145, 0.54007876, 0, 17.200483, 14.619564)
+doppler_tracking = 2
+
+[node name="Lighting" type="Node3D" parent="." unique_id=926546385]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting" unique_id=578306137]
+environment = SubResource("Environment_1ixah")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting" unique_id=640609644]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Position References" type="Node3D" parent="." unique_id=1335502231]
+
+[node name="UpPositionStagePosition" type="Marker3D" parent="Position References" unique_id=482426905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -40)
+
+[node name="DownPositionStagePosition" type="Marker3D" parent="Position References" unique_id=304081045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 30)
+
+[node name="LeftPositionStagePosition" type="Marker3D" parent="Position References" unique_id=572229477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66, 5, 0)
+
+[node name="RightPositionStagePosition" type="Marker3D" parent="Position References" unique_id=783419252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 5, 0)
+
+[node name="PlayerDice" type="CharacterBody3D" parent="." unique_id=1267587966 node_paths=PackedStringArray("player", "PlayerTrigger", "AttackTrigger", "HurtMeshInstance")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_4xiap")
+player = NodePath(".")
+PlayerTrigger = NodePath("PlayerTrigger")
+AttackTrigger = NodePath("Attacking/AttackTrigger")
+HurtMeshInstance = NodePath("Hurt/HurtMeshInstance")
+AttackingFloat = 0.15
+AttackCooldownFloat = 1.0
+
+[node name="CollisionShape" type="CollisionShape3D" parent="PlayerDice" unique_id=1879702523]
+shape = SubResource("BoxShape3D_avbah")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerDice" unique_id=141839529]
+mesh = SubResource("BoxMesh_72tq2")
+surface_material_override/0 = SubResource("StandardMaterial3D_m8pjy")
+
+[node name="PlayerTrigger" type="Area3D" parent="PlayerDice" unique_id=1186322200 groups=["Player"]]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="PlayerDice/PlayerTrigger" unique_id=792062784]
+visible = false
+shape = SubResource("BoxShape3D_avbah")
+
+[node name="Attacking" type="Node3D" parent="PlayerDice" unique_id=810333064]
+
+[node name="AttackTrigger" type="Area3D" parent="PlayerDice/Attacking" unique_id=997109229 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDice/Attacking/AttackTrigger" unique_id=1076116374]
+shape = SubResource("CylinderShape3D_72tq2")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackTrigger" unique_id=2021701509]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_72tq2")
+surface_material_override/0 = SubResource("StandardMaterial3D_qbb6i")
+
+[node name="CriticalMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackTrigger" unique_id=840724811]
+editor_description = "Attack visibility"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019249141, 0)
+visible = false
+mesh = SubResource("CylinderMesh_72tq2")
+surface_material_override/0 = SubResource("StandardMaterial3D_alv2v")
+
+[node name="AttackCloseTrigger" type="Area3D" parent="PlayerDice/Attacking" unique_id=1784358857 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDice/Attacking/AttackCloseTrigger" unique_id=539591165]
+shape = SubResource("CylinderShape3D_qbb6i")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackCloseTrigger" unique_id=1059308147]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_wywco")
+surface_material_override/0 = SubResource("StandardMaterial3D_qonha")
+
+[node name="AttackClose2Trigger" type="Area3D" parent="PlayerDice/Attacking" unique_id=13378704 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDice/Attacking/AttackClose2Trigger" unique_id=1375738192]
+shape = SubResource("CylinderShape3D_wywco")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackClose2Trigger" unique_id=822247148]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_ldntv")
+surface_material_override/0 = SubResource("StandardMaterial3D_a7fet")
+
+[node name="AttackClose3Trigger" type="Area3D" parent="PlayerDice/Attacking" unique_id=2017262766 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDice/Attacking/AttackClose3Trigger" unique_id=880516601]
+shape = SubResource("CylinderShape3D_8m72m")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackClose3Trigger" unique_id=1372170350]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_gtbs0")
+surface_material_override/0 = SubResource("StandardMaterial3D_a7fet")
+
+[node name="AttackCloserTrigger" type="Area3D" parent="PlayerDice/Attacking" unique_id=1990762667 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDice/Attacking/AttackCloserTrigger" unique_id=2060383481]
+shape = SubResource("CylinderShape3D_m8pjy")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackCloserTrigger" unique_id=386018464]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_qbb6i")
+surface_material_override/0 = SubResource("StandardMaterial3D_qonha")
+
+[node name="Attacking" type="Timer" parent="PlayerDice/Attacking" unique_id=1300029245]
+wait_time = 0.1
+
+[node name="AttackCooldown" type="Timer" parent="PlayerDice/Attacking" unique_id=534554342]
+wait_time = 0.5
+
+[node name="Visuals" type="Node3D" parent="PlayerDice/Attacking" unique_id=934076119]
+
+[node name="AttackGuide" type="MeshInstance3D" parent="PlayerDice/Attacking/Visuals" unique_id=917869181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44980037, 0)
+mesh = SubResource("TorusMesh_m8pjy")
+
+[node name="AttackCloserGuide" type="MeshInstance3D" parent="PlayerDice/Attacking/Visuals" unique_id=1491990861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44980037, 0)
+mesh = SubResource("TorusMesh_qbb6i")
+
+[node name="Position References" type="Node3D" parent="PlayerDice" unique_id=1938192669]
+
+[node name="Top-Mid Position" type="Marker3D" parent="PlayerDice/Position References" unique_id=591117304]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerDice/Position References/Top-Mid Position" unique_id=2007603281]
+visible = false
+mesh = SubResource("BoxMesh_m8pjy")
+
+[node name="Top-Mid Reset" type="Node3D" parent="PlayerDice/Position References" unique_id=203792514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="Bottom-Mid Position" type="Marker3D" parent="PlayerDice/Position References" unique_id=982309759]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerDice/Position References/Bottom-Mid Position" unique_id=553921410]
+visible = false
+mesh = SubResource("BoxMesh_m8pjy")
+
+[node name="Bottom-Mid Reset" type="Node3D" parent="PlayerDice/Position References" unique_id=2142924559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="Timers" type="Node" parent="PlayerDice" unique_id=1283560993]
+
+[node name="DamageCooldown" type="Timer" parent="PlayerDice/Timers" unique_id=854988240]
+wait_time = 0.1
+
+[node name="HealthGainCooldown" type="Timer" parent="PlayerDice/Timers" unique_id=234975657]
+
+[node name="Textures" type="Node3D" parent="PlayerDice" unique_id=1188324678]
+
+[node name="DiceSide1" type="Sprite3D" parent="PlayerDice/Textures" unique_id=1175760595]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0.5099685)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("2_6h5vk")
+
+[node name="DiceSide2" type="Sprite3D" parent="PlayerDice/Textures" unique_id=457914870]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, 0.255, 0, -0.255, -1.1146404e-08, 0, 0.5027782, -0.014969945)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("3_wywco")
+
+[node name="DiceSide3" type="Sprite3D" parent="PlayerDice/Textures" unique_id=1872182325]
+transform = Transform3D(-1.1146404e-08, -1.1146404e-08, 0.255, -0.255, 4.872248e-16, -1.1146404e-08, 0, -0.255, -1.1146404e-08, 0.507203, -0.0100726485, -0.014969945)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("4_ldntv")
+
+[node name="DiceSide4" type="Sprite3D" parent="PlayerDice/Textures" unique_id=58676242]
+transform = Transform3D(3.343921e-08, 1.1146404e-08, -0.255, 0.255, -1.4616743e-15, 3.343921e-08, 5.399835e-23, -0.255, -1.1146404e-08, -0.50877106, -0.0100726485, -0.014969945)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("5_w8jfd")
+
+[node name="DiceSide5" type="Sprite3D" parent="PlayerDice/Textures" unique_id=849430833]
+transform = Transform3D(-0.255, -1.1146402e-08, -3.34392e-08, 3.34392e-08, 1.1146404e-08, -0.255, 1.1146404e-08, -0.255, -1.1146402e-08, 0.014164448, -0.50094426, -0.0056890845)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("6_a7fet")
+
+[node name="DiceSide6" type="Sprite3D" parent="PlayerDice/Textures" unique_id=1356679105]
+transform = Transform3D(-0.255, -1.1146402e-08, -3.3439203e-08, -1.1146406e-08, 0.255, 2.2292806e-08, 3.3439203e-08, 2.2292808e-08, -0.255, 0.014164448, -0.0100726485, -0.5014418)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("7_8m72m")
+
+[node name="Text" type="Node3D" parent="PlayerDice" unique_id=2049264908]
+
+[node name="LevelUpText" type="Label3D" parent="PlayerDice/Text" unique_id=1589136182]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 1, 0)
+visible = false
+modulate = Color(0.15686275, 0.83137256, 0.78039217, 1)
+text = "LEVEL UP"
+font_size = 100
+
+[node name="TextCountdown" type="Timer" parent="PlayerDice/Text" unique_id=953081442]
+wait_time = 2.0
+
+[node name="Hurt" type="Node3D" parent="PlayerDice" unique_id=1040598658]
+
+[node name="HurtMeshInstance" type="MeshInstance3D" parent="PlayerDice/Hurt" unique_id=1247393018]
+visible = false
+mesh = SubResource("BoxMesh_wywco")
+surface_material_override/0 = SubResource("StandardMaterial3D_w8jfd")
+
+[node name="HurtVisualTimer" type="Timer" parent="PlayerDice/Hurt" unique_id=1004542205]
+
+[node name="Environment" type="Node3D" parent="." unique_id=1783128640]
+
+[node name="Floor" type="StaticBody3D" parent="Environment" unique_id=77190988]
+metadata/_edit_lock_ = true
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Environment/Floor" unique_id=954779797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -29.875, 0)
+visible = false
+shape = SubResource("BoxShape3D_oqyrl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor" unique_id=38178850]
+mesh = SubResource("BoxMesh_x87qo")
+
+[node name="Floor2" type="StaticBody3D" parent="Environment" unique_id=514970300]
+metadata/_edit_lock_ = true
+
+[node name="Area3D" type="Area3D" parent="Environment/Floor2" unique_id=1182287736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Environment/Floor2/Area3D" unique_id=63010181]
+shape = SubResource("BoxShape3D_fiftr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor2/Area3D/FloorCollision" unique_id=1903357975]
+mesh = SubResource("BoxMesh_rgj8m")
+
+[node name="Edge1" type="StaticBody3D" parent="Environment" unique_id=1650013415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge1" unique_id=2008720312]
+shape = SubResource("BoxShape3D_wywco")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge1" unique_id=1429341238]
+mesh = SubResource("BoxMesh_w8jfd")
+
+[node name="Edge2" type="StaticBody3D" parent="Environment" unique_id=8564925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 30)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge2" unique_id=851759316]
+shape = SubResource("BoxShape3D_wywco")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge2" unique_id=1424393773]
+mesh = SubResource("BoxMesh_w8jfd")
+
+[node name="Edge3" type="StaticBody3D" parent="Environment" unique_id=1179171965]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -65, 1, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge3" unique_id=1964683161]
+shape = SubResource("BoxShape3D_wywco")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge3" unique_id=1237536605]
+mesh = SubResource("BoxMesh_w8jfd")
+
+[node name="Edge4" type="StaticBody3D" parent="Environment" unique_id=456516191]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 65, 1, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge4" unique_id=1069440844]
+shape = SubResource("BoxShape3D_wywco")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge4" unique_id=856936825]
+mesh = SubResource("BoxMesh_w8jfd")
+
+[node name="enemyStationary_dice" type="RigidBody3D" parent="." unique_id=1738791593 node_paths=PackedStringArray("Enemy", "EnemyTrigger", "Player") groups=["Enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -10)
+script = ExtResource("1_b6fju")
+Enemy = NodePath(".")
+EnemyTrigger = NodePath("EnemyTrigger")
+Player = NodePath("../PlayerDice")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="enemyStationary_dice" unique_id=506290660]
+shape = SubResource("BoxShape3D_w0rp6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemyStationary_dice" unique_id=75911881]
+mesh = SubResource("BoxMesh_wwsqc")
+surface_material_override/0 = SubResource("StandardMaterial3D_fowbw")
+
+[node name="EnemyTrigger" type="Area3D" parent="enemyStationary_dice" unique_id=605287903 groups=["Enemies"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemyStationary_dice/EnemyTrigger" unique_id=629395947]
+shape = SubResource("BoxShape3D_wwsqc")
+
+[node name="DamageCooldown" type="Timer" parent="enemyStationary_dice" unique_id=528611121]
+wait_time = 0.1
+
+[node name="DamageLabel" type="Label3D" parent="enemyStationary_dice" unique_id=502174633]
+transform = Transform3D(1.505, 0, 0, 0, 0.96739537, 1.1528969, 0, -1.1528969, 0.96739537, 0, 1, 0)
+visible = false
+modulate = Color(1, 0.47168958, 0.38229927, 1)
+text = "asdfsaefsadf"
+font_size = 50
+
+[node name="FollowingCooldown" type="Timer" parent="enemyStationary_dice" unique_id=1520790909]
+
+[node name="Textures" type="Node3D" parent="enemyStationary_dice" unique_id=4417280]
+metadata/_edit_lock_ = true
+
+[node name="DiceSide(1)_1" type="Sprite3D" parent="enemyStationary_dice/Textures" unique_id=1331810839]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0.5099685)
+texture = ExtResource("2_6h5vk")
+
+[node name="DiceSide(1)_2" type="Sprite3D" parent="enemyStationary_dice/Textures" unique_id=875767138]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, -0.5041398)
+visible = false
+texture = ExtResource("2_6h5vk")
+
+[node name="DiceSide(1)_3" type="Sprite3D" parent="enemyStationary_dice/Textures" unique_id=713589428]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, -0.255, 0, 0.255, -1.1146404e-08, 0, 0.5047648, -0.0023055375)
+visible = false
+texture = ExtResource("2_6h5vk")
+
+[node name="DiceSide(1)_4" type="Sprite3D" parent="enemyStationary_dice/Textures" unique_id=1083995165]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, -0.255, 0, 0.255, -1.1146404e-08, 0, -0.5026775, -0.0023055375)
+visible = false
+texture = ExtResource("2_6h5vk")
+
+[node name="DiceSide(1)_5" type="Sprite3D" parent="enemyStationary_dice/Textures" unique_id=1633543872]
+transform = Transform3D(-1.1146404e-08, 0, 0.255, 0, 0.255, 0, -0.255, 0, -1.1146404e-08, -0.51649547, 0, 6.648898e-05)
+visible = false
+texture = ExtResource("2_6h5vk")
+
+[node name="DiceSide(1)_6" type="Sprite3D" parent="enemyStationary_dice/Textures" unique_id=1179350507]
+transform = Transform3D(-1.1146404e-08, 0, 0.255, 0, 0.255, 0, -0.255, 0, -1.1146404e-08, 0.50267863, 0, 6.648898e-05)
+visible = false
+texture = ExtResource("2_6h5vk")
+
+[node name="UI" parent="." unique_id=20405237 node_paths=PackedStringArray("Player") instance=ExtResource("5_1ixah")]
+Player = NodePath("../PlayerDice")
+
+[node name="Globals" type="Node" parent="." unique_id=245397322]
+
+[node name="EnemySpawning" type="Node" parent="Globals" unique_id=1733171941]
+
+[node name="PlayerScript" type="Node" parent="Globals" unique_id=1347533220]
+
+[node name="DiceScript" type="Node" parent="Globals" unique_id=1253299711]
+script = ExtResource("6_rgj8m")
+
+[node name="GameSystem" type="Node" parent="Globals" unique_id=938242266]
+script = ExtResource("11_4xiap")
+
+[node name="Timers" type="Node" parent="Globals/GameSystem" unique_id=1808737333]
+
+[node name="Game_Timer" type="Timer" parent="Globals/GameSystem/Timers" unique_id=1987696111]
+
+[node name="Game_OverTimer" type="Timer" parent="Globals/GameSystem/Timers" unique_id=1385484908]
+
+[node name="DiceSystem" parent="." unique_id=87870044 instance=ExtResource("12_wywco")]
+
+[node name="Enemy Spawner" parent="." unique_id=1095715711 node_paths=PackedStringArray("targetPlayer", "TopPositionMarker", "BottomPositionMarker", "TopMidReset", "BottomMidReset", "UpPositionStageMarker", "DownPositionStageMarker", "LeftPositionStageMarker", "RightPositionStageMarker") instance=ExtResource("7_2fmhe")]
+targetPlayer = NodePath("../PlayerDice")
+TopPositionMarker = NodePath("../PlayerDice/Position References/Top-Mid Position")
+BottomPositionMarker = NodePath("../PlayerDice/Position References/Bottom-Mid Position")
+TopMidReset = NodePath("../PlayerDice/Position References/Top-Mid Reset")
+BottomMidReset = NodePath("../PlayerDice/Position References/Bottom-Mid Reset")
+UpPositionStageMarker = NodePath("../Position References/UpPositionStagePosition")
+DownPositionStageMarker = NodePath("../Position References/DownPositionStagePosition")
+LeftPositionStageMarker = NodePath("../Position References/LeftPositionStagePosition")
+RightPositionStageMarker = NodePath("../Position References/RightPositionStagePosition")
+
+[node name="UIPause" parent="." unique_id=521938894 instance=ExtResource("14_ldntv")]
+
+[node name="Tutorial" type="Node3D" parent="." unique_id=43473999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+script = ExtResource("15_w8jfd")
+
+[node name="dices" type="Node3D" parent="Tutorial" unique_id=279741217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="DiceText" type="Label3D" parent="Tutorial/dices" unique_id=2140776508]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -11, 0.099999994, -2)
+text = "Dices"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+
+[node name="AttackDie" type="Node3D" parent="Tutorial/dices" unique_id=57076995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+
+[node name="AttackDieVisual" type="MeshInstance3D" parent="Tutorial/dices/AttackDie" unique_id=1848467998]
+mesh = SubResource("PlaneMesh_ldntv")
+surface_material_override/0 = SubResource("StandardMaterial3D_8m72m")
+
+[node name="AttackDieText" type="Label3D" parent="Tutorial/dices/AttackDie" unique_id=400007329]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.1, 0)
+text = "Attack"
+font = SubResource("FontFile_ldntv")
+font_size = 100
+
+[node name="DefenseDie" type="Node3D" parent="Tutorial/dices" unique_id=123487372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 0)
+
+[node name="DefenseDieVisual" type="MeshInstance3D" parent="Tutorial/dices/DefenseDie" unique_id=1912620973]
+mesh = SubResource("PlaneMesh_ldntv")
+surface_material_override/0 = SubResource("StandardMaterial3D_gtbs0")
+
+[node name="DefenseDieText" type="Label3D" parent="Tutorial/dices/DefenseDie" unique_id=651779225]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.1, 0)
+text = "Defense"
+font = SubResource("FontFile_ldntv")
+font_size = 100
+
+[node name="HealthDie" type="Node3D" parent="Tutorial/dices" unique_id=1922394266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
+
+[node name="HealthDieVisual" type="MeshInstance3D" parent="Tutorial/dices/HealthDie" unique_id=1166054011]
+mesh = SubResource("PlaneMesh_ldntv")
+surface_material_override/0 = SubResource("StandardMaterial3D_np3vi")
+
+[node name="HealthDieText" type="Label3D" parent="Tutorial/dices/HealthDie" unique_id=1244063051]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.1, 0)
+text = "Health"
+font = SubResource("FontFile_ldntv")
+font_size = 100
+
+[node name="AbilityDie" type="Node3D" parent="Tutorial/dices" unique_id=54415919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 2)
+
+[node name="AbilityDieVisual" type="MeshInstance3D" parent="Tutorial/dices/AbilityDie" unique_id=427391115]
+mesh = SubResource("PlaneMesh_ldntv")
+surface_material_override/0 = SubResource("StandardMaterial3D_mipjh")
+
+[node name="AbilityDieText" type="Label3D" parent="Tutorial/dices/AbilityDie" unique_id=1099435356]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.1, 0)
+text = "Abilities"
+font = SubResource("FontFile_ldntv")
+font_size = 100
+
+[node name="Other text" type="Node3D" parent="Tutorial" unique_id=1705690897]
+
+[node name="TheObjective" type="Label3D" parent="Tutorial/Other text" unique_id=176560763]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 3)
+text = "Can you survive for
+5 minutes?"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+outline_size = 50
+
+[node name="KillDie" type="Label3D" parent="Tutorial/Other text" unique_id=146170771]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, -8)
+modulate = Color(1, 1, 0, 1)
+text = "KILL this Die to START"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+outline_size = 50
+
+[node name="Controls" type="Node3D" parent="Tutorial" unique_id=1398600904]
+
+[node name="Move" type="Node3D" parent="Tutorial/Controls" unique_id=1499171567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0)
+
+[node name="MoveText" type="Label3D" parent="Tutorial/Controls/Move" unique_id=1262921386]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, -2)
+modulate = Color(0, 1, 1, 1)
+text = "Move"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+
+[node name="WASD" type="Node3D" parent="Tutorial/Controls/Move" unique_id=325736420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="WASD Keys" type="Sprite3D" parent="Tutorial/Controls/Move/WASD" unique_id=1093975532]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 0, 0, -1)
+texture = SubResource("CompressedTexture2D_w8jfd")
+
+[node name="Xbox & PS" type="Node3D" parent="Tutorial/Controls/Move" unique_id=1708311884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Xbox Left Stick" type="Sprite3D" parent="Tutorial/Controls/Move/Xbox & PS" unique_id=1434162296]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, -1, 0, 0)
+texture = SubResource("CompressedTexture2D_mipjh")
+
+[node name="PS Left Stick" type="Sprite3D" parent="Tutorial/Controls/Move/Xbox & PS" unique_id=1821417448]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 1, 0, 0)
+texture = SubResource("CompressedTexture2D_aq00n")
+
+[node name="Attack" type="Node3D" parent="Tutorial/Controls" unique_id=759329812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 0)
+
+[node name="AttackText" type="Label3D" parent="Tutorial/Controls/Attack" unique_id=1146960380]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, -2)
+modulate = Color(0, 1, 1, 1)
+text = "Attack"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+
+[node name="OrText" type="Label3D" parent="Tutorial/Controls/Attack" unique_id=326037012]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 0)
+text = "or"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+outline_size = 50
+
+[node name="AutoAttackText" type="Label3D" parent="Tutorial/Controls/Attack" unique_id=743292253]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 6)
+modulate = Color(0, 1, 1, 1)
+text = "(Enable Auto-Attacking*)"
+font = SubResource("FontFile_ldntv")
+font_size = 200
+
+[node name="OrText2" type="Label3D" parent="Tutorial/Controls/Attack" unique_id=930544919]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 8)
+text = "or"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+outline_size = 50
+
+[node name="Mouse" type="Node3D" parent="Tutorial/Controls/Attack" unique_id=1484833306]
+
+[node name="LeftClick" type="Sprite3D" parent="Tutorial/Controls/Attack/Mouse" unique_id=727531686]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2, 0, 0)
+texture = SubResource("CompressedTexture2D_a7fet")
+
+[node name="MiddleClick" type="Sprite3D" parent="Tutorial/Controls/Attack/Mouse" unique_id=889981012]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2, 0, 8)
+texture = SubResource("CompressedTexture2D_np3vi")
+
+[node name="Keyboard" type="Node3D" parent="Tutorial/Controls/Attack" unique_id=137956561]
+
+[node name="F Key" type="Sprite3D" parent="Tutorial/Controls/Attack/Keyboard" unique_id=588965453]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 2, 0, 0)
+texture = SubResource("CompressedTexture2D_8m72m")
+
+[node name="Z Key" type="Sprite3D" parent="Tutorial/Controls/Attack/Keyboard" unique_id=657916064]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 2, 0, 8)
+texture = SubResource("CompressedTexture2D_gtbs0")
+
+[node name="Xbox" type="Node3D" parent="Tutorial/Controls/Attack" unique_id=531636312]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Attack" type="Node3D" parent="Tutorial/Controls/Attack/Xbox" unique_id=1627120974]
+
+[node name="OrText" type="Label3D" parent="Tutorial/Controls/Attack/Xbox/Attack" unique_id=75601258]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 0)
+text = "or"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+outline_size = 50
+
+[node name="Xbox B" type="Sprite3D" parent="Tutorial/Controls/Attack/Xbox/Attack" unique_id=1268060362]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 2, 0, 0)
+texture = SubResource("CompressedTexture2D_817jg")
+
+[node name="Xbox Right Trigger" type="Sprite3D" parent="Tutorial/Controls/Attack/Xbox/Attack" unique_id=1056324321]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, -2, 0, 0)
+texture = SubResource("CompressedTexture2D_vtwju")
+
+[node name="AutoAttack" type="Node3D" parent="Tutorial/Controls/Attack/Xbox" unique_id=544429992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 8)
+
+[node name="Xbox Right Stick Button" type="Sprite3D" parent="Tutorial/Controls/Attack/Xbox/AutoAttack" unique_id=1337201914]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 0, 0, 0)
+texture = SubResource("CompressedTexture2D_kiiqx")
+
+[node name="PS" type="Node3D" parent="Tutorial/Controls/Attack" unique_id=1001563966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Attack" type="Node3D" parent="Tutorial/Controls/Attack/PS" unique_id=1837217430]
+
+[node name="OrText" type="Label3D" parent="Tutorial/Controls/Attack/PS/Attack" unique_id=606230088]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.099999994, 0)
+text = "or"
+font = SubResource("FontFile_ldntv")
+font_size = 250
+outline_size = 50
+
+[node name="PS Circle" type="Sprite3D" parent="Tutorial/Controls/Attack/PS/Attack" unique_id=66606281]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 2, 0, 0)
+texture = SubResource("CompressedTexture2D_fnr0w")
+
+[node name="PS Right Trigger" type="Sprite3D" parent="Tutorial/Controls/Attack/PS/Attack" unique_id=1285098984]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, -2, 0, 0)
+texture = SubResource("CompressedTexture2D_gqlrj")
+
+[node name="AutoAttack" type="Node3D" parent="Tutorial/Controls/Attack/PS" unique_id=1423396793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6)
+
+[node name="Xbox Right Stick Button" type="Sprite3D" parent="Tutorial/Controls/Attack/PS/AutoAttack" unique_id=2115326310]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 0, 0, 0)
+texture = SubResource("CompressedTexture2D_m8c54")
+
+[connection signal="endGame" from="PlayerDice" to="Globals/GameSystem" method="_on_player_dice_end_game"]
+[connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]
+[connection signal="area_exited" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_exited"]
+[connection signal="area_entered" from="PlayerDice/Attacking/AttackTrigger" to="PlayerDice" method="_on_attack_trigger_area_entered"]
+[connection signal="area_exited" from="PlayerDice/Attacking/AttackTrigger" to="PlayerDice" method="_on_attack_trigger_area_exited"]
+[connection signal="timeout" from="PlayerDice/Attacking/Attacking" to="PlayerDice" method="_on_attacking_timeout"]
+[connection signal="timeout" from="PlayerDice/Attacking/AttackCooldown" to="PlayerDice" method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="PlayerDice/Timers/DamageCooldown" to="PlayerDice" method="_on_damage_cooldown_timeout"]
+[connection signal="timeout" from="PlayerDice/Timers/HealthGainCooldown" to="PlayerDice" method="_on_health_gain_cooldown_timeout"]
+[connection signal="timeout" from="PlayerDice/Text/TextCountdown" to="PlayerDice" method="_on_text_countdown_timeout"]
+[connection signal="timeout" from="PlayerDice/Hurt/HurtVisualTimer" to="PlayerDice" method="_on_hurt_visual_timer_timeout"]
+[connection signal="area_entered" from="enemyStationary_dice/EnemyTrigger" to="enemyStationary_dice" method="_on_enemy_trigger_area_entered"]
+[connection signal="area_exited" from="enemyStationary_dice/EnemyTrigger" to="enemyStationary_dice" method="_on_enemy_trigger_area_exited"]
+[connection signal="timeout" from="enemyStationary_dice/DamageCooldown" to="enemyStationary_dice" method="_on_damage_cooldown_timeout"]
+[connection signal="timeout" from="enemyStationary_dice/FollowingCooldown" to="enemyStationary_dice" method="_on_following_cooldown_timeout"]
+[connection signal="timeout" from="Globals/GameSystem/Timers/Game_Timer" to="UI" method="_on_game_timer_timeout"]

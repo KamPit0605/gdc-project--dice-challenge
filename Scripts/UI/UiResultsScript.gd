@@ -1,4 +1,6 @@
 extends Control
+#Globals
+	#MusicScript
 
 @onready var CPassedUI = $VBoxContainer/Challenge/ChallengePassedUI
 @onready var COverUI = $VBoxContainer/Challenge/ChallengeOverUI
@@ -50,6 +52,11 @@ func _process(_delta):
 		MainMenuButton.pressed.connect(_mainmenu)
 		
 
+func MusicRestart():
+	if GlobalMusicScript.MusicPlayer: #This checks if it's set and exists
+		GlobalMusicScript.MusicPlayer.stream = load("res://Audio/Music/Recovered from Addiction (GDC Casino).mp3")
+		GlobalMusicScript.MusicPlayer.play(146.13)
+
 func _on_timer_timeout():
 	_beforeStarting()
 	XPUI.visible = true
@@ -83,6 +90,7 @@ func _mainmenu():
 func _on_play_again_select():
 	GlobalGameSystem._restart()
 	UiScoreResets()
+	MusicRestart()
 	get_tree().change_scene_to_packed(game_scene)
 
 func _on_main_menu_select():

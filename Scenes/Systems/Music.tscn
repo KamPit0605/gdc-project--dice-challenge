@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bouukr8c3ponj"]
+
+[ext_resource type="Script" uid="uid://c0g8axeadhy71" path="res://Scripts/Audio/Global_MusicScript.gd" id="1_kh2kp"]
+[ext_resource type="AudioStream" uid="uid://bhwjnxy7ybn8f" path="res://Audio/Music/Recovered from Addiction (GDC Casino).mp3" id="2_a5lto"]
+
+[node name="Music" type="Node3D" unique_id=764052556]
+script = ExtResource("1_kh2kp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1244795829]
+stream = ExtResource("2_a5lto")
+bus = &"Music"
