@@ -51,6 +51,10 @@ var Positioner: int #assigns the above positions to their respective ints
 
 #@export var Cloned: bool = false
 
+#--AUDIO--
+@onready var AudioStreaming = $AudioStreamPlayer3D
+var AudioChange: int
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Cloned = true
@@ -72,6 +76,9 @@ func _process(_delta):
 		#print("OUCH!")
 		AttackedTimer.start(0.25)
 		_attackvisual()
+		_AudioChange_Hit()
+		AudioChanging(1)
+		
 		DamageCooldown = true
 	
 	_critical()
@@ -129,6 +136,7 @@ func _attackDiceMult():
 func _attackvisual():
 	if CRIT == 2:
 		CriticalAttackedMeshInstance.visible = true
+		AudioPlaying("res://Audio/SFX/FN/Critical.wav")
 	else:
 		AttackedMeshInstance.visible = true
 
@@ -197,3 +205,17 @@ func _on_following_cooldown_timeout():
 func _on_atacked_timer_timeout():
 	AttackedMeshInstance.visible = false
 	CriticalAttackedMeshInstance.visible = false
+
+func AudioPlaying(SFX):
+	AudioStreaming.stream = load(SFX)
+	AudioStreaming.play()
+
+#Audio changing
+func _AudioChange_Hit():
+	if AudioChange == 0:
+		AudioPlaying("res://Audio/SFX/MB/094. Hit1 0.mp3")
+	elif AudioChange == 1:
+		AudioPlaying("res://Audio/SFX/MB/096. Hit2 0.mp3")
+
+func AudioChanging(max):
+	AudioChange = randi_range(0,max)

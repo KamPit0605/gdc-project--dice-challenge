@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bkhlbd2y3bl5m"
+path="res://.godot/imported/180. Nuke.mp3-d2c9da82c7e442bb1441123db302d72c.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/MB/180. Nuke.mp3"
+dest_files=["res://.godot/imported/180. Nuke.mp3-d2c9da82c7e442bb1441123db302d72c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b2ldivp51qtnr"
+path="res://.godot/imported/018. Blocks2.mp3-dac58734a06273d45a680f9298989828.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/MB/018. Blocks2.mp3"
+dest_files=["res://.godot/imported/018. Blocks2.mp3-dac58734a06273d45a680f9298989828.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

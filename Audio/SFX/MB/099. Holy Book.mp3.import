@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b3ok2vhnwowdb"
+path="res://.godot/imported/099. Holy Book.mp3-ca8ee71c12f223b78f6f1564b39fe2cc.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/MB/099. Holy Book.mp3"
+dest_files=["res://.godot/imported/099. Holy Book.mp3-ca8ee71c12f223b78f6f1564b39fe2cc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://e6gpg4uwfwvd"
+path="res://.godot/imported/00016 - .wav-2baf77dbe0faa27e6f62ee859f901ea6.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/SHUTTR/00016 - .wav"
+dest_files=["res://.godot/imported/00016 - .wav-2baf77dbe0faa27e6f62ee859f901ea6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

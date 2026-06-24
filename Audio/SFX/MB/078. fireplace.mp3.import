@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cj83fjt8reafs"
+path="res://.godot/imported/078. fireplace.mp3-716049507f066b612c1c6a28516938e5.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/MB/078. fireplace.mp3"
+dest_files=["res://.godot/imported/078. fireplace.mp3-716049507f066b612c1c6a28516938e5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

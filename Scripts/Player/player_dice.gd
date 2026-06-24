@@ -68,6 +68,9 @@ const defaultCriticalRate: float = 0.85
 
 var EnemyDetected: bool
 
+@onready var AudioStreaming = $AudioStreamPlayer3D
+var AudioChange: int
+
 func _ready():
 	AttackingFloat = 0.15
 	AttackCooldownFloat = 1.0
@@ -117,6 +120,7 @@ func _physics_process(delta):
 	
 	criticalFunction()
 	move_and_slide()
+	#_AudioChange_Attacking()
 
 #Attack Functions
 func criticalFunction():
@@ -143,6 +147,9 @@ func AttackingFunc():
 		if criticalHit == true:
 			CriticalMesh.visible = true
 			Input.start_joy_vibration(0,0.5,0.5,0.15)
+			AudioPlaying("res://Audio/SFX/MB/016. Axe Throw.mp3")
+		_AudioChange_Attacking()
+		AudioChanging(3)
 		EnableAttackCooldown = true
 
 
@@ -253,6 +260,8 @@ func TakingDamage():
 	HEALTH -= Damage / (DefenseDiceReduce + AbilityDiceReduce)
 	HurtMeshInstance.visible = true
 	HurtVisualTimer.start(0.25)
+	_AudioChange_Damaging()
+	AudioChanging(1)
 #other function
 func _on_player_trigger_area_entered(area):
 	if (area.is_in_group("Enemies") && DamageTaken == false):
@@ -263,6 +272,7 @@ func _on_player_trigger_area_entered(area):
 			Damage = 45
 		if (area.is_in_group("BossEnemy")):
 			Damage = 75
+			AudioPlaying("res://Audio/SFX/MB/178. Noodle Stop.mp3")
 		if (area.is_in_group("GhostEnemy")):
 			Damage = 20
 		if (area.is_in_group("GhostStrongEnemy")):
@@ -288,3 +298,28 @@ func _on_player_trigger_area_exited(area):
 
 func _on_hurt_visual_timer_timeout():
 	HurtMeshInstance.visible = false
+
+
+func AudioPlaying(SFX):
+	AudioStreaming.stream = load(SFX)
+	AudioStreaming.play()
+
+#Audio changing
+func _AudioChange_Attacking():
+	if AudioChange == 0:
+		AudioPlaying("res://Audio/SFX/FN/Sword-swipe-1.wav")
+	elif AudioChange == 1:
+		AudioPlaying("res://Audio/SFX/FN/Sword-swipe-3.wav")
+	elif AudioChange == 2:
+		AudioPlaying("res://Audio/SFX/FN/Sword-swipe-4.wav")
+	elif AudioChange == 3:
+		AudioPlaying("res://Audio/SFX/FN/Sword-swipe-4.wav")
+
+func _AudioChange_Damaging():
+	if AudioChange == 0:
+		AudioPlaying("res://Audio/SFX/MB/189. Player Damage.mp3")
+	elif AudioChange == 1:
+		AudioPlaying("res://Audio/SFX/MB/078. fireplace.mp3")
+
+func AudioChanging(max):
+	AudioChange = randi_range(0,max)

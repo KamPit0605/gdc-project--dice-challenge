@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8iea73wmivnn"
+path="res://.godot/imported/090. Ground Slam.mp3-628656e8723268df6e03f0c188de0228.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/MB/090. Ground Slam.mp3"
+dest_files=["res://.godot/imported/090. Ground Slam.mp3-628656e8723268df6e03f0c188de0228.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
