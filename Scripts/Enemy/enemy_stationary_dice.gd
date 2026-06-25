@@ -45,6 +45,9 @@ var Positioner: int #assigns the above positions to their respective ints
 
 #@export var Cloned: bool = false
 
+@onready var AudioStreaming = $AudioStreamPlayer3D
+@onready var AudioStreaming2 = $AudioStreamPlayer3D2
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Cloned = true
@@ -93,6 +96,8 @@ func _Health():
 		GlobalPlayerScript.EnemyKills += 1
 		GlobalGameSystem.GameStart = true
 		GlobalDiceScript.AcquiredDice = 1
+		AudioStreaming2.play()
+		AudioPlaying("res://Audio/SFX/WWE/WWE Royal Rumble Buzzer (2003 - Present).mp3")
 		queue_free()
 		#self.visible = false
 		#FollowPlayer = false
@@ -174,3 +179,7 @@ func _followcooldown(seconds):
 func _on_following_cooldown_timeout():
 	#if Cloned:
 		FollowPlayer = true
+
+func AudioPlaying(SFX):
+	AudioStreaming.stream = load(SFX)
+	AudioStreaming.play()

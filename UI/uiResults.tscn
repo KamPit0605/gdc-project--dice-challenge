@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://ky2g1r3qhiax"]
 
 [ext_resource type="Script" uid="uid://br5trdkvh7tja" path="res://Scripts/UI/UiResultsScript.gd" id="1_jjaw5"]
+[ext_resource type="AudioStream" uid="uid://dh5sqgtqn14hx" path="res://Audio/SFX/BA/010.wav" id="2_jjaw5"]
+[ext_resource type="Texture2D" uid="uid://b3kenfxqyqbbp" path="res://Textures/Inputs/Xbox/XboxController-A Button Visual.png" id="2_uir0y"]
+[ext_resource type="Texture2D" uid="uid://ko03dx5stetm" path="res://Textures/Inputs/PS/PSController-Cross Button Visual.png" id="3_duy54"]
+[ext_resource type="Texture2D" uid="uid://dj86hewr2g84" path="res://Textures/Inputs/Xbox/XboxController-B Button Visual.png" id="4_4pbn8"]
+[ext_resource type="Texture2D" uid="uid://cd2gwhhmxhlkh" path="res://Textures/Inputs/PS/PSController-Circle Button Visual.png" id="5_wg7bg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_e6gg6"]
 font_size = 50
@@ -174,9 +179,32 @@ text = "Play Again"
 [node name="PlayAgainLabel" type="Label" parent="Menu/PlayAgain" unique_id=1138751806]
 layout_mode = 2
 text = "[Space]
-(A) | (X)"
+"
 label_settings = SubResource("LabelSettings_fsdo4")
 horizontal_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="Menu/PlayAgain" unique_id=762732412]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Menu/PlayAgain/BoxContainer" unique_id=1133027877]
+position = Vector2(20, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_uir0y")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Menu/PlayAgain/BoxContainer" unique_id=866880305]
+position = Vector2(64, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_duy54")
+
+[node name="TextureRect" type="TextureRect" parent="Menu/PlayAgain/BoxContainer" unique_id=2127070892]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_uir0y")
+
+[node name="TextureRect2" type="TextureRect" parent="Menu/PlayAgain/BoxContainer" unique_id=1916391683]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_duy54")
 
 [node name="MainMenu" type="VBoxContainer" parent="Menu" unique_id=1249056666]
 layout_mode = 2
@@ -188,9 +216,32 @@ text = "Main Menu"
 [node name="Label" type="Label" parent="Menu/MainMenu" unique_id=1098696670]
 layout_mode = 2
 text = "[Esc]
-(B) | (O)"
+"
 label_settings = SubResource("LabelSettings_fsdo4")
 horizontal_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="Menu/MainMenu" unique_id=1091088036]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Menu/MainMenu/BoxContainer" unique_id=1360153154]
+position = Vector2(25.833332, -0.16666666)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_4pbn8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Menu/MainMenu/BoxContainer" unique_id=1660729166]
+position = Vector2(69.833336, -0.16666666)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_wg7bg")
+
+[node name="TextureRect" type="TextureRect" parent="Menu/MainMenu/BoxContainer" unique_id=1895056973]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_uir0y")
+
+[node name="TextureRect2" type="TextureRect" parent="Menu/MainMenu/BoxContainer" unique_id=909989594]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_duy54")
 
 [node name="SelectCooldown" type="Timer" parent="." unique_id=1016607443]
 wait_time = 5.0
@@ -211,6 +262,10 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "No Way! Before Starting?"
 label_settings = SubResource("LabelSettings_jjaw5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=100610443]
+stream = ExtResource("2_jjaw5")
+bus = &"SFX"
 
 [connection signal="MainMenuSelect" from="." to="." method="_on_main_menu_select"]
 [connection signal="PlayAgainSelect" from="." to="." method="_on_play_again_select"]

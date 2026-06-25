@@ -47,6 +47,11 @@ var timeDefault: int = 300
 @export var overTimeInSeconds: int = 0
 var TimerBool: bool
 var OverTimerBool: bool
+#--AUDIO--
+@onready var AudioStreaming = $Audio/AudioStreamPlayer
+@onready var AudioStreaming2 = $Audio/AudioStreamPlayer2D
+@onready var AudioStreaming3 = $Audio/AudioStreamPlayer2D2
+
 #GlobalPlayerScript
 #GlobalDiceScript
 #GlobalGameSystem
@@ -93,6 +98,8 @@ func _process(_delta):
 			MatchingUI.visible = false
 	
 	#timeInSeconds = 5
+	
+	
 	
 	#--Functions--
 	_takingDamage()
@@ -145,7 +152,7 @@ func _abiltyDieNames():
 			AbilityNames="crit hit"
 
 func CriticalDisplay():
-	if ((GlobalDiceScript.RollDice == false) && (CriticalBool == false)):
+	if ((GlobalDiceScript.RollDice == false) && (CriticalBool == false) && (GlobalDiceScript.AcquiredDice >= 4)):
 		if ((GlobalDiceScript.AttackDNum == 6) && (GlobalDiceScript.DefenseDNum == 6) && (GlobalDiceScript.HealthDNum == 6)):
 			CriticalRoleUI.visible = true
 			CriticalTimer.start(2.0)
@@ -180,6 +187,7 @@ func _timerSetup():
 	if GlobalGameSystem.GameStart:
 		TimerUI.visible = true
 		GameTimer.start()
+		AudioPlaying("res://Audio/SFX/WWE/WWE Royal Rumble Buzzer (2003 - Present)_1.mp3")
 
 func _timeToOvertime():
 	if timeInSeconds <= -1:
@@ -209,3 +217,13 @@ func autoAttacking():
 func GameReset():
 	if GlobalGameSystem.GameReset:
 		timeInSeconds = timeDefault
+
+func AudioPlaying(SFX):
+	AudioStreaming.stream = load(SFX)
+	AudioStreaming.play()
+func _AudioPlaying2(SFX):
+	AudioStreaming2.stream = load(SFX)
+	AudioStreaming2.play()
+func _AudioPlaying3(SFX):
+	AudioStreaming3.stream = load(SFX)
+	AudioStreaming3.play()

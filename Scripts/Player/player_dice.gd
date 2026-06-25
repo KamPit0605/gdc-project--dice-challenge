@@ -68,7 +68,9 @@ const defaultCriticalRate: float = 0.85
 
 var EnemyDetected: bool
 
-@onready var AudioStreaming = $AudioStreamPlayer3D
+#--AUDIO--
+@onready var AudioStreaming = $Audios/AudioStreamPlayer3D
+@onready var AudioStreaming2 = $Audios/AudioStreamPlayer3D2
 var AudioChange: int
 
 func _ready():
@@ -117,6 +119,7 @@ func _physics_process(delta):
 		AttackingFunc()
 	#AttackingFunc()
 	_autoAttackEnemy()
+	_CriticalAttackSound()
 	
 	criticalFunction()
 	move_and_slide()
@@ -147,7 +150,7 @@ func AttackingFunc():
 		if criticalHit == true:
 			CriticalMesh.visible = true
 			Input.start_joy_vibration(0,0.5,0.5,0.15)
-			AudioPlaying("res://Audio/SFX/MB/016. Axe Throw.mp3")
+			if (!EnemyDetected): AudioPlaying2("res://Audio/SFX/MB/016. Axe Throw.mp3")
 		_AudioChange_Attacking()
 		AudioChanging(3)
 		EnableAttackCooldown = true
@@ -167,15 +170,22 @@ func _on_attack_trigger_area_entered(area):
 	if area.is_in_group("Enemies"):
 		EnemyDetected = true
 		AttackCloserGuide.visible = true
+		if (GlobalPlayerScript.criticalHit_indicator == true) && (EnableAttack == true):
+			AudioPlaying2("res://Audio/SFX/FN/Critical.wav")
 
 func _autoAttackEnemy():
 	if (EnemyDetected == true && EnableAutoAttack == true):
 		AttackingFunc()
 
+func _CriticalAttackSound():
+	if (GlobalPlayerScript.criticalHit_indicator) && (EnableAttack) && (EnemyDetected):
+		AudioPlaying2("res://Audio/SFX/FN/Critical.wav")
+
 func _on_attack_trigger_area_exited(area):
 	if area.is_in_group("Enemies"):
 		EnemyDetected = false
 		AttackCloserGuide.visible = false
+
 
 #Health Functions
 func PlayerHealth():
@@ -303,6 +313,9 @@ func _on_hurt_visual_timer_timeout():
 func AudioPlaying(SFX):
 	AudioStreaming.stream = load(SFX)
 	AudioStreaming.play()
+func AudioPlaying2(SFX):
+	AudioStreaming2.stream = load(SFX)
+	AudioStreaming2.play()
 
 #Audio changing
 func _AudioChange_Attacking():

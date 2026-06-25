@@ -24,6 +24,7 @@ var mainmenu_scene = preload("res://Scenes/mainmenu_scene.tscn")
 #var mainMenu_scene
 #var ConnectButtons: bool = false
 
+@onready var AudioStreaming = $AudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -63,6 +64,7 @@ func _on_timer_timeout():
 	KillsUI.visible = true
 	if GlobalGameSystem.OVERTIME == true:
 		CPassedUI.visible = true
+		AudioStreaming.play()
 	else:
 		COverUI.visible = true
 

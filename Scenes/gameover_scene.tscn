@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="7_yywdj"]
 [ext_resource type="PackedScene" uid="uid://ky2g1r3qhiax" path="res://UI/uiResults.tscn" id="10_f6agg"]
 [ext_resource type="Script" uid="uid://dkx18dduq5qu7" path="res://Scripts/Systems/Global_game_system.gd" id="11_oe601"]
+[ext_resource type="AudioStream" uid="uid://bhgn4np34qut3" path="res://Audio/SFX/WWE/WWE Royal Rumble Buzzer (2003 - Present)_1.mp3" id="12_67xfh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f6agg"]
 
@@ -234,6 +235,13 @@ script = ExtResource("11_oe601")
 
 [node name="UIResults" parent="." unique_id=20405237 instance=ExtResource("10_f6agg")]
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1785193576]
+stream = ExtResource("12_67xfh")
+volume_db = -5.0
+autoplay = true
+bus = &"SFX"
+
 [connection signal="timeout" from="Camera3D/Timer" to="Camera3D" method="_on_timer_timeout"]
 [connection signal="area_entered" from="Camera3D/CameraArea" to="Camera3D" method="_on_camera_area_area_entered"]
 [connection signal="PlayAgainSelect" from="UIResults" to="Globals/GameSystem" method="_on_ui_results_play_again_select"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

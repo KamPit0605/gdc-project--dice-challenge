@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bs8exio7gkbd2" path="res://Scripts/Dice/Global_DiceScript.gd" id="6_rgj8m"]
 [ext_resource type="PackedScene" uid="uid://7shbr518fxwl" path="res://Scenes/Systems/EnemySpawner.tscn" id="7_2fmhe"]
 [ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="7_8m72m"]
+[ext_resource type="AudioStream" uid="uid://0wfg1fhk53gi" path="res://Audio/SFX/ZLD/The Legend of Zelda Cartoon Sound Effects Enemy Zapped.wav" id="9_a7fet"]
 [ext_resource type="Script" uid="uid://dkx18dduq5qu7" path="res://Scripts/Systems/Global_game_system.gd" id="11_4xiap"]
 [ext_resource type="PackedScene" uid="uid://ld1mxfj4vaxp" path="res://Scenes/Systems/dice_system.tscn" id="12_wywco"]
 [ext_resource type="PackedScene" uid="uid://wpf7vtcpjbaf" path="res://UI/uiPause.tscn" id="14_ldntv"]
@@ -921,7 +922,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_w8jfd")
 
 [node name="HurtVisualTimer" type="Timer" parent="PlayerDice/Hurt" unique_id=1004542205]
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="PlayerDice" unique_id=1883578965]
+[node name="Audios" type="Node3D" parent="PlayerDice" unique_id=1847976621]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="PlayerDice/Audios" unique_id=1883578965]
+unit_size = 25.08
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="PlayerDice/Audios" unique_id=1823556886]
 unit_size = 25.08
 bus = &"SFX"
 
@@ -1048,6 +1055,15 @@ texture = ExtResource("2_6h5vk")
 transform = Transform3D(-1.1146404e-08, 0, 0.255, 0, 0.255, 0, -0.255, 0, -1.1146404e-08, 0.50267863, 0, 6.648898e-05)
 visible = false
 texture = ExtResource("2_6h5vk")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemyStationary_dice" unique_id=988514839]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="enemyStationary_dice" unique_id=247597916]
+stream = ExtResource("9_a7fet")
+volume_db = -15.0
+unit_size = 20.0
+bus = &"SFX"
 
 [node name="UI" parent="." unique_id=20405237 node_paths=PackedStringArray("Player") instance=ExtResource("5_1ixah")]
 Player = NodePath("../PlayerDice")

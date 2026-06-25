@@ -54,6 +54,8 @@ var Positioner: int #assigns the above positions to their respective ints
 #--AUDIO--
 @onready var AudioStreaming = $AudioStreamPlayer3D
 var AudioChange: int
+@onready var AudioStreaming2 = $AudioStreamPlayer3D2
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -63,6 +65,10 @@ func _ready():
 	#if Cloned:
 		#_ifSpawning()
 	XPMult = 1
+	AudioChange = randi_range(0,1)
+	AudioStreaming2.play()
+	await FollowingCooldownTimer.timeout
+	AudioPlaying("res://Audio/SFX/MB/079. footstep0.mp3")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -105,6 +111,8 @@ func _on_damage_cooldown_timeout():
 	
 func _Health():
 	if Health <= 0:
+		AudioStreaming2.play()
+		
 		GlobalPlayerScript.PlayerXP += (XP * XPMult)
 		GlobalPlayerScript.LevelUpXP += (XP * XPMult)
 		GlobalPlayerScript.EnemyKills += 1
@@ -136,7 +144,6 @@ func _attackDiceMult():
 func _attackvisual():
 	if CRIT == 2:
 		CriticalAttackedMeshInstance.visible = true
-		AudioPlaying("res://Audio/SFX/FN/Critical.wav")
 	else:
 		AttackedMeshInstance.visible = true
 
@@ -209,6 +216,7 @@ func _on_atacked_timer_timeout():
 func AudioPlaying(SFX):
 	AudioStreaming.stream = load(SFX)
 	AudioStreaming.play()
+
 
 #Audio changing
 func _AudioChange_Hit():
