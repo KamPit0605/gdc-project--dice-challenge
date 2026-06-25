@@ -932,6 +932,11 @@ bus = &"SFX"
 unit_size = 25.08
 bus = &"SFX"
 
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="PlayerDice/Audios" unique_id=204762555]
+unit_size = 25.08
+pitch_scale = 0.89
+bus = &"SFX"
+
 [node name="Environment" type="Node3D" parent="." unique_id=1783128640]
 
 [node name="Floor" type="StaticBody3D" parent="Environment" unique_id=77190988]

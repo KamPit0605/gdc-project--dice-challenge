@@ -20,7 +20,7 @@ var XPMult: int = 1
 var SPEED = 2.0
 
 #--HEALTH--
-var Health: float = 350
+var Health: float = 400
 
 #--critical DAMAGE--
 var CRIT: int = 1

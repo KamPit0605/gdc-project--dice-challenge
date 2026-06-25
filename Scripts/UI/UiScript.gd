@@ -243,6 +243,7 @@ func RolledAudio():
 	_AudioPlaying2("res://Audio/SFX/MK/SE_RC_ITEM_DECIDE.wav")
 	if (GlobalDiceScript.AcquiredDice >= 2):
 		_AudioPlaying3("res://Audio/SFX/SPLTN/Plz_GearDetail_AddSlot.wav")
+		GlobalPlayerScript.AudioAbility = true
 
 
 

@@ -11,6 +11,7 @@ var LevelUpQuota: int = 300
 const LevelUp1stQuota: int = 300
 
 var EnemyKills: int = 0
+var EnemyKilled: bool
 
 var DamageTaken: bool
 var GainHealthBool: bool
@@ -20,6 +21,9 @@ var criticalHit_indicator: bool
 var autoAttacking_indicator: bool
 
 var DeathPosition: Vector3
+var DeathRotation: Vector3
+
+var AudioAbility: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,6 +36,10 @@ func _process(_delta):
 	#if Input.is_action_just_pressed("Level Up"):
 		#PlayerLevel += 1
 	
+	if EnemyKilled == true:
+		EnemyKilled = false
+	if AudioAbility == true:
+		AudioAbility = false
 
 func LevelingUp():
 	if LevelUpXP >= LevelUpQuota:

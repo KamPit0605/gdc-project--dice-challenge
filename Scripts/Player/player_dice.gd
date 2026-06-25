@@ -11,6 +11,7 @@ signal endGame
 @export var rotationSpeed : float = 15
 @export var PlayerTrigger = Area3D
 @export var AttackTrigger = Area3D
+@onready var TexturesNode = $Textures
 
 @onready var LevelUpText = $Text/LevelUpText
 @onready var TextCountdown = $Text/TextCountdown
@@ -71,6 +72,7 @@ var EnemyDetected: bool
 #--AUDIO--
 @onready var AudioStreaming = $Audios/AudioStreamPlayer3D
 @onready var AudioStreaming2 = $Audios/AudioStreamPlayer3D2
+@onready var AudioStreaming3 = $Audios/AudioStreamPlayer3D3
 var AudioChange: int
 
 func _ready():
@@ -78,8 +80,10 @@ func _ready():
 	AttackCooldownFloat = 1.0
 	HealthGainBool = true
 	HurtMeshInstance.visible = false
+	HealthGain = 1
+	TexturesNode.rotation_degrees = Vector3(-90,0,0)
 	return
-
+	
 func _process(_delta):
 	if Input.is_action_just_pressed('Auto_Attack'):
 		if !EnableAutoAttack:
@@ -89,6 +93,7 @@ func _process(_delta):
 			EnableAutoAttack = false
 			GlobalPlayerScript.autoAttacking_indicator = false
 
+	DiceRotation()
 	PlayerHealth()
 	_defenseDice()
 	_abilityDice()
@@ -122,8 +127,12 @@ func _physics_process(delta):
 	_CriticalAttackSound()
 	
 	criticalFunction()
-	move_and_slide()
 	#_AudioChange_Attacking()
+	if GlobalPlayerScript.AudioAbility == true:
+		_AudioChange_Abilities()
+	_Audio_EnemyKilled()
+	
+	move_and_slide()
 
 #Attack Functions
 func criticalFunction():
@@ -198,11 +207,12 @@ func PlayerHealth():
 		TextCountdown.start(2.0)
 		GlobalPlayerScript.GainHealthBool = false
 		
-	if ((GlobalDiceScript.RollDice == false) && (GlobalDiceScript.AcquiredDice >= 4)):
+	if ((GlobalDiceScript.RollDice == false) && ((GlobalDiceScript.AcquiredDice >= 4) || GlobalDiceScript.AbilityDRole == 3)):
 		GainingHealth()
 		
 	if HEALTH <= 0:
 		GlobalPlayerScript.DeathPosition = global_position
+		GlobalPlayerScript.DeathRotation = TexturesNode.global_rotation
 		emit_signal("endGame")
 
 func GainingHealth():
@@ -210,16 +220,17 @@ func GainingHealth():
 		HEALTH += (HealthGain * AbilityDiceHealhMult)
 		HealthGainCooldown.start(2.0)
 		HealthGainBool = false
-	if (GlobalDiceScript.HealthDNum == 1):
-		HealthGain = 1
-	elif (GlobalDiceScript.HealthDNum == 2):
-		HealthGain = 2
-	elif (GlobalDiceScript.HealthDNum == 3):
-		HealthGain = 3
-	elif (GlobalDiceScript.HealthDNum >= 4) && (GlobalDiceScript.HealthDNum <= 5):
-		HealthGain = 6
-	elif (GlobalDiceScript.HealthDNum == 6):
-		HealthGain = 12
+	if (GlobalDiceScript.AcquiredDice >= 4):
+		if (GlobalDiceScript.HealthDNum == 1):
+			HealthGain = 1
+		elif (GlobalDiceScript.HealthDNum == 2):
+			HealthGain = 2
+		elif (GlobalDiceScript.HealthDNum == 3):
+			HealthGain = 3
+		elif (GlobalDiceScript.HealthDNum >= 4) && (GlobalDiceScript.HealthDNum <= 5):
+			HealthGain = 6
+		elif (GlobalDiceScript.HealthDNum == 6):
+			HealthGain = 12
 
 func _defenseDice():
 	if ((GlobalDiceScript.RollDice == false) && (GlobalDiceScript.AcquiredDice >= 3)):
@@ -245,7 +256,8 @@ func _abilityDice():
 			AbilityDiceReduce = 0
 		
 		if GlobalDiceScript.AbilityDRole == 3: #HEALTH regen Buff (multiplier)!
-			AbilityDiceHealhMult = 2
+			if GlobalDiceScript.AcquiredDice >= 4:
+				AbilityDiceHealhMult = 2
 		else:
 			AbilityDiceHealhMult = 1
 		
@@ -269,7 +281,7 @@ func TakingDamage():
 	HurtMeshInstance.visible = true
 	HurtVisualTimer.start(0.25)
 	_AudioChange_Damaging()
-	AudioChanging(1)
+	AudioChanging(0)
 #other function
 func _on_player_trigger_area_entered(area):
 	if (area.is_in_group("Enemies") && DamageTaken == false):
@@ -307,6 +319,17 @@ func _on_player_trigger_area_exited(area):
 func _on_hurt_visual_timer_timeout():
 	HurtMeshInstance.visible = false
 
+func DiceRotation():
+	if GlobalPlayerScript.PlayerLevel == 4:
+		TexturesNode.rotation_degrees = Vector3(0,0,0)
+	elif GlobalPlayerScript.PlayerLevel == 6:
+		TexturesNode.rotation_degrees = Vector3(0,0,90)
+	elif GlobalPlayerScript.PlayerLevel == 8:
+		TexturesNode.rotation_degrees = Vector3(0,0,-90)
+	elif GlobalPlayerScript.PlayerLevel == 10:
+		TexturesNode.rotation_degrees = Vector3(-180,0,0)
+	elif GlobalPlayerScript.PlayerLevel == 12:
+		TexturesNode.rotation_degrees = Vector3(90,0,0)
 
 func AudioPlaying(SFX):
 	AudioStreaming.stream = load(SFX)
@@ -314,8 +337,11 @@ func AudioPlaying(SFX):
 func AudioPlaying2(SFX):
 	AudioStreaming2.stream = load(SFX)
 	AudioStreaming2.play()
+func AudioPlaying3(SFX):
+	AudioStreaming3.stream = load(SFX)
+	AudioStreaming3.play()
 
-#Audio changing
+#Audio changing and playing
 func _AudioChange_Attacking():
 	if AudioChange == 0:
 		AudioPlaying("res://Audio/SFX/FN/Sword-swipe-1.wav")
@@ -325,12 +351,25 @@ func _AudioChange_Attacking():
 		AudioPlaying("res://Audio/SFX/FN/Sword-swipe-4.wav")
 	elif AudioChange == 3:
 		AudioPlaying("res://Audio/SFX/FN/Sword-swipe-4.wav")
-
 func _AudioChange_Damaging():
 	if AudioChange == 0:
-		AudioPlaying("res://Audio/SFX/MB/189. Player Damage.mp3")
-	elif AudioChange == 1:
 		AudioPlaying("res://Audio/SFX/MB/078. fireplace.mp3")
+	#elif AudioChange == 1:
+		#AudioPlaying("res://Audio/SFX/MB/078. fireplace.mp3")
+func _AudioChange_Abilities():
+	if GlobalDiceScript.AbilityDRole == 1:
+		AudioPlaying2("res://Audio/SFX/MBYB/ 005F - Sound Effects - 4 Game Fun Pack Monopoly Boggle _1.mp3")
+	elif GlobalDiceScript.AbilityDRole == 2:
+		AudioPlaying2("res://Audio/SFX/SSB/se_item_backshield_get.wav")
+	elif GlobalDiceScript.AbilityDRole == 3:
+		AudioPlaying2("res://Audio/SFX/SSB/se_common_lifeup.wav")
+
+func _Audio_EnemyKilled():
+	if GlobalPlayerScript.EnemyKilled == true:
+		AudioStreaming3.pitch_scale = randf_range(0.75,1.75)
+		AudioPlaying3("res://Audio/SFX/MB/189. Player Damage.mp3")
+		await AudioStreaming3.finished
+		AudioStreaming3.pitch_scale = 1.0
 
 func AudioChanging(max):
 	AudioChange = randi_range(0,max)

@@ -112,7 +112,7 @@ func _on_damage_cooldown_timeout():
 func _Health():
 	if Health <= 0:
 		AudioStreaming2.play()
-		
+		GlobalPlayerScript.EnemyKilled = true
 		GlobalPlayerScript.PlayerXP += (XP * XPMult)
 		GlobalPlayerScript.LevelUpXP += (XP * XPMult)
 		GlobalPlayerScript.EnemyKills += 1

@@ -97,6 +97,7 @@ func _Health():
 		GlobalGameSystem.GameStart = true
 		GlobalDiceScript.AcquiredDice = 1
 		AudioStreaming2.play()
+		GlobalPlayerScript.EnemyKilled = true
 		AudioPlaying("res://Audio/SFX/WWE/WWE Royal Rumble Buzzer (2003 - Present).mp3")
 		queue_free()
 		#self.visible = false
