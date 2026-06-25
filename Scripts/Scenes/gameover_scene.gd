@@ -5,6 +5,8 @@ var soundsPlayed: int
 func _ready():
 	if GlobalMusicScript.MusicPlayer: #This checks if it's set and exists
 		GlobalMusicScript.MusicPlayer.stop()
+	if GlobalMusicScript.AmbiencePlayer: #This checks if it's set and exists
+		GlobalMusicScript.AmbiencePlayer.stop()
 	#_AudioPlaying("res://Audio/SFX/WWE/WWE Royal Rumble Buzzer (2003 - Present).mp3")
 
 

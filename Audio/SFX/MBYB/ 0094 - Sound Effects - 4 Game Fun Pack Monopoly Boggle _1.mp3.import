@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b36ctfxw4a7tb"
+path="res://.godot/imported/ 0094 - Sound Effects - 4 Game Fun Pack Monopoly Boggle _1.mp3-c43f644861407e1bfc0ad49f802d7f45.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/MBYB/ 0094 - Sound Effects - 4 Game Fun Pack Monopoly Boggle _1.mp3"
+dest_files=["res://.godot/imported/ 0094 - Sound Effects - 4 Game Fun Pack Monopoly Boggle _1.mp3-c43f644861407e1bfc0ad49f802d7f45.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

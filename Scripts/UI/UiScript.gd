@@ -99,7 +99,8 @@ func _process(_delta):
 	
 	#timeInSeconds = 5
 	
-	
+	RollingAudio()
+	#RolledAudio()
 	
 	#--Functions--
 	_takingDamage()
@@ -157,22 +158,26 @@ func CriticalDisplay():
 			CriticalRoleUI.visible = true
 			CriticalTimer.start(2.0)
 			GlobalUi.CriticalRoleRate = 1
+			AudioPlaying("res://Audio/SFX/SPLTN/GachiStateChange2.wav")
 			CriticalBool = true
 		elif ((GlobalDiceScript.AttackDNum == 1) && (GlobalDiceScript.DefenseDNum == 1) && (GlobalDiceScript.HealthDNum == 1)):
 			CriticalFailureUI.visible = true
 			CriticalTimer.start(2.0)
 			GlobalUi.CriticalRoleRate = 2
+			AudioPlaying("res://Audio/SFX/SPLTN/GachiStateBack.wav")
 			CriticalBool = true
 func OvertimeDisplay():
 	if ((GlobalGameSystem.OVERTIME || OverTimerBool)&&(OverTimeUIDisplay == false)):
 		OvertimeUI.visible = true
 		OverTimeUIDisplay = true
 		CriticalTimer.start(2.0)
+		AudioPlaying("res://Audio/SFX/G&W SHUTTR/00018 - .wav")
 func _1MinuteDisplay():
 	if (((timeInSeconds >= 58) && (timeInSeconds <= 59))&&(_1MinuteUIDisplay == false)):
 		_1MinuteUI.visible = true
 		_1MinuteUIDisplay = true
 		CriticalTimer.start(2.0)
+		AudioPlaying("res://Audio/SFX/G&W SHUTTR/00020 - .wav")
 
 func _on_critical_timer_timeout():
 	CriticalRoleUI.visible = false
@@ -227,3 +232,20 @@ func _AudioPlaying2(SFX):
 func _AudioPlaying3(SFX):
 	AudioStreaming3.stream = load(SFX)
 	AudioStreaming3.play()
+
+func RollingAudio():
+	if (GlobalDiceScript.RollingSFX == true) && (GlobalGameSystem.GamePlaying == true):
+		_AudioPlaying2("res://Audio/SFX/MBYB/ 0094 - Sound Effects - 4 Game Fun Pack Monopoly Boggle _1.mp3")
+		if (GlobalDiceScript.AcquiredDice >= 2):
+			_AudioPlaying3("res://Audio/SFX/SPLTN/Roulette01eq.wav")
+func RolledAudio():
+	#if (GlobalDiceScript.RolledSFX == true) && (GlobalGameSystem.GamePlaying == true):
+	_AudioPlaying2("res://Audio/SFX/MK/SE_RC_ITEM_DECIDE.wav")
+	if (GlobalDiceScript.AcquiredDice >= 2):
+		_AudioPlaying3("res://Audio/SFX/SPLTN/Plz_GearDetail_AddSlot.wav")
+
+
+
+func _on_dice_system_dice_rolled():
+	if (GlobalDiceScript.RolledSFX) && (GlobalGameSystem.GamePlaying):
+		RolledAudio()

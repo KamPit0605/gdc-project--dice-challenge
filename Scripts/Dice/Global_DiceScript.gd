@@ -11,6 +11,9 @@ var AbilityDRole: int
 
 var CriticalRoll: bool
 
+var RollingSFX: bool
+var RolledSFX: bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#RollDice = true
@@ -20,6 +23,7 @@ func _ready():
 func _process(_delta):
 	if RollDice == true:
 		_rolldice()
+		#RollingSFX = true
 	#AttackDNum = 6
 	#DefenseDNum = 6
 	#HealthDNum = 6

@@ -215,11 +215,9 @@ func GainingHealth():
 	elif (GlobalDiceScript.HealthDNum == 2):
 		HealthGain = 2
 	elif (GlobalDiceScript.HealthDNum == 3):
+		HealthGain = 3
+	elif (GlobalDiceScript.HealthDNum >= 4) && (GlobalDiceScript.HealthDNum <= 5):
 		HealthGain = 6
-	elif (GlobalDiceScript.HealthDNum == 4):
-		HealthGain = 8
-	elif (GlobalDiceScript.HealthDNum == 5):
-		HealthGain = 10
 	elif (GlobalDiceScript.HealthDNum == 6):
 		HealthGain = 12
 

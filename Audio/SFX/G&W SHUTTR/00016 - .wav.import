@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://nm4xa81b3w87"
-path="res://.godot/imported/00015 - .wav-bc8fe380e63253c74fc352240bbc88ef.sample"
+uid="uid://e6gpg4uwfwvd"
+path="res://.godot/imported/00016 - .wav-261cb9247aa338957142e598631685d1.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/SHUTTR/00015 - .wav"
-dest_files=["res://.godot/imported/00015 - .wav-bc8fe380e63253c74fc352240bbc88ef.sample"]
+source_file="res://Audio/SFX/G&W SHUTTR/00016 - .wav"
+dest_files=["res://.godot/imported/00016 - .wav-261cb9247aa338957142e598631685d1.sample"]
 
 [params]
 

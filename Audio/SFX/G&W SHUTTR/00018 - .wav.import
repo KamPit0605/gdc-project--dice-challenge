@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bl2i3muiviutt"
-path="res://.godot/imported/00018 - .wav-397eca0a80913d2c83634b96d396a49e.sample"
+path="res://.godot/imported/00018 - .wav-eaf8f4d451bb6132e995ceb51da5a5c0.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/SHUTTR/00018 - .wav"
-dest_files=["res://.godot/imported/00018 - .wav-397eca0a80913d2c83634b96d396a49e.sample"]
+source_file="res://Audio/SFX/G&W SHUTTR/00018 - .wav"
+dest_files=["res://.godot/imported/00018 - .wav-eaf8f4d451bb6132e995ceb51da5a5c0.sample"]
 
 [params]
 

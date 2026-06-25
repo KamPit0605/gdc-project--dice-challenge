@@ -1335,3 +1335,4 @@ texture = SubResource("CompressedTexture2D_m8c54")
 [connection signal="timeout" from="enemyStationary_dice/DamageCooldown" to="enemyStationary_dice" method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="enemyStationary_dice/FollowingCooldown" to="enemyStationary_dice" method="_on_following_cooldown_timeout"]
 [connection signal="timeout" from="Globals/GameSystem/Timers/Game_Timer" to="UI" method="_on_game_timer_timeout"]
+[connection signal="DiceRolled" from="DiceSystem" to="UI" method="_on_dice_system_dice_rolled"]

@@ -1,6 +1,7 @@
 extends Node
 #Global Script
 var MusicPlayer: AudioStreamPlayer = null
+var AmbiencePlayer: AudioStreamPlayer = null
 var Pitch: float = 1.0
 var VolumeDB: float = 0.0
 
@@ -11,6 +12,15 @@ func _ready():
 	MusicPlayer.set_bus('Music')
 	#Adjustments()
 	add_child(MusicPlayer) #maintains music by adding this node to scenes
+
+	AmbiencePlayer = AudioStreamPlayer.new()
+	AmbiencePlayer.stream = load("res://Audio/Music/Crowd Ambience ｜ 10 Minutes ｜ HQ Stereo Sound_1.mp3")
+	AmbiencePlayer.autoplay = true
+	AmbiencePlayer.set_bus('Music')
+	#Adjustments()
+	AmbiencePlayer.volume_db = -8.0
+	add_child(AmbiencePlayer)
+
 
 func _process(delta):
 	Adjustments()

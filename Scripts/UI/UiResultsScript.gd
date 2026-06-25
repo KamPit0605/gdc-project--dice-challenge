@@ -25,6 +25,7 @@ var mainmenu_scene = preload("res://Scenes/mainmenu_scene.tscn")
 #var ConnectButtons: bool = false
 
 @onready var AudioStreaming = $AudioStreamPlayer
+var PlaySound: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,14 +58,19 @@ func MusicRestart():
 	if GlobalMusicScript.MusicPlayer: #This checks if it's set and exists
 		GlobalMusicScript.MusicPlayer.stream = load("res://Audio/Music/Recovered from Addiction (GDC Casino).mp3")
 		GlobalMusicScript.MusicPlayer.play(146.13)
+	if GlobalMusicScript.AmbiencePlayer: #This checks if it's set and exists
+		GlobalMusicScript.AmbiencePlayer.stream = load("res://Audio/Music/Crowd Ambience ｜ 10 Minutes ｜ HQ Stereo Sound_1.mp3")
+		GlobalMusicScript.AmbiencePlayer.play()
 
 func _on_timer_timeout():
 	_beforeStarting()
 	XPUI.visible = true
 	KillsUI.visible = true
-	if GlobalGameSystem.OVERTIME == true:
+	if (GlobalGameSystem.OVERTIME == true):
 		CPassedUI.visible = true
-		AudioStreaming.play()
+		if !PlaySound:
+			AudioStreaming.play()
+			PlaySound = true
 	else:
 		COverUI.visible = true
 
