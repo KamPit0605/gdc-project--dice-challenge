@@ -79,6 +79,7 @@ func _process(_delta):
 		#print("OUCH!")
 		AttackedTimer.start(0.25)
 		_attackvisual()
+		_AudioChange_Hit()
 		DamageCooldown = true
 	
 	_critical()

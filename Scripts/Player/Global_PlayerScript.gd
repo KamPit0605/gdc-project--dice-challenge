@@ -11,9 +11,10 @@ var LevelUpQuota: int = 300
 const LevelUp1stQuota: int = 300
 
 var EnemyKills: int = 0
-var EnemyKilled: bool
-var BossKilled: bool
-var BossTypeKilled: int #1 = big; 2 = huge
+var EnemyKilled: bool = false
+var BossKilled: bool = false
+#var BossTypeKilled: int #1 = big; 2 = huge
+var HugeBossKilled: bool
 
 var DamageTaken: bool
 var GainHealthBool: bool
@@ -26,6 +27,8 @@ var DeathPosition: Vector3
 var DeathRotation: Vector3
 
 var AudioAbility: bool
+
+var KilledTimer: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,7 +44,9 @@ func _process(_delta):
 	if EnemyKilled == true:
 		EnemyKilled = false
 	if BossKilled == true:
-		BossKilled = false
+		pass
+	if HugeBossKilled == true:
+		pass
 	if AudioAbility == true:
 		AudioAbility = false
 

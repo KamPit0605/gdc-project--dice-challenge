@@ -79,6 +79,7 @@ func _process(delta):
 		#print("OUCH!")
 		AttackedTimer.start(0.25)
 		_attackvisual()
+		_AudioChange_Hit()
 		DamageCooldown = true
 	
 	_critical()
@@ -107,7 +108,6 @@ func _Health():
 	if Health <= 0:
 		GlobalPlayerScript.EnemyKilled = true
 		GlobalPlayerScript.BossKilled = true
-		GlobalPlayerScript.BossTypeKilled = 1
 		GlobalPlayerScript.PlayerXP += (XP * XPMult)
 		GlobalPlayerScript.LevelUpXP += (XP * XPMult)
 		GlobalPlayerScript.EnemyKills += 1

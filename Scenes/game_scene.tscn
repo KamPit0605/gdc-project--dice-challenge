@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bs8exio7gkbd2" path="res://Scripts/Dice/Global_DiceScript.gd" id="6_rgj8m"]
 [ext_resource type="PackedScene" uid="uid://7shbr518fxwl" path="res://Scenes/Systems/EnemySpawner.tscn" id="7_2fmhe"]
 [ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="7_8m72m"]
+[ext_resource type="AudioStream" uid="uid://ceub4lfbmllgq" path="res://Audio/SFX/FN/extra-life.wav" id="8_mipjh"]
 [ext_resource type="AudioStream" uid="uid://0wfg1fhk53gi" path="res://Audio/SFX/ZLD/The Legend of Zelda Cartoon Sound Effects Enemy Zapped.wav" id="9_a7fet"]
 [ext_resource type="Script" uid="uid://dkx18dduq5qu7" path="res://Scripts/Systems/Global_game_system.gd" id="11_4xiap"]
 [ext_resource type="PackedScene" uid="uid://ld1mxfj4vaxp" path="res://Scenes/Systems/dice_system.tscn" id="12_wywco"]
@@ -929,16 +930,24 @@ surface_material_override/0 = SubResource("StandardMaterial3D_w8jfd")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="PlayerDice/Audios" unique_id=1883578965]
 unit_size = 25.08
+max_polyphony = 3
 bus = &"SFX"
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="PlayerDice/Audios" unique_id=1823556886]
 unit_size = 25.08
+max_polyphony = 3
 bus = &"SFX"
 
 [node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="PlayerDice/Audios" unique_id=204762555]
 unit_size = 25.08
 pitch_scale = 0.89
+max_polyphony = 3
 bus = &"SFX"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PlayerDice/Audios" unique_id=1176039154]
+stream = ExtResource("8_mipjh")
+volume_db = -10.0
+max_polyphony = 3
 
 [node name="Environment" type="Node3D" parent="." unique_id=1783128640]
 

@@ -73,6 +73,7 @@ var EnemyDetected: bool
 @onready var AudioStreaming = $Audios/AudioStreamPlayer3D
 @onready var AudioStreaming2 = $Audios/AudioStreamPlayer3D2
 @onready var AudioStreaming3 = $Audios/AudioStreamPlayer3D3
+@onready var AudioStreamingEx = $Audios/AudioStreamPlayer
 var AudioChange: int
 var AudioVolumeDefault: float = 0.0
 
@@ -209,6 +210,7 @@ func PlayerHealth():
 		MaxHealth += 5
 		LevelUpText.visible = true
 		TextCountdown.start(2.0)
+		_Audio_LevelUp()
 		GlobalPlayerScript.GainHealthBool = false
 		
 	if ((GlobalDiceScript.RollDice == false) && ((GlobalDiceScript.AcquiredDice >= 4) || GlobalDiceScript.AbilityDRole == 3)):
@@ -378,6 +380,12 @@ func _Audio_EnemyKilled():
 		await AudioStreaming3.finished
 		AudioStreaming3.pitch_scale = 1.0
 		
+
+func _Audio_LevelUp():
+	AudioPlaying3("res://Audio/SFX/MB/099. Holy Book.mp3")
+	AudioStreamingEx.play()
+	await AudioStreamingEx.finished
+	AudioStreamingEx.pitch_scale += 0.05
 
 func AudioChanging(max):
 	AudioChange = randi_range(0,max)

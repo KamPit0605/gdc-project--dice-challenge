@@ -51,6 +51,9 @@ var OverTimerBool: bool
 @onready var AudioStreaming = $Audio/AudioStreamPlayer
 @onready var AudioStreaming2 = $Audio/AudioStreamPlayer2D
 @onready var AudioStreaming3 = $Audio/AudioStreamPlayer2D2
+@onready var AudioStreaming4 = $Audio/AudioStreamPlayer2D3
+var audioDifferentCheering: int
+var cheeringAudioBool: bool
 
 #GlobalPlayerScript
 #GlobalDiceScript
@@ -100,7 +103,13 @@ func _process(_delta):
 	#timeInSeconds = 5
 	
 	RollingAudio()
+	cheeringAudio()
+	if (GlobalPlayerScript.BossKilled == true) || (GlobalPlayerScript.HugeBossKilled == true):
+		cheeringAudioBool = true
+		GlobalPlayerScript.BossKilled = false
+		
 	#RolledAudio()
+	
 	
 	#--Functions--
 	_takingDamage()
@@ -174,6 +183,7 @@ func OvertimeDisplay():
 		OverTimeUIDisplay = true
 		CriticalTimer.start(2.0)
 		AudioPlaying("res://Audio/SFX/G&W SHUTTR/00018 - .wav")
+		_differentCheering()
 func _1MinuteDisplay():
 	if (((timeInSeconds >= 58) && (timeInSeconds <= 59))&&(_1MinuteUIDisplay == false)):
 		_1MinuteUI.visible = true
@@ -234,6 +244,9 @@ func _AudioPlaying2(SFX):
 func _AudioPlaying3(SFX):
 	AudioStreaming3.stream = load(SFX)
 	AudioStreaming3.play()
+func _AudioPlaying4(SFX):
+	AudioStreaming4.stream = load(SFX)
+	AudioStreaming4.play()
 
 func RollingAudio():
 	if (GlobalDiceScript.RollingSFX == true) && (GlobalGameSystem.GamePlaying == true):
@@ -247,8 +260,22 @@ func RolledAudio():
 		_AudioPlaying3("res://Audio/SFX/SPLTN/Plz_GearDetail_AddSlot.wav")
 		GlobalPlayerScript.AudioAbility = true
 
-
-
 func _on_dice_system_dice_rolled():
 	if (GlobalDiceScript.RolledSFX) && (GlobalGameSystem.GamePlaying):
 		RolledAudio()
+
+
+func cheeringAudio():
+	if (GlobalPlayerScript.BossKilled == true) || (cheeringAudioBool == true):
+		if (GlobalPlayerScript.HugeBossKilled == true):
+			_differentCheering()
+		else:
+			_AudioPlaying4("res://Audio/SFX/SSB/se_audience_clap_m.wav")
+		GlobalPlayerScript.HugeBossKilled = false
+	cheeringAudioBool = false
+func _differentCheering():
+	audioDifferentCheering = randi_range(1,2)
+	if (audioDifferentCheering == 1):
+		_AudioPlaying4("res://Audio/SFX/SSB/se_audience_cheer_m.wav")
+	elif (audioDifferentCheering == 2):
+		_AudioPlaying4("res://Audio/SFX/SPLTN/Plaza_FesChoice_Yeah.wav")
