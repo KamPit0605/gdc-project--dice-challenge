@@ -49,6 +49,10 @@ var Positioner: int #assigns the above positions to their respective ints
 
 #@export var Cloned: bool = false
 
+#--AUDIO--
+@onready var AudioStreaming = $AudioStreamPlayer3D
+@onready var AudioStreaming2 = $AudioStreamPlayer3D2
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Cloned = true
@@ -57,6 +61,9 @@ func _ready():
 	#if Cloned:
 		#_ifSpawning()
 	XPMult = 1
+	AudioStreaming2.play()
+	await FollowingCooldownTimer.timeout
+	AudioPlaying("res://Audio/SFX/MB/175. Ninja Step0.mp3")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -192,3 +199,7 @@ func _on_following_cooldown_timeout():
 func _on_atacked_timer_timeout():
 	AttackedMeshInstance.visible = false
 	CriticalAttackedMeshInstance.visible = false
+
+func AudioPlaying(SFX):
+	AudioStreaming.stream = load(SFX)
+	AudioStreaming.play()

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dx58ccrq8y35e" path="res://Scripts/Enemy/enemy_strong-ghost_dice.gd" id="1_bl05j"]
 [ext_resource type="Texture2D" uid="uid://c36ynu8r61eui" path="res://Textures/Dice/DieSide3.png" id="2_bl05j"]
+[ext_resource type="AudioStream" uid="uid://bas1dbf4a5e0v" path="res://Audio/SFX/ZLD/The Legend of Zelda Cartoon Sound Effects Boss Zapped.wav" id="3_ypg1l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w0rp6"]
 
@@ -96,6 +97,17 @@ mesh = SubResource("BoxMesh_fowbw")
 surface_material_override/0 = SubResource("StandardMaterial3D_hcbg1")
 
 [node name="AtackedTimer" type="Timer" parent="Attacked" unique_id=81216072]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1798800385]
+volume_db = -2.0
+unit_size = 20.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="." unique_id=1760730952]
+stream = ExtResource("3_ypg1l")
+volume_db = -5.0
+unit_size = 20.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_entered"]
 [connection signal="area_exited" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_exited"]

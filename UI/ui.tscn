@@ -271,6 +271,12 @@ font_color = Color(0.0627451, 0.92156863, 0.92156863, 1)
 outline_size = 15
 outline_color = Color(0.015686275, 0.015686275, 1, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_6rr40"]
+font_size = 30
+font_color = Color(0.0627451, 0.92156863, 0.92156863, 1)
+outline_size = 10
+outline_color = Color(0.015686275, 0.015686275, 1, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_h81ot"]
 font_size = 60
 font_color = Color(1, 0.92156863, 0.92156863, 1)
@@ -826,16 +832,22 @@ text = "CRITICAL..."
 label_settings = SubResource("LabelSettings_nm1m0")
 
 [node name="Overtime" type="VBoxContainer" parent="VBoxContainer/Criticals" unique_id=390879067]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="OvertimeUI" type="Label" parent="VBoxContainer/Criticals/Overtime" unique_id=740190260]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "OVERTIME"
 label_settings = SubResource("LabelSettings_4fiuh")
+
+[node name="OvertimeUI2" type="Label" parent="VBoxContainer/Criticals/Overtime" unique_id=1738997019]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "x2 XP!"
+label_settings = SubResource("LabelSettings_6rr40")
 
 [node name="Time Alert" type="VBoxContainer" parent="VBoxContainer/Criticals" unique_id=448046924]
 layout_mode = 2
@@ -873,6 +885,7 @@ vertical_alignment = 1
 [node name="Audio" type="Node" parent="." unique_id=314220407]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio" unique_id=38772813]
+volume_db = -4.0
 bus = &"SFX"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio" unique_id=468974798]

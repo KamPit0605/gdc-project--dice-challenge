@@ -33,7 +33,7 @@ var AbilityNames: String = "Ability"
 @onready var CriticalFailureUI = $VBoxContainer/Criticals/CriticalFailureUI
 @onready var CriticalTimer = $CriticalTimer
 var CriticalBool: bool = false 
-@onready var OvertimeUI = $VBoxContainer/Criticals/Overtime/OvertimeUI
+@onready var OvertimeUI = $VBoxContainer/Criticals/Overtime
 var OverTimeUIDisplay: bool
 @onready var _1MinuteUI = $"VBoxContainer/Criticals/Time Alert/1MinuteUI"
 var _1MinuteUIDisplay:bool = false
@@ -274,8 +274,8 @@ func cheeringAudio():
 		GlobalPlayerScript.HugeBossKilled = false
 	cheeringAudioBool = false
 func _differentCheering():
-	audioDifferentCheering = randi_range(1,2)
-	if (audioDifferentCheering == 1):
+	audioDifferentCheering = randi_range(0,1)
+	if (audioDifferentCheering == 0):
 		_AudioPlaying4("res://Audio/SFX/SSB/se_audience_cheer_m.wav")
-	elif (audioDifferentCheering == 2):
+	elif (audioDifferentCheering == 1):
 		_AudioPlaying4("res://Audio/SFX/SPLTN/Plaza_FesChoice_Yeah.wav")
