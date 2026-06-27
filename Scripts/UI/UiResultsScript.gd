@@ -27,6 +27,7 @@ var mainmenu_scene = preload("res://Scenes/mainmenu_scene.tscn")
 @onready var AudioStreaming = $AudioStreamPlayer
 var PlaySound: bool
 
+var stopCalling: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	CPassedUI.visible = false
@@ -37,6 +38,7 @@ func _ready():
 	MainMenuMenu.visible = false
 	GlobalGameSystem.GamePlaying = false
 	BaffledText.visible = false
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,8 +52,11 @@ func _process(_delta):
 			PlayAgainSelect.emit()
 		if Input.is_action_just_pressed("ui_cancel"):
 			MainMenuSelect.emit()
-		PlayAgainButton.pressed.connect(_playagain)
-		MainMenuButton.pressed.connect(_mainmenu)
+		if (!stopCalling):
+			PlayAgainButton.pressed.connect(_playagain)
+			MainMenuButton.pressed.connect(_mainmenu)
+			stopCalling = true #prevents it from eternally attempting connection.>>
+			#>>Also stops flooding the Debugger.
 		
 
 func MusicRestart():
@@ -96,6 +101,7 @@ func _mainmenu():
 	MainMenuSelect.emit()
 
 func _on_play_again_select():
+	GlobalDiceScript.AcquiredDice = 0
 	GlobalGameSystem._restart()
 	UiScoreResets()
 	MusicRestart()

@@ -12,6 +12,8 @@ const LevelUp1stQuota: int = 300
 
 var EnemyKills: int = 0
 var EnemyKilled: bool
+var BossKilled: bool
+var BossTypeKilled: int #1 = big; 2 = huge
 
 var DamageTaken: bool
 var GainHealthBool: bool
@@ -38,6 +40,8 @@ func _process(_delta):
 	
 	if EnemyKilled == true:
 		EnemyKilled = false
+	if BossKilled == true:
+		BossKilled = false
 	if AudioAbility == true:
 		AudioAbility = false
 

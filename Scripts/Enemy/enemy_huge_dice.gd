@@ -49,11 +49,20 @@ var Positioner: int #assigns the above positions to their respective ints
 
 #@export var Cloned: bool = false
 
+#--AUDIO--
+@onready var AudioStreaming = $AudioStreamPlayer3D
+var AudioChange: int
+@onready var AudioStreaming2 = $AudioStreamPlayer3D2
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Cloned = true
 	DisableALLTriggers()
 	FollowingCooldownTimer.start(1)
+	AudioChange = randi_range(0,1)
+	AudioStreaming2.play()
+	await FollowingCooldownTimer.timeout
+	AudioPlaying("res://Audio/SFX/MB/180. Nuke.mp3")
 	#if Cloned:
 		#_ifSpawning()
 
@@ -96,6 +105,9 @@ func _on_damage_cooldown_timeout():
 	
 func _Health():
 	if Health <= 0:
+		GlobalPlayerScript.EnemyKilled = true
+		GlobalPlayerScript.BossKilled = true
+		GlobalPlayerScript.BossTypeKilled = 2
 		GlobalPlayerScript.PlayerXP += (XP * XPMult)
 		GlobalPlayerScript.LevelUpXP += (XP * XPMult)
 		GlobalPlayerScript.EnemyKills += 1
@@ -194,3 +206,20 @@ func _on_following_cooldown_timeout():
 func _on_atacked_timer_timeout():
 	AttackedMeshInstance.visible = false
 	CriticalAttackedMeshInstance.visible = false
+
+func AudioPlaying(SFX):
+	AudioStreaming.stream = load(SFX)
+	AudioStreaming.play()
+	
+	#Audio changing
+func _AudioChange_Hit():
+	AudioStreaming.pitch_scale = randf_range(0.80,1.2)
+	if AudioChange == 0:
+		AudioPlaying("res://Audio/SFX/MB/094. Hit1 0.mp3")
+	elif AudioChange == 1:
+		AudioPlaying("res://Audio/SFX/MB/096. Hit2 0.mp3")
+	await AudioStreaming.finished
+	AudioStreaming.pitch_scale = 1.0
+
+func AudioChanging(max):
+	AudioChange = randi_range(0,max)

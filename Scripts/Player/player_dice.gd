@@ -74,6 +74,7 @@ var EnemyDetected: bool
 @onready var AudioStreaming2 = $Audios/AudioStreamPlayer3D2
 @onready var AudioStreaming3 = $Audios/AudioStreamPlayer3D3
 var AudioChange: int
+var AudioVolumeDefault: float = 0.0
 
 func _ready():
 	AttackingFloat = 0.15
@@ -179,8 +180,7 @@ func _on_attack_trigger_area_entered(area):
 	if area.is_in_group("Enemies"):
 		EnemyDetected = true
 		AttackCloserGuide.visible = true
-		if (GlobalPlayerScript.criticalHit_indicator == true) && (EnableAttack == true):
-			AudioPlaying2("res://Audio/SFX/FN/Critical.wav")
+		_CriticalAttackSound()
 
 func _autoAttackEnemy():
 	if (EnemyDetected == true && EnableAutoAttack == true):
@@ -188,7 +188,11 @@ func _autoAttackEnemy():
 
 func _CriticalAttackSound():
 	if (GlobalPlayerScript.criticalHit_indicator) && (EnableAttack) && (EnemyDetected):
+		AudioStreaming2.volume_db = -2.0
 		AudioPlaying2("res://Audio/SFX/FN/Critical.wav")
+		await AudioStreaming2.finished
+		AudioStreaming2.volume_db = AudioVolumeDefault
+		
 
 func _on_attack_trigger_area_exited(area):
 	if area.is_in_group("Enemies"):
@@ -353,7 +357,7 @@ func _AudioChange_Attacking():
 		AudioPlaying("res://Audio/SFX/FN/Sword-swipe-4.wav")
 func _AudioChange_Damaging():
 	if AudioChange == 0:
-		AudioPlaying("res://Audio/SFX/MB/078. fireplace.mp3")
+		AudioPlaying2("res://Audio/SFX/MB/078. fireplace.mp3")
 	#elif AudioChange == 1:
 		#AudioPlaying("res://Audio/SFX/MB/078. fireplace.mp3")
 func _AudioChange_Abilities():
@@ -368,8 +372,12 @@ func _Audio_EnemyKilled():
 	if GlobalPlayerScript.EnemyKilled == true:
 		AudioStreaming3.pitch_scale = randf_range(0.75,1.75)
 		AudioPlaying3("res://Audio/SFX/MB/189. Player Damage.mp3")
+		if (GlobalPlayerScript.BossKilled):
+			AudioStreaming3.pitch_scale = 1.0
+			AudioPlaying3("res://Audio/SFX/MB/064. enemy spawn.mp3")
 		await AudioStreaming3.finished
 		AudioStreaming3.pitch_scale = 1.0
+		
 
 func AudioChanging(max):
 	AudioChange = randi_range(0,max)

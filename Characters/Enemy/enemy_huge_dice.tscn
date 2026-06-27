@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bv4irr41vh5fj" path="res://Scripts/Enemy/enemy_huge_dice.gd" id="1_t3ne1"]
 [ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="2_cyxb2"]
+[ext_resource type="AudioStream" uid="uid://0wfg1fhk53gi" path="res://Audio/SFX/ZLD/The Legend of Zelda Cartoon Sound Effects Enemy Zapped.wav" id="3_s63ce"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w0rp6"]
 size = Vector3(3, 3, 3)
@@ -93,6 +94,17 @@ mesh = SubResource("BoxMesh_cyxb2")
 surface_material_override/0 = SubResource("StandardMaterial3D_rw8b6")
 
 [node name="AtackedTimer" type="Timer" parent="Attacked" unique_id=1349855924]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=514842464]
+volume_db = -2.0
+unit_size = 20.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="." unique_id=1511720347]
+stream = ExtResource("3_s63ce")
+volume_db = -15.0
+unit_size = 20.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_entered"]
 [connection signal="area_exited" from="EnemyTrigger" to="." method="_on_enemy_trigger_area_exited"]

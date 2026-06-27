@@ -166,6 +166,8 @@ func CriticalDisplay():
 			GlobalUi.CriticalRoleRate = 2
 			AudioPlaying("res://Audio/SFX/SPLTN/GachiStateBack.wav")
 			CriticalBool = true
+		else:
+			GlobalUi.CriticalRoleRate = 0
 func OvertimeDisplay():
 	if ((GlobalGameSystem.OVERTIME || OverTimerBool)&&(OverTimeUIDisplay == false)):
 		OvertimeUI.visible = true

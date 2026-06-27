@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://ld1mxfj4vaxp" path="res://Scenes/Systems/dice_system.tscn" id="12_wywco"]
 [ext_resource type="PackedScene" uid="uid://wpf7vtcpjbaf" path="res://UI/uiPause.tscn" id="14_ldntv"]
 [ext_resource type="Script" uid="uid://b1vq61j17bfi5" path="res://Scripts/tutorial&controls.gd" id="15_w8jfd"]
+[ext_resource type="Texture2D" uid="uid://bjkfqp1l1h3mr" path="res://Textures/Dice/CriticalDieVisual_Success.png" id="17_8m72m"]
+[ext_resource type="Script" uid="uid://c6fc2s217r4t8" path="res://Scripts/vfxScript.gd" id="17_np3vi"]
+[ext_resource type="Texture2D" uid="uid://bswfogsiriqex" path="res://Textures/Dice/CriticalDieVisual_Failure.png" id="18_gtbs0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6h5vk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -1323,6 +1326,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6)
 [node name="Xbox Right Stick Button" type="Sprite3D" parent="Tutorial/Controls/Attack/PS/AutoAttack" unique_id=2115326310]
 transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 0, 0, 0)
 texture = SubResource("CompressedTexture2D_m8c54")
+
+[node name="VFX" type="Node3D" parent="." unique_id=1373109502]
+script = ExtResource("17_np3vi")
+
+[node name="Images" type="Node3D" parent="VFX" unique_id=82102157]
+
+[node name="Critical Dice" type="Node3D" parent="VFX/Images" unique_id=382509788]
+visible = false
+
+[node name="Critical Success" type="Node3D" parent="VFX/Images/Critical Dice" unique_id=1513530767]
+
+[node name="Critical Success Die 1" type="Sprite3D" parent="VFX/Images/Critical Dice/Critical Success" unique_id=270660998]
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, -18, 0.15, 0)
+texture = ExtResource("17_8m72m")
+
+[node name="Critical Success Die 2" type="Sprite3D" parent="VFX/Images/Critical Dice/Critical Success" unique_id=1027968332]
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, 18, 0.15, 0)
+texture = ExtResource("17_8m72m")
+
+[node name="Critical Failure" type="Node3D" parent="VFX/Images/Critical Dice" unique_id=743777501]
+
+[node name="Critical Success Die 1" type="Sprite3D" parent="VFX/Images/Critical Dice/Critical Failure" unique_id=536995435]
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, -18, 0.15, 0)
+texture = ExtResource("18_gtbs0")
+
+[node name="Critical Success Die 2" type="Sprite3D" parent="VFX/Images/Critical Dice/Critical Failure" unique_id=1541662197]
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, 18, 0.15, 0)
+texture = ExtResource("18_gtbs0")
 
 [connection signal="endGame" from="PlayerDice" to="Globals/GameSystem" method="_on_player_dice_end_game"]
 [connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]

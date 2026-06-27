@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://calotiwvbebbh" path="res://Textures/Dice/DieSide4.png" id="5_41bvs"]
 [ext_resource type="Texture2D" uid="uid://c1qsyl5hxn0tw" path="res://Textures/Dice/DieSide5.png" id="6_ipysv"]
 [ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="7_yywdj"]
+[ext_resource type="AudioStream" uid="uid://peoutlog75ed" path="res://Audio/SFX/MB/178. Noodle Stop.mp3" id="10_cptv5"]
 [ext_resource type="PackedScene" uid="uid://ky2g1r3qhiax" path="res://UI/uiResults.tscn" id="10_f6agg"]
 [ext_resource type="Script" uid="uid://dkx18dduq5qu7" path="res://Scripts/Systems/Global_game_system.gd" id="11_oe601"]
 [ext_resource type="AudioStream" uid="uid://bhgn4np34qut3" path="res://Audio/SFX/WWE/WWE Royal Rumble Buzzer (2003 - Present)_1.mp3" id="12_67xfh"]
@@ -158,6 +159,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDice(Dead)/CameraDicePosition/Area3D" unique_id=491638410 groups=["Player"]]
 shape = SubResource("BoxShape3D_tq8oo")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="PlayerDice(Dead)" unique_id=856750412]
+stream = ExtResource("10_cptv5")
+volume_db = 5.0
+autoplay = true
 
 [node name="Environment" type="Node3D" parent="." unique_id=1783128640]
 

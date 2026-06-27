@@ -220,10 +220,13 @@ func AudioPlaying(SFX):
 
 #Audio changing
 func _AudioChange_Hit():
+	AudioStreaming.pitch_scale = randf_range(0.80,1.2)
 	if AudioChange == 0:
 		AudioPlaying("res://Audio/SFX/MB/094. Hit1 0.mp3")
 	elif AudioChange == 1:
 		AudioPlaying("res://Audio/SFX/MB/096. Hit2 0.mp3")
+	await AudioStreaming.finished
+	AudioStreaming.pitch_scale = 1.0
 
 func AudioChanging(max):
 	AudioChange = randi_range(0,max)
