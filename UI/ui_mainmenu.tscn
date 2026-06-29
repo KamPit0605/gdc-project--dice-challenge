@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://d3f2t05kkkj3k"]
 
 [ext_resource type="Script" uid="uid://b6dahniq5soxq" path="res://Scripts/UI/UiMainMenuScript.gd" id="1_ce80c"]
+[ext_resource type="Texture2D" uid="uid://bg86c5u8ghcum" path="res://Textures/Settings/ControllerVibrateIcon.png" id="2_0sy5l"]
+[ext_resource type="Texture2D" uid="uid://du1dyfqvqrh6c" path="res://Textures/Settings/MusicNoteIcon.png" id="2_uvod3"]
+[ext_resource type="Texture2D" uid="uid://cvnn2ekuykpwg" path="res://Textures/Settings/SpeakerIcon.png" id="3_17fjn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3sbvi"]
 font_size = 60
@@ -15,6 +18,9 @@ outline_size = 15
 outline_color = Color(0.41568628, 0.41568628, 1, 1)
 shadow_size = 15
 shadow_color = Color(0, 0, 0, 0.39215687)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0sy5l"]
+font_color = Color(1, 0, 0, 1)
 
 [node name="UIMainMenu" type="Control" unique_id=20405237 node_paths=PackedStringArray("PlayButton", "CreditsButton", "QuitButton")]
 process_mode = 3
@@ -104,6 +110,89 @@ layout_mode = 2
 text = "Quit
 "
 
+[node name="Settings" type="VBoxContainer" parent="." unique_id=1922925345]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Vibration" type="GridContainer" parent="Settings" unique_id=927088078]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 6
+
+[node name="ControllerVibrateIcon" type="TextureRect" parent="Settings/Vibration" unique_id=1315212150]
+layout_mode = 2
+texture = ExtResource("2_0sy5l")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="CVButton" type="Button" parent="Settings/Vibration" unique_id=909723744]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "___"
+
+[node name="OnText" type="Label" parent="Settings/Vibration" unique_id=124992031]
+layout_mode = 2
+text = "On"
+
+[node name="OffText" type="Label" parent="Settings/Vibration" unique_id=2017569343]
+layout_mode = 2
+text = "Off"
+label_settings = SubResource("LabelSettings_0sy5l")
+
+[node name="Music" type="GridContainer" parent="Settings" unique_id=796072313]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="MusicNoteIcon" type="TextureRect" parent="Settings/Music" unique_id=2074946107]
+layout_mode = 2
+texture = ExtResource("2_uvod3")
+expand_mode = 2
+
+[node name="MusicSlider" type="HSlider" parent="Settings/Music" unique_id=78232704]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 5.0
+step = 0.5
+value = 1.0
+tick_count = 5
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="SFX" type="GridContainer" parent="Settings" unique_id=1783797375]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="SpeakerIcon" type="TextureRect" parent="Settings/SFX" unique_id=1355145697]
+layout_mode = 2
+texture = ExtResource("3_17fjn")
+expand_mode = 2
+
+[node name="SFXSlider" type="HSlider" parent="Settings/SFX" unique_id=2023897162]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 5.0
+step = 0.5
+value = 1.0
+tick_count = 5
+ticks_on_borders = true
+ticks_position = 3
+
 [connection signal="pressed" from="Menu/Play/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Menu/Credits/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Menu/Quit/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Settings/Vibration/CVButton" to="." method="_on_cv_button_pressed"]
+[connection signal="value_changed" from="Settings/Music/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Settings/SFX/SFXSlider" to="." method="_on_sfx_slider_value_changed"]

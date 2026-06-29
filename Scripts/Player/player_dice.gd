@@ -160,7 +160,8 @@ func AttackingFunc():
 		EnableAttack = true
 		if criticalHit == true:
 			CriticalMesh.visible = true
-			Input.start_joy_vibration(0,0.5,0.5,0.15)
+			if (GlobalPlayerScript.EnableVibration):
+				Input.start_joy_vibration(0,0.5,0.5,0.15)
 			if (!EnemyDetected): AudioPlaying2("res://Audio/SFX/MB/016. Axe Throw.mp3")
 		_AudioChange_Attacking()
 		AudioChanging(3)
@@ -278,7 +279,7 @@ func _abilityDice():
 			criticalRate = defaultCriticalRate
 
 func _criticalChanges():
-	if GlobalDiceScript.CriticalRoll:
+	if (GlobalDiceScript.CriticalRoll) && (GlobalDiceScript.AcquiredDice >= 4):
 		SPEED = 9.0
 		AttackCooldownFloat = 0.5
 
@@ -306,7 +307,8 @@ func _on_player_trigger_area_entered(area):
 		GlobalPlayerScript.DamageTaken = true
 		TakingDamage()
 		
-		Input.start_joy_vibration(0,1.0,1.0,0.2)
+		if (GlobalPlayerScript.EnableVibration):
+			Input.start_joy_vibration(0,1.0,1.0,0.2)
 		DamageCooldown.start(DamageCooldownFloat)
 		DamageTaken = true
 func _on_damage_cooldown_timeout():

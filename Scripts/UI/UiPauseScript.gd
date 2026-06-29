@@ -17,12 +17,26 @@ signal MainmenuSelect
 #var mainMenu_scene
 #var ConnectButtons: bool = false
 
+#--settings--
+@onready var VibrateOnText = $Settings/Vibration/OnText
+@onready var VibrateOffText = $Settings/Vibration/OffText
+
+@onready var AudioBus_Music = AudioServer.get_bus_index("Music") #For settings
+@onready var AudioBus_SFX = AudioServer.get_bus_index("SFX") #For settings
+var AudioSliderStep: float = 0.5
+@onready var MusicSlider = $Settings/Music/MusicSlider
+@onready var SFXSlider = $Settings/SFX/SFXSlider
+@export var Settings: Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	PauseUI.visible = false
 	Menu.visible = false
+	Settings.visible = false
 	get_tree().paused = false
+	
+	MusicSlider.value = db_to_linear(AudioServer.get_bus_volume_db(1)) #volume setting
+	SFXSlider.value = db_to_linear(AudioServer.get_bus_volume_db(2)) #volume setting
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,6 +46,7 @@ func _process(_delta):
 		
 		
 	PauseMenu()
+	VibrationEnabled()
 
 	if (Pausing) && Input.is_action_just_pressed("Unpause(controller)"):
 		_resuming()
@@ -61,9 +76,11 @@ func PauseMenu():
 	if Pausing:
 		PauseUI.visible = true
 		Menu.visible = true
+		Settings.visible = true
 	else:
 		PauseUI.visible = false
 		Menu.visible = false
+		Settings.visible = false
 
 
 
@@ -90,3 +107,26 @@ func _on_restart_button_pressed():
 
 func _on_main_menu_button_pressed():
 	_on_main_menu_select()
+
+
+func VibrationEnabled():
+	if (GlobalPlayerScript.EnableVibration):
+		VibrateOnText.visible = true
+		VibrateOffText.visible = false
+	elif (!GlobalPlayerScript.EnableVibration):
+		VibrateOnText.visible = false
+		VibrateOffText.visible = true
+
+func _on_cv_button_pressed():
+	if (GlobalPlayerScript.EnableVibration):
+		GlobalPlayerScript.EnableVibration = false
+	elif (!GlobalPlayerScript.EnableVibration):
+		GlobalPlayerScript.EnableVibration = true
+
+func _on_music_slider_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioBus_Music, linear_to_db(value))
+	AudioServer.set_bus_mute(AudioBus_Music, value < AudioSliderStep)
+
+func _on_sfx_slider_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioBus_SFX, linear_to_db(value))
+	AudioServer.set_bus_mute(AudioBus_SFX, value < AudioSliderStep)

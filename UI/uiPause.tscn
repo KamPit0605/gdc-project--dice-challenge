@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://wpf7vtcpjbaf"]
 
 [ext_resource type="Script" uid="uid://bxmmxtb16qwi6" path="res://Scripts/UI/UiPauseScript.gd" id="1_gkunx"]
+[ext_resource type="Texture2D" uid="uid://bg86c5u8ghcum" path="res://Textures/Settings/ControllerVibrateIcon.png" id="2_88vg7"]
+[ext_resource type="Texture2D" uid="uid://du1dyfqvqrh6c" path="res://Textures/Settings/MusicNoteIcon.png" id="3_emsgi"]
+[ext_resource type="Texture2D" uid="uid://cvnn2ekuykpwg" path="res://Textures/Settings/SpeakerIcon.png" id="4_ou1se"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3sbvi"]
 font_size = 60
@@ -8,7 +11,10 @@ font_color = Color(0.95686275, 0.95686275, 1, 0.95686275)
 outline_size = 15
 outline_color = Color(0.41568628, 0.41568628, 1, 1)
 
-[node name="UIPause" type="Control" unique_id=20405237 node_paths=PackedStringArray("Menu", "ResumeButton", "PlayAgainButton", "MainMenuButton")]
+[sub_resource type="LabelSettings" id="LabelSettings_glw4d"]
+font_color = Color(1, 0, 0, 1)
+
+[node name="UIPause" type="Control" unique_id=20405237 node_paths=PackedStringArray("Menu", "ResumeButton", "PlayAgainButton", "MainMenuButton", "Settings")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -21,6 +27,7 @@ Menu = NodePath("Menu")
 ResumeButton = NodePath("Menu/Resume/ResumeButton")
 PlayAgainButton = NodePath("Menu/Restart/RestartButton")
 MainMenuButton = NodePath("Menu/MainMenu/MainMenuButton")
+Settings = NodePath("Settings")
 
 [node name="Animations" type="Control" parent="." unique_id=40189467]
 anchors_preset = 0
@@ -86,6 +93,89 @@ layout_mode = 2
 layout_mode = 2
 text = "Main Menu"
 
+[node name="Settings" type="VBoxContainer" parent="." unique_id=964662465]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Vibration" type="GridContainer" parent="Settings" unique_id=2091566654]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 6
+
+[node name="ControllerVibrateIcon" type="TextureRect" parent="Settings/Vibration" unique_id=1923334205]
+layout_mode = 2
+texture = ExtResource("2_88vg7")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="CVButton" type="Button" parent="Settings/Vibration" unique_id=1497446082]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "___"
+
+[node name="OnText" type="Label" parent="Settings/Vibration" unique_id=196714388]
+layout_mode = 2
+text = "On"
+
+[node name="OffText" type="Label" parent="Settings/Vibration" unique_id=1613694972]
+layout_mode = 2
+text = "Off"
+label_settings = SubResource("LabelSettings_glw4d")
+
+[node name="Music" type="GridContainer" parent="Settings" unique_id=1887504739]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="MusicNoteIcon" type="TextureRect" parent="Settings/Music" unique_id=1180761077]
+layout_mode = 2
+texture = ExtResource("3_emsgi")
+expand_mode = 2
+
+[node name="MusicSlider" type="HSlider" parent="Settings/Music" unique_id=394262946]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 5.0
+step = 0.5
+value = 1.0
+tick_count = 5
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="SFX" type="GridContainer" parent="Settings" unique_id=925721989]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="SpeakerIcon" type="TextureRect" parent="Settings/SFX" unique_id=1064336235]
+layout_mode = 2
+texture = ExtResource("4_ou1se")
+expand_mode = 2
+
+[node name="SFXSlider" type="HSlider" parent="Settings/SFX" unique_id=1997187158]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 5.0
+step = 0.5
+value = 1.0
+tick_count = 5
+ticks_on_borders = true
+ticks_position = 3
+
 [connection signal="pressed" from="Menu/Resume/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Menu/Restart/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Menu/MainMenu/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Settings/Vibration/CVButton" to="." method="_on_cv_button_pressed"]
+[connection signal="value_changed" from="Settings/Music/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Settings/SFX/SFXSlider" to="." method="_on_sfx_slider_value_changed"]

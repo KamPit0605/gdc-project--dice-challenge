@@ -9,6 +9,13 @@ extends Control
 #var mainMenu_scene
 #var ConnectButtons: bool = false
 
+#--settings--
+@onready var VibrateOnText = $Settings/Vibration/OnText
+@onready var VibrateOffText = $Settings/Vibration/OffText
+
+@onready var AudioBus_Music = AudioServer.get_bus_index("Music") #For settings
+@onready var AudioBus_SFX = AudioServer.get_bus_index("SFX") #For settings
+var AudioSliderStep: float = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,7 +27,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	
+	VibrationEnabled()
 
 func UiScoreResets():
 	GlobalDiceScript.AcquiredDice = 0
@@ -64,3 +72,26 @@ func _on_credits_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+func VibrationEnabled():
+	if (GlobalPlayerScript.EnableVibration):
+		VibrateOnText.visible = true
+		VibrateOffText.visible = false
+	elif (!GlobalPlayerScript.EnableVibration):
+		VibrateOnText.visible = false
+		VibrateOffText.visible = true
+
+func _on_cv_button_pressed():
+	if (GlobalPlayerScript.EnableVibration):
+		GlobalPlayerScript.EnableVibration = false
+	elif (!GlobalPlayerScript.EnableVibration):
+		GlobalPlayerScript.EnableVibration = true
+
+
+func _on_music_slider_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioBus_Music, linear_to_db(value))
+	AudioServer.set_bus_mute(AudioBus_Music, value < AudioSliderStep)
+
+func _on_sfx_slider_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioBus_SFX, linear_to_db(value))
+	AudioServer.set_bus_mute(AudioBus_SFX, value < AudioSliderStep)
