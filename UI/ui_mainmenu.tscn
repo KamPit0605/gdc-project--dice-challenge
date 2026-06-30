@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bg86c5u8ghcum" path="res://Textures/Settings/ControllerVibrateIcon.png" id="2_0sy5l"]
 [ext_resource type="Texture2D" uid="uid://du1dyfqvqrh6c" path="res://Textures/Settings/MusicNoteIcon.png" id="2_uvod3"]
 [ext_resource type="Texture2D" uid="uid://cvnn2ekuykpwg" path="res://Textures/Settings/SpeakerIcon.png" id="3_17fjn"]
+[ext_resource type="Texture2D" uid="uid://cksrmw1qjq8pk" path="res://Textures/logo_vertical_monochrome_dark.png" id="5_564oe"]
+[ext_resource type="Script" uid="uid://cl4m2rvincfjt" path="res://Scripts/mouse_collision.gd" id="6_v0v8u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3sbvi"]
 font_size = 60
@@ -22,7 +24,24 @@ shadow_color = Color(0, 0, 0, 0.39215687)
 [sub_resource type="LabelSettings" id="LabelSettings_0sy5l"]
 font_color = Color(1, 0, 0, 1)
 
-[node name="UIMainMenu" type="Control" unique_id=20405237 node_paths=PackedStringArray("PlayButton", "CreditsButton", "QuitButton")]
+[sub_resource type="LabelSettings" id="LabelSettings_v0v8u"]
+font_size = 20
+
+[sub_resource type="FontVariation" id="FontVariation_0sy5l"]
+variation_transform = Transform2D(1.12, 0.53, 0, 1, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gjaym"]
+font = SubResource("FontVariation_0sy5l")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_564oe"]
+size = Vector2(96, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_564oe"]
+font_size = 20
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_564oe"]
+
+[node name="UIMainMenu" type="Control" unique_id=20405237 node_paths=PackedStringArray("PlayButton", "CreditsButton", "QuitButton", "HideCreditsButton")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -34,6 +53,7 @@ script = ExtResource("1_ce80c")
 PlayButton = NodePath("Menu/Play/PlayButton")
 CreditsButton = NodePath("Menu/Credits/CreditsButton")
 QuitButton = NodePath("Menu/Quit/QuitButton")
+HideCreditsButton = NodePath("Credits/HideCreditsButton")
 metadata/_edit_lock_ = true
 
 [node name="Animations" type="Control" parent="." unique_id=40189467]
@@ -190,9 +210,341 @@ tick_count = 5
 ticks_on_borders = true
 ticks_position = 3
 
+[node name="Credits" type="Control" parent="." unique_id=485322964]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+
+[node name="Background" type="ColorRect" parent="Credits" unique_id=770629906]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(25, 12)
+pivot_offset = Vector2(20, 20)
+color = Color(0.19607843, 0.19607843, 0.19607843, 0.78431374)
+metadata/_edit_lock_ = true
+
+[node name="MyCredit" type="Control" parent="Credits" unique_id=1343067909]
+layout_mode = 1
+anchor_left = -11.900001
+anchor_top = -5.4
+anchor_right = -11.900001
+anchor_bottom = -5.4
+offset_left = 112.00003
+offset_top = 40.0
+offset_right = 168.00003
+offset_bottom = 80.0
+grow_vertical = 2
+
+[node name="_Developed By_" type="Label" parent="Credits/MyCredit" unique_id=412958153]
+layout_mode = 0
+offset_right = 105.0
+offset_bottom = 23.0
+text = "Developed by"
+label_settings = SubResource("LabelSettings_v0v8u")
+
+[node name="MyCreditContainer" type="VBoxContainer" parent="Credits/MyCredit" unique_id=858455207]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.70000005
+anchor_bottom = 0.70000005
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 5
+
+[node name="MyLogo" type="TextureRect" parent="Credits/MyCredit/MyCreditContainer" unique_id=628520735]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Credits/MyCredit/MyCreditContainer" unique_id=1548201289]
+layout_mode = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="_Programmer_" type="Label" parent="Credits/MyCredit/MyCreditContainer/GridContainer" unique_id=1046573094]
+layout_mode = 2
+text = "Programming"
+
+[node name="_Designer_" type="Label" parent="Credits/MyCredit/MyCreditContainer/GridContainer" unique_id=1678296197]
+layout_mode = 2
+text = "Designing"
+
+[node name="_Music_" type="Label" parent="Credits/MyCredit/MyCreditContainer/GridContainer" unique_id=807912518]
+layout_mode = 2
+text = "Music"
+
+[node name="_UI_" type="Label" parent="Credits/MyCredit/MyCreditContainer/GridContainer" unique_id=1517526265]
+layout_mode = 2
+text = "UI"
+
+[node name="SFXCredit" type="Control" parent="Credits" unique_id=57399928]
+layout_mode = 1
+anchor_left = -11.900001
+anchor_top = -5.4
+anchor_right = -11.900001
+anchor_bottom = -5.4
+offset_left = 688.0
+offset_top = 40.0
+offset_right = 744.0
+offset_bottom = 80.0
+grow_vertical = 2
+
+[node name="_Developed By_" type="Label" parent="Credits/SFXCredit" unique_id=125421122]
+layout_mode = 0
+offset_right = 105.0
+offset_bottom = 23.0
+text = "SFX From"
+label_settings = SubResource("LabelSettings_v0v8u")
+
+[node name="SFXCreditContainer" type="VBoxContainer" parent="Credits/SFXCredit" unique_id=174438249]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.70000005
+anchor_bottom = 0.70000005
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 35
+
+[node name="GridContainer" type="GridContainer" parent="Credits/SFXCredit/SFXCreditContainer" unique_id=950389898]
+layout_mode = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 25
+columns = 2
+
+[node name="_Atari_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/GridContainer" unique_id=1463812387]
+layout_mode = 2
+text = "Atari"
+
+[node name="_Halfbrick_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/GridContainer" unique_id=1334576624]
+layout_mode = 2
+text = "Halfbrick"
+
+[node name="_Nintendo_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/GridContainer" unique_id=1818044746]
+layout_mode = 2
+text = "Nintendo"
+
+[node name="_Vedinad_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/GridContainer" unique_id=1269105018]
+layout_mode = 2
+text = "Vedinad"
+
+[node name="_WWE_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/GridContainer" unique_id=1210985088]
+layout_mode = 2
+text = "WWE"
+
+[node name="AtariContainer" type="VBoxContainer" parent="Credits/SFXCredit/SFXCreditContainer" unique_id=1030289958]
+visible = false
+layout_mode = 2
+
+[node name="_Monopoly_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/AtariContainer" unique_id=624950409]
+layout_mode = 2
+text = "Monopoly/Boggle/Yahtzee/Battleship"
+label_settings = SubResource("LabelSettings_gjaym")
+
+[node name="HalfbrickContainer" type="VBoxContainer" parent="Credits/SFXCredit/SFXCreditContainer" unique_id=539854776]
+visible = false
+layout_mode = 2
+
+[node name="_Fruit Ninja_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/HalfbrickContainer" unique_id=1759167633]
+layout_mode = 2
+text = "Fruit Ninja"
+label_settings = SubResource("LabelSettings_gjaym")
+
+[node name="NintendoContainer" type="VBoxContainer" parent="Credits/SFXCredit/SFXCreditContainer" unique_id=2134775030]
+visible = false
+layout_mode = 2
+
+[node name="_Brain Age_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/NintendoContainer" unique_id=334238638]
+layout_mode = 2
+text = "Brain Age"
+label_settings = SubResource("LabelSettings_gjaym")
+
+[node name="_Game Wario_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/NintendoContainer" unique_id=183750453]
+layout_mode = 2
+text = "Game & Wario"
+label_settings = SubResource("LabelSettings_gjaym")
+
+[node name="_MK_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/NintendoContainer" unique_id=1344671259]
+layout_mode = 2
+text = "Mario Kart"
+label_settings = SubResource("LabelSettings_gjaym")
+
+[node name="_Splatoon_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/NintendoContainer" unique_id=2132758260]
+layout_mode = 2
+text = "Splatoon"
+label_settings = SubResource("LabelSettings_gjaym")
+
+[node name="_SSB_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/NintendoContainer" unique_id=819067307]
+layout_mode = 2
+text = "Super Smash Bros."
+label_settings = SubResource("LabelSettings_gjaym")
+
+[node name="_Zelda_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/NintendoContainer" unique_id=271685639]
+layout_mode = 2
+text = "The Legends of Zelda"
+label_settings = SubResource("LabelSettings_gjaym")
+
+[node name="VedinadContainer" type="VBoxContainer" parent="Credits/SFXCredit/SFXCreditContainer" unique_id=934987699]
+visible = false
+layout_mode = 2
+
+[node name="_Megabonk_" type="Label" parent="Credits/SFXCredit/SFXCreditContainer/VedinadContainer" unique_id=892782418]
+layout_mode = 2
+text = "Megabonk"
+label_settings = SubResource("LabelSettings_gjaym")
+
+[node name="ExpandedCredits" type="Node2D" parent="Credits/SFXCredit" unique_id=1208412121]
+
+[node name="AtariArea" type="Area2D" parent="Credits/SFXCredit/ExpandedCredits" unique_id=371954455]
+position = Vector2(24, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Credits/SFXCredit/ExpandedCredits/AtariArea" unique_id=124438641]
+shape = SubResource("RectangleShape2D_564oe")
+
+[node name="HalfbrickArea" type="Area2D" parent="Credits/SFXCredit/ExpandedCredits" unique_id=1944903623]
+position = Vector2(128, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Credits/SFXCredit/ExpandedCredits/HalfbrickArea" unique_id=1196133674]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_564oe")
+
+[node name="NintendoArea" type="Area2D" parent="Credits/SFXCredit/ExpandedCredits" unique_id=1017430632]
+position = Vector2(24, 88)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Credits/SFXCredit/ExpandedCredits/NintendoArea" unique_id=1516923563]
+shape = SubResource("RectangleShape2D_564oe")
+
+[node name="VedinadArea" type="Area2D" parent="Credits/SFXCredit/ExpandedCredits" unique_id=1999061691]
+position = Vector2(144, 88)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Credits/SFXCredit/ExpandedCredits/VedinadArea" unique_id=502289696]
+shape = SubResource("RectangleShape2D_564oe")
+
+[node name="OtherCredit" type="Control" parent="Credits" unique_id=1222117075]
+layout_mode = 1
+anchor_left = -11.900001
+anchor_top = -5.4
+anchor_right = -11.900001
+anchor_bottom = -5.4
+offset_left = 112.00003
+offset_top = 225.0
+offset_right = 168.00003
+offset_bottom = 265.0
+grow_vertical = 2
+
+[node name="_Outsourced_" type="Label" parent="Credits/OtherCredit" unique_id=1677471001]
+layout_mode = 0
+offset_right = 105.0
+offset_bottom = 23.0
+text = "Outsourced:"
+label_settings = SubResource("LabelSettings_564oe")
+
+[node name="MyCreditContainer" type="VBoxContainer" parent="Credits/OtherCredit" unique_id=261762140]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.70000005
+anchor_bottom = 0.70000005
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 5
+
+[node name="GridContainer" type="GridContainer" parent="Credits/OtherCredit/MyCreditContainer" unique_id=1606402800]
+layout_mode = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 10
+
+[node name="_Vecteezy_" type="Label" parent="Credits/OtherCredit/MyCreditContainer/GridContainer" unique_id=1683334220]
+editor_description = "Music note icon"
+layout_mode = 2
+text = "Vecteezy"
+
+[node name="_Wikimedia_" type="Label" parent="Credits/OtherCredit/MyCreditContainer/GridContainer" unique_id=1551626277]
+editor_description = "Speaker icon"
+layout_mode = 2
+text = "Wikimedia Commons"
+
+[node name="_EverydayCinema_" type="Label" parent="Credits/OtherCredit/MyCreditContainer/GridContainer" unique_id=1958629222]
+editor_description = "Crowd Ambience"
+layout_mode = 2
+text = "Everyday Cinematic Sounds"
+
+[node name="GodotCredit" type="Control" parent="Credits" unique_id=1475855843]
+layout_mode = 1
+anchor_left = -11.900001
+anchor_top = -5.4
+anchor_right = -11.900001
+anchor_bottom = -5.4
+offset_left = 432.00003
+offset_top = 295.0
+offset_right = 488.00003
+offset_bottom = 335.0
+grow_vertical = 2
+
+[node name="_Made with_" type="Label" parent="Credits/GodotCredit" unique_id=1593774955]
+layout_mode = 0
+offset_right = 105.0
+offset_bottom = 23.0
+text = "Made with"
+label_settings = SubResource("LabelSettings_564oe")
+
+[node name="TextureRect" type="TextureRect" parent="Credits/GodotCredit" unique_id=256792618]
+layout_mode = 0
+offset_left = 8.0000305
+offset_top = 40.0
+offset_right = 48.00003
+offset_bottom = 85.0
+scale = Vector2(3, 3)
+texture = ExtResource("5_564oe")
+expand_mode = 1
+
+[node name="HideCreditsButton" type="Button" parent="Credits" unique_id=67594424]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 11.700001
+anchor_top = -5.5000005
+anchor_right = 11.700001
+anchor_bottom = -5.5000005
+offset_left = -3.0517578e-05
+offset_top = 1.5258789e-05
+offset_right = 34.99997
+offset_bottom = 31.000015
+grow_horizontal = 0
+scale = Vector2(1.5, 1.5)
+text = "X"
+
+[node name="MouseCollision" type="Node" parent="." unique_id=301894089 node_paths=PackedStringArray("MouseCollisionArea")]
+script = ExtResource("6_v0v8u")
+MouseCollisionArea = NodePath("MouseArea")
+
+[node name="MouseArea" type="Area2D" parent="MouseCollision" unique_id=539536982 groups=["Mouse"]]
+
+[node name="MouseCollisionShape" type="CollisionShape2D" parent="MouseCollision/MouseArea" unique_id=878522858]
+shape = SubResource("CircleShape2D_564oe")
+debug_color = Color(0.1821872, 0.20391259, 0.23222145, 0.41960785)
+
+[connection signal="HideCredits" from="." to="." method="_on_hide_credits"]
 [connection signal="pressed" from="Menu/Play/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Menu/Credits/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Menu/Quit/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Settings/Vibration/CVButton" to="." method="_on_cv_button_pressed"]
 [connection signal="value_changed" from="Settings/Music/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="Settings/SFX/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="area_entered" from="Credits/SFXCredit/ExpandedCredits/AtariArea" to="." method="_on_atari_area_area_entered"]
+[connection signal="area_exited" from="Credits/SFXCredit/ExpandedCredits/AtariArea" to="." method="_on_atari_area_area_exited"]
+[connection signal="area_entered" from="Credits/SFXCredit/ExpandedCredits/HalfbrickArea" to="." method="_on_halfbrick_area_area_entered"]
+[connection signal="area_exited" from="Credits/SFXCredit/ExpandedCredits/HalfbrickArea" to="." method="_on_halfbrick_area_area_exited"]
+[connection signal="area_entered" from="Credits/SFXCredit/ExpandedCredits/NintendoArea" to="." method="_on_nintendo_area_area_entered"]
+[connection signal="area_exited" from="Credits/SFXCredit/ExpandedCredits/NintendoArea" to="." method="_on_nintendo_area_area_exited"]
+[connection signal="area_entered" from="Credits/SFXCredit/ExpandedCredits/VedinadArea" to="." method="_on_vedinad_area_area_entered"]
+[connection signal="area_exited" from="Credits/SFXCredit/ExpandedCredits/VedinadArea" to="." method="_on_vedinad_area_area_exited"]
+[connection signal="pressed" from="Credits/HideCreditsButton" to="." method="_on_hide_credits_button_pressed"]

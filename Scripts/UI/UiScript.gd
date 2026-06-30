@@ -52,6 +52,7 @@ var OverTimerBool: bool
 @onready var AudioStreaming2 = $Audio/AudioStreamPlayer2D
 @onready var AudioStreaming3 = $Audio/AudioStreamPlayer2D2
 @onready var AudioStreaming4 = $Audio/AudioStreamPlayer2D3
+@onready var AudioStreaming5 = $Audio/AudioStreamPlayer2D4
 var audioDifferentCheering: int
 var cheeringAudioBool: bool
 
@@ -268,6 +269,7 @@ func _on_dice_system_dice_rolled():
 func cheeringAudio():
 	if (GlobalPlayerScript.BossKilled == true) || (cheeringAudioBool == true):
 		if (GlobalPlayerScript.HugeBossKilled == true):
+			AudioStreaming5.play()
 			_differentCheering()
 		else:
 			_AudioPlaying4("res://Audio/SFX/SSB/se_audience_clap_m.wav")

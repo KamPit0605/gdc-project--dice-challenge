@@ -57,8 +57,9 @@ func LevelingUp():
 	if LevelUpXP >= LevelUpQuota:
 		PlayerLevel += 1;
 		GainHealthBool = true
-		Input.start_joy_vibration(0,0.15,0.15,0.75)
-		LevelUpXP = 0;
+		if (EnableVibration):
+			Input.start_joy_vibration(0,0.15,0.15,0.75)
+			LevelUpXP = 0;
 
 func XPXP(Level):
 	if Level == 2:

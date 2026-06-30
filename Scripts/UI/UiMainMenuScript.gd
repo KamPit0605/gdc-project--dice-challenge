@@ -8,6 +8,17 @@ extends Control
 @export var game_scene = "res://Scenes/game_scene.tscn"
 #var mainMenu_scene
 #var ConnectButtons: bool = false
+@onready var Credits = $Credits
+@export var HideCreditsButton: Button
+signal HideCredits
+var CreditsShown: bool
+
+#Games From SFX Sources
+@onready var AtariGames = $Credits/SFXCredit/SFXCreditContainer/AtariContainer
+@onready var HalfbrickGames = $Credits/SFXCredit/SFXCreditContainer/HalfbrickContainer
+@onready var NintendoGames = $Credits/SFXCredit/SFXCreditContainer/NintendoContainer
+@onready var VedinadGames = $Credits/SFXCredit/SFXCreditContainer/VedinadContainer
+
 
 #--settings--
 @onready var VibrateOnText = $Settings/Vibration/OnText
@@ -27,6 +38,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	
+	if (Input.is_action_just_pressed("ui_cancel")):
+		if (CreditsShown):
+			HideCredits.emit()
 	
 	VibrationEnabled()
 
@@ -54,7 +69,8 @@ func _on_main_menu_select():
 	GlobalDiceScript.AcquiredDice = 0
 
 func _credits():
-	pass
+	Credits.show()
+	CreditsShown = true
 	
 
 
@@ -95,3 +111,42 @@ func _on_music_slider_value_changed(value):
 func _on_sfx_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioBus_SFX, linear_to_db(value))
 	AudioServer.set_bus_mute(AudioBus_SFX, value < AudioSliderStep)
+
+
+func _on_hide_credits_button_pressed():
+	HideCredits.emit()
+
+
+func _on_hide_credits():
+	CreditsShown = false
+	Credits.hide()
+	CreditsButton.grab_focus()
+
+#Atari
+func _on_atari_area_area_entered(area):
+	if (area.is_in_group("Mouse")):
+		AtariGames.show()
+func _on_atari_area_area_exited(area):
+	if (area.is_in_group("Mouse")):
+		AtariGames.hide()
+#Halfbrick
+func _on_halfbrick_area_area_entered(area):
+	if (area.is_in_group("Mouse")):
+		HalfbrickGames.show()
+func _on_halfbrick_area_area_exited(area):
+	if (area.is_in_group("Mouse")):
+		HalfbrickGames.hide()
+#Nintendo
+func _on_nintendo_area_area_entered(area):
+	if (area.is_in_group("Mouse")):
+		NintendoGames.show()
+func _on_nintendo_area_area_exited(area):
+	if (area.is_in_group("Mouse")):
+		NintendoGames.hide()
+#Vedinad
+func _on_vedinad_area_area_entered(area):
+	if (area.is_in_group("Mouse")):
+		VedinadGames.show()
+func _on_vedinad_area_area_exited(area):
+	if (area.is_in_group("Mouse")):
+		VedinadGames.hide()
