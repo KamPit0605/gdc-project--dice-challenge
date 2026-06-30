@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cksrmw1qjq8pk"
-path="res://.godot/imported/logo_vertical_monochrome_dark.png-6252abe0ad128bdc8aa2d8420711e5c2.ctex"
+uid="uid://b6opxlf5o5xpi"
+path="res://.godot/imported/DieforaChallenge_Logo.png-259d0c3b7906c87c847118cfaf2222bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/logo_vertical_monochrome_dark.png"
-dest_files=["res://.godot/imported/logo_vertical_monochrome_dark.png-6252abe0ad128bdc8aa2d8420711e5c2.ctex"]
+source_file="res://Textures/Logos/DieforaChallenge_Logo.png"
+dest_files=["res://.godot/imported/DieforaChallenge_Logo.png-259d0c3b7906c87c847118cfaf2222bc.ctex"]
 
 [params]
 

@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b6dahniq5soxq" path="res://Scripts/UI/UiMainMenuScript.gd" id="1_ce80c"]
 [ext_resource type="Texture2D" uid="uid://bg86c5u8ghcum" path="res://Textures/Settings/ControllerVibrateIcon.png" id="2_0sy5l"]
+[ext_resource type="Texture2D" uid="uid://b6opxlf5o5xpi" path="res://Textures/Logos/DieforaChallenge_Logo.png" id="2_gjaym"]
 [ext_resource type="Texture2D" uid="uid://du1dyfqvqrh6c" path="res://Textures/Settings/MusicNoteIcon.png" id="2_uvod3"]
 [ext_resource type="Texture2D" uid="uid://cvnn2ekuykpwg" path="res://Textures/Settings/SpeakerIcon.png" id="3_17fjn"]
-[ext_resource type="Texture2D" uid="uid://cksrmw1qjq8pk" path="res://Textures/logo_vertical_monochrome_dark.png" id="5_564oe"]
+[ext_resource type="Texture2D" uid="uid://cksrmw1qjq8pk" path="res://Textures/Logos/logo_vertical_monochrome_dark.png" id="5_564oe"]
+[ext_resource type="Texture2D" uid="uid://jc8cddllp685" path="res://Textures/Logos/KamKreatez_Logo_Transparent.png" id="6_loa0h"]
 [ext_resource type="Script" uid="uid://cl4m2rvincfjt" path="res://Scripts/mouse_collision.gd" id="6_v0v8u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3sbvi"]
@@ -77,12 +79,32 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="TitleUI" type="Label" parent="VBoxContainer/Title" unique_id=1114336313]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Die for a 
 CHALLENGE"
 label_settings = SubResource("LabelSettings_3sbvi")
 horizontal_alignment = 1
+
+[node name="TitleEmpty" type="Label" parent="VBoxContainer/Title" unique_id=7228217]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "
+"
+label_settings = SubResource("LabelSettings_3sbvi")
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Title" unique_id=390431773]
+position = Vector2(262.49997, 88)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_gjaym")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Title" unique_id=1142360708]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_gjaym")
+expand_mode = 5
 
 [node name="SubTitleUI" type="Label" parent="VBoxContainer/Title" unique_id=965292622]
 layout_mode = 2
@@ -184,7 +206,7 @@ expand_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 5.0
-step = 0.5
+step = 0.25
 value = 1.0
 tick_count = 5
 ticks_on_borders = true
@@ -204,7 +226,7 @@ expand_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 5.0
-step = 0.5
+step = 0.25
 value = 1.0
 tick_count = 5
 ticks_on_borders = true
@@ -265,6 +287,8 @@ theme_override_constants/separation = 5
 
 [node name="MyLogo" type="TextureRect" parent="Credits/MyCredit/MyCreditContainer" unique_id=628520735]
 layout_mode = 2
+texture = ExtResource("6_loa0h")
+expand_mode = 5
 
 [node name="GridContainer" type="GridContainer" parent="Credits/MyCredit/MyCreditContainer" unique_id=1548201289]
 layout_mode = 2
@@ -437,9 +461,9 @@ anchor_top = -5.4
 anchor_right = -11.900001
 anchor_bottom = -5.4
 offset_left = 112.00003
-offset_top = 225.0
+offset_top = 295.0
 offset_right = 168.00003
-offset_bottom = 265.0
+offset_bottom = 335.0
 grow_vertical = 2
 
 [node name="_Outsourced_" type="Label" parent="Credits/OtherCredit" unique_id=1677471001]

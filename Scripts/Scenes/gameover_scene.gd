@@ -8,7 +8,8 @@ func _ready():
 	if GlobalMusicScript.AmbiencePlayer: #This checks if it's set and exists
 		GlobalMusicScript.AmbiencePlayer.stop()
 	#_AudioPlaying("res://Audio/SFX/WWE/WWE Royal Rumble Buzzer (2003 - Present).mp3")
-
+	Input.start_joy_vibration(0,0,0.5,0.3)
+	Input.start_joy_vibration(0,1,0,0.8)
 
 func _process(delta):
 	pass

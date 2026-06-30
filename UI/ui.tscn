@@ -910,7 +910,7 @@ bus = &"SFX"
 [node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="Audio" unique_id=93347342]
 position = Vector2(576, 320)
 stream = ExtResource("11_6rr40")
-volume_db = 3.0
+volume_db = 5.0
 max_distance = 4096.0
 max_polyphony = 3
 bus = &"SFX"

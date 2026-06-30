@@ -26,7 +26,7 @@ var CreditsShown: bool
 
 @onready var AudioBus_Music = AudioServer.get_bus_index("Music") #For settings
 @onready var AudioBus_SFX = AudioServer.get_bus_index("SFX") #For settings
-var AudioSliderStep: float = 0.5
+var AudioSliderStep: float = 0.25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
