@@ -14,7 +14,7 @@ config/name="GDC Project: Dice Challenge"
 run/main_scene="uid://cagwet5i0ua1v"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/image="uid://bhjs8nssw0ios"
-config/icon="res://icon.svg"
+config/icon="uid://cw670t7wl6k6w"
 
 [audio]
 
