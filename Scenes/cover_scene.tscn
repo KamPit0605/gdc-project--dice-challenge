@@ -1,0 +1,678 @@
+[gd_scene format=3 uid="uid://dbh0p16plfymr"]
+
+[ext_resource type="Script" uid="uid://c6mlg0b5ikpvp" path="res://Scripts/Scenes/mainmenu_scene.gd" id="1_17cxn"]
+[ext_resource type="Script" uid="uid://b51xaavwp77nu" path="res://Scripts/Player/player_dice.gd" id="2_s6br4"]
+[ext_resource type="Texture2D" uid="uid://i0grr37p2mnk" path="res://Textures/Dice/DieSide1.png" id="3_i4rm3"]
+[ext_resource type="Texture2D" uid="uid://qutlpb3hl1m2" path="res://Textures/Dice/DieSide2.png" id="4_6jcv6"]
+[ext_resource type="Texture2D" uid="uid://c36ynu8r61eui" path="res://Textures/Dice/DieSide3.png" id="5_bc2ox"]
+[ext_resource type="Texture2D" uid="uid://calotiwvbebbh" path="res://Textures/Dice/DieSide4.png" id="6_lj4v0"]
+[ext_resource type="Texture2D" uid="uid://c1qsyl5hxn0tw" path="res://Textures/Dice/DieSide5.png" id="7_4us3j"]
+[ext_resource type="Texture2D" uid="uid://d0qgk7do0wdsr" path="res://Textures/Dice/DieSide6.png" id="8_ciqy5"]
+[ext_resource type="AudioStream" uid="uid://ceub4lfbmllgq" path="res://Audio/SFX/FN/extra-life.wav" id="9_8v530"]
+[ext_resource type="Script" uid="uid://b31m018nvj25o" path="res://Scripts/Enemy/enemy_low_dice.gd" id="10_6jcv6"]
+[ext_resource type="AudioStream" uid="uid://0wfg1fhk53gi" path="res://Audio/SFX/ZLD/The Legend of Zelda Cartoon Sound Effects Enemy Zapped.wav" id="11_bc2ox"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c5pir"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_qxhg5"]
+sky_material = SubResource("ProceduralSkyMaterial_c5pir")
+
+[sub_resource type="Environment" id="Environment_3ihj7"]
+background_mode = 2
+sky = SubResource("Sky_qxhg5")
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oqyrl"]
+size = Vector3(200.02, 0.25, 300.045)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqyrl"]
+shading_mode = 0
+albedo_color = Color(3.218744e-07, 0.23033407, 0.0028132184, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x87qo"]
+material = SubResource("StandardMaterial3D_oqyrl")
+size = Vector3(200, 0.25, 300)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qjwde"]
+size = Vector3(200.02, 60, 300.045)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5pir"]
+shading_mode = 0
+albedo_color = Color(3.218744e-07, 0.23033407, 0.0028132184, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qxhg5"]
+material = SubResource("StandardMaterial3D_c5pir")
+size = Vector3(200, 0.25, 300)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ihj7"]
+size = Vector3(200.02, 0.25, 300.045)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ixah"]
+shading_mode = 0
+albedo_color = Color(0.16078432, 0.12156863, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_elqop"]
+material = SubResource("StandardMaterial3D_1ixah")
+size = Vector3(750, 0.25, 750)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nk3rs"]
+size = Vector3(100, 2.5, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldntv"]
+albedo_color = Color(0.31374374, 0.11467182, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4y444"]
+material = SubResource("StandardMaterial3D_ldntv")
+size = Vector3(100.065, 2.5, 30.005)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7svdt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4shbi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muiw4"]
+albedo_color = Color(0.83889705, 0.83889705, 0.838897, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_akrff"]
+height = 0.15
+radius = 3.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jx38g"]
+top_radius = 2.5
+bottom_radius = 3.0
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8160"]
+transparency = 1
+albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2rad"]
+transparency = 1
+albedo_color = Color(0.08071878, 0.36173758, 0.99999994, 0.6862745)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jqc13"]
+height = 0.5
+radius = 2.175
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_w7l66"]
+top_radius = 2.175
+bottom_radius = 2.175
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3j1f"]
+transparency = 1
+albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5jxnp"]
+height = 0.5
+radius = 2.55
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dep5x"]
+top_radius = 2.55
+bottom_radius = 2.55
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8srhk"]
+transparency = 1
+albedo_color = Color(0.83137256, 0.023529412, 0, 0.6862745)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sb3d4"]
+height = 0.5
+radius = 1.75
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_c7tij"]
+top_radius = 1.75
+bottom_radius = 1.75
+height = 0.15
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hi3pe"]
+height = 0.5
+radius = 1.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cs3a2"]
+top_radius = 1.25
+bottom_radius = 1.25
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7yxym"]
+transparency = 1
+albedo_color = Color(0.95686275, 0.95686275, 0.95686275, 0.54901963)
+
+[sub_resource type="TorusMesh" id="TorusMesh_swcyq"]
+material = SubResource("StandardMaterial3D_7yxym")
+inner_radius = 2.9
+outer_radius = 3.0
+ring_segments = 3
+
+[sub_resource type="TorusMesh" id="TorusMesh_p58mc"]
+material = SubResource("StandardMaterial3D_7yxym")
+inner_radius = 1.2
+outer_radius = 1.25
+ring_segments = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5relj"]
+albedo_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eruw0"]
+material = SubResource("StandardMaterial3D_5relj")
+
+[sub_resource type="BoxMesh" id="BoxMesh_otp5x"]
+size = Vector3(1.05, 1.05, 1.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0wuy"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w0rp6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wwsqc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fowbw"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wwsqc"]
+size = Vector3(1.05, 1.05, 1.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fowbw"]
+size = Vector3(1.1, 1.1, 1.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nf3do"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hcbg1"]
+albedo_color = Color(0.44705883, 0.43529412, 1, 1)
+
+[node name="CoverScene" type="Node3D" unique_id=695069252]
+script = ExtResource("1_17cxn")
+
+[node name="Lighting" type="Node3D" parent="." unique_id=2002824742]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting" unique_id=1515708575]
+environment = SubResource("Environment_3ihj7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting" unique_id=858994056]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1496525851]
+transform = Transform3D(1, 0, 0, 0, 0.54007876, 0.8416145, 0, -0.8416145, 0.54007876, 0, 17.200483, 14.619564)
+doppler_tracking = 2
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=77190988]
+metadata/_edit_lock_ = true
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Floor" unique_id=954779797]
+shape = SubResource("BoxShape3D_oqyrl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/FloorCollision" unique_id=38178850]
+mesh = SubResource("BoxMesh_x87qo")
+
+[node name="Environment" type="Node3D" parent="." unique_id=40958288]
+
+[node name="Floor" type="StaticBody3D" parent="Environment" unique_id=1085994915]
+metadata/_edit_lock_ = true
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Environment/Floor" unique_id=635214473]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -29.875, 0)
+visible = false
+shape = SubResource("BoxShape3D_qjwde")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor" unique_id=1624512425]
+mesh = SubResource("BoxMesh_qxhg5")
+
+[node name="Floor2" type="StaticBody3D" parent="Environment" unique_id=1408171762]
+metadata/_edit_lock_ = true
+
+[node name="Area3D" type="Area3D" parent="Environment/Floor2" unique_id=1420734619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Environment/Floor2/Area3D" unique_id=432444261]
+shape = SubResource("BoxShape3D_3ihj7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor2/Area3D/FloorCollision" unique_id=1507824357]
+mesh = SubResource("BoxMesh_elqop")
+
+[node name="Edge1" type="StaticBody3D" parent="Environment" unique_id=2125566912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge1" unique_id=1383007445]
+shape = SubResource("BoxShape3D_nk3rs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge1" unique_id=743317077]
+mesh = SubResource("BoxMesh_4y444")
+
+[node name="Edge2" type="StaticBody3D" parent="Environment" unique_id=232993077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 30)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge2" unique_id=985294955]
+shape = SubResource("BoxShape3D_nk3rs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge2" unique_id=189044909]
+mesh = SubResource("BoxMesh_4y444")
+
+[node name="Edge3" type="StaticBody3D" parent="Environment" unique_id=386988083]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -65, 1, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge3" unique_id=321730640]
+shape = SubResource("BoxShape3D_nk3rs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge3" unique_id=696826167]
+mesh = SubResource("BoxMesh_4y444")
+
+[node name="Edge4" type="StaticBody3D" parent="Environment" unique_id=82376883]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 65, 1, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Edge4" unique_id=1534002937]
+shape = SubResource("BoxShape3D_nk3rs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Edge4" unique_id=555082359]
+mesh = SubResource("BoxMesh_4y444")
+
+[node name="PlayerDice" type="CharacterBody3D" parent="." unique_id=2038647078 node_paths=PackedStringArray("player", "PlayerTrigger", "AttackTrigger", "HurtMeshInstance")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_s6br4")
+player = NodePath(".")
+PlayerTrigger = NodePath("PlayerTrigger")
+AttackTrigger = NodePath("Attacking/AttackTrigger")
+HurtMeshInstance = NodePath("Hurt/HurtMeshInstance")
+AttackingFloat = 0.15
+AttackCooldownFloat = 1.0
+
+[node name="CollisionShape" type="CollisionShape3D" parent="PlayerDice" unique_id=1486829756]
+shape = SubResource("BoxShape3D_7svdt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerDice" unique_id=471438443]
+mesh = SubResource("BoxMesh_4shbi")
+surface_material_override/0 = SubResource("StandardMaterial3D_muiw4")
+
+[node name="PlayerTrigger" type="Area3D" parent="PlayerDice" unique_id=1705951933 groups=["Player"]]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="PlayerDice/PlayerTrigger" unique_id=871616331]
+visible = false
+shape = SubResource("BoxShape3D_7svdt")
+
+[node name="Attacking" type="Node3D" parent="PlayerDice" unique_id=1283970137]
+visible = false
+
+[node name="AttackTrigger" type="Area3D" parent="PlayerDice/Attacking" unique_id=8479870 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDice/Attacking/AttackTrigger" unique_id=1938549284]
+shape = SubResource("CylinderShape3D_akrff")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackTrigger" unique_id=734801931]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_jx38g")
+surface_material_override/0 = SubResource("StandardMaterial3D_h8160")
+
+[node name="CriticalMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackTrigger" unique_id=1354375350]
+editor_description = "Attack visibility"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019249141, 0)
+visible = false
+mesh = SubResource("CylinderMesh_jx38g")
+surface_material_override/0 = SubResource("StandardMaterial3D_b2rad")
+
+[node name="AttackCloseTrigger" type="Area3D" parent="PlayerDice/Attacking" unique_id=1156572231 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDice/Attacking/AttackCloseTrigger" unique_id=1580094277]
+shape = SubResource("CylinderShape3D_jqc13")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackCloseTrigger" unique_id=1189831737]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_w7l66")
+surface_material_override/0 = SubResource("StandardMaterial3D_c3j1f")
+
+[node name="AttackClose2Trigger" type="Area3D" parent="PlayerDice/Attacking" unique_id=1079028262 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDice/Attacking/AttackClose2Trigger" unique_id=381788047]
+shape = SubResource("CylinderShape3D_5jxnp")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackClose2Trigger" unique_id=459840449]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_dep5x")
+surface_material_override/0 = SubResource("StandardMaterial3D_8srhk")
+
+[node name="AttackClose3Trigger" type="Area3D" parent="PlayerDice/Attacking" unique_id=1981115419 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDice/Attacking/AttackClose3Trigger" unique_id=1026438708]
+shape = SubResource("CylinderShape3D_sb3d4")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackClose3Trigger" unique_id=1053229079]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_c7tij")
+surface_material_override/0 = SubResource("StandardMaterial3D_8srhk")
+
+[node name="AttackCloserTrigger" type="Area3D" parent="PlayerDice/Attacking" unique_id=1906843419 groups=["AttackTrigger"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4010259, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDice/Attacking/AttackCloserTrigger" unique_id=1034684227]
+shape = SubResource("CylinderShape3D_hi3pe")
+debug_color = Color(0.99607843, 0, 0.19607843, 1)
+
+[node name="AttackMesh" type="MeshInstance3D" parent="PlayerDice/Attacking/AttackCloserTrigger" unique_id=1400641960]
+editor_description = "Attack visibility"
+visible = false
+mesh = SubResource("CylinderMesh_cs3a2")
+surface_material_override/0 = SubResource("StandardMaterial3D_c3j1f")
+
+[node name="Attacking" type="Timer" parent="PlayerDice/Attacking" unique_id=1807757768]
+wait_time = 0.1
+
+[node name="AttackCooldown" type="Timer" parent="PlayerDice/Attacking" unique_id=919114286]
+wait_time = 0.5
+
+[node name="Visuals" type="Node3D" parent="PlayerDice/Attacking" unique_id=467222860]
+
+[node name="AttackGuide" type="MeshInstance3D" parent="PlayerDice/Attacking/Visuals" unique_id=121872207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44980037, 0)
+mesh = SubResource("TorusMesh_swcyq")
+
+[node name="AttackCloserGuide" type="MeshInstance3D" parent="PlayerDice/Attacking/Visuals" unique_id=333697723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44980037, 0)
+mesh = SubResource("TorusMesh_p58mc")
+
+[node name="Position References" type="Node3D" parent="PlayerDice" unique_id=4275669]
+visible = false
+
+[node name="Top-Mid Position" type="Marker3D" parent="PlayerDice/Position References" unique_id=820174232]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerDice/Position References/Top-Mid Position" unique_id=476666633]
+visible = false
+mesh = SubResource("BoxMesh_eruw0")
+
+[node name="Top-Mid Reset" type="Node3D" parent="PlayerDice/Position References" unique_id=805278651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="Bottom-Mid Position" type="Marker3D" parent="PlayerDice/Position References" unique_id=973675059]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerDice/Position References/Bottom-Mid Position" unique_id=2045011829]
+visible = false
+mesh = SubResource("BoxMesh_eruw0")
+
+[node name="Bottom-Mid Reset" type="Node3D" parent="PlayerDice/Position References" unique_id=1303873394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="Timers" type="Node" parent="PlayerDice" unique_id=675069305]
+
+[node name="DamageCooldown" type="Timer" parent="PlayerDice/Timers" unique_id=1388194213]
+wait_time = 0.1
+
+[node name="HealthGainCooldown" type="Timer" parent="PlayerDice/Timers" unique_id=591885576]
+
+[node name="Textures" type="Node3D" parent="PlayerDice" unique_id=483353266]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="DiceSide1" type="Sprite3D" parent="PlayerDice/Textures" unique_id=924384965]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0.5099685)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("3_i4rm3")
+
+[node name="DiceSide2" type="Sprite3D" parent="PlayerDice/Textures" unique_id=1054309824]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, 0.255, 0, -0.255, -1.1146404e-08, 0, 0.5027782, -0.014969945)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("4_6jcv6")
+
+[node name="DiceSide3" type="Sprite3D" parent="PlayerDice/Textures" unique_id=1340051161]
+transform = Transform3D(-1.1146404e-08, -1.1146404e-08, 0.255, -0.255, 4.872248e-16, -1.1146404e-08, 0, -0.255, -1.1146404e-08, 0.507203, -0.0100726485, -0.014969945)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("5_bc2ox")
+
+[node name="DiceSide4" type="Sprite3D" parent="PlayerDice/Textures" unique_id=258131679]
+transform = Transform3D(3.343921e-08, 1.1146404e-08, -0.255, 0.255, -1.4616743e-15, 3.343921e-08, 5.399835e-23, -0.255, -1.1146404e-08, -0.50877106, -0.0100726485, -0.014969945)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("6_lj4v0")
+
+[node name="DiceSide5" type="Sprite3D" parent="PlayerDice/Textures" unique_id=1457392139]
+transform = Transform3D(-0.255, -1.1146402e-08, -3.34392e-08, 3.34392e-08, 1.1146404e-08, -0.255, 1.1146404e-08, -0.255, -1.1146402e-08, 0.014164448, -0.50094426, -0.0056890845)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("7_4us3j")
+
+[node name="DiceSide6" type="Sprite3D" parent="PlayerDice/Textures" unique_id=1342122068]
+transform = Transform3D(-0.255, -1.1146402e-08, -3.3439203e-08, -1.1146406e-08, 0.255, 2.2292806e-08, 3.3439203e-08, 2.2292808e-08, -0.255, 0.014164448, -0.0100726485, -0.5014418)
+modulate = Color(0.15734133, 0.15802383, 0.5566934, 1)
+texture = ExtResource("8_ciqy5")
+
+[node name="Text" type="Node3D" parent="PlayerDice" unique_id=1472772019]
+
+[node name="LevelUpText" type="Label3D" parent="PlayerDice/Text" unique_id=2030800182]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 1, 0)
+visible = false
+modulate = Color(0.15686275, 0.83137256, 0.78039217, 1)
+text = "LEVEL UP"
+font_size = 100
+
+[node name="TextCountdown" type="Timer" parent="PlayerDice/Text" unique_id=86958405]
+wait_time = 2.0
+
+[node name="Hurt" type="Node3D" parent="PlayerDice" unique_id=609692578]
+
+[node name="HurtMeshInstance" type="MeshInstance3D" parent="PlayerDice/Hurt" unique_id=1265898965]
+visible = false
+mesh = SubResource("BoxMesh_otp5x")
+surface_material_override/0 = SubResource("StandardMaterial3D_a0wuy")
+
+[node name="HurtVisualTimer" type="Timer" parent="PlayerDice/Hurt" unique_id=293298027]
+
+[node name="Audios" type="Node3D" parent="PlayerDice" unique_id=788012621]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="PlayerDice/Audios" unique_id=985256101]
+unit_size = 25.08
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="PlayerDice/Audios" unique_id=2086558637]
+volume_db = -2.0
+unit_size = 25.08
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="PlayerDice/Audios" unique_id=1583113779]
+volume_db = -2.75
+unit_size = 25.08
+pitch_scale = 0.89
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PlayerDice/Audios" unique_id=2118795734]
+stream = ExtResource("9_8v530")
+volume_db = -12.0
+max_polyphony = 3
+
+[node name="enemyLow_dice" type="RigidBody3D" parent="." unique_id=1738791593 node_paths=PackedStringArray("Enemy", "EnemyTrigger", "AttackedMeshInstance", "CriticalAttackedMeshInstance") groups=["Enemies"]]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -2, 1, -3)
+script = ExtResource("10_6jcv6")
+Enemy = NodePath(".")
+EnemyTrigger = NodePath("EnemyTrigger")
+AttackedMeshInstance = NodePath("Attacked/AttackedMeshInstance")
+CriticalAttackedMeshInstance = NodePath("Attacked/CriticalAttackedMeshInstance")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="enemyLow_dice" unique_id=506290660]
+shape = SubResource("BoxShape3D_w0rp6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemyLow_dice" unique_id=75911881]
+mesh = SubResource("BoxMesh_wwsqc")
+surface_material_override/0 = SubResource("StandardMaterial3D_fowbw")
+
+[node name="EnemyTrigger" type="Area3D" parent="enemyLow_dice" unique_id=605287903 groups=["Enemies"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemyLow_dice/EnemyTrigger" unique_id=629395947]
+shape = SubResource("BoxShape3D_wwsqc")
+
+[node name="DamageCooldown" type="Timer" parent="enemyLow_dice" unique_id=528611121]
+wait_time = 0.1
+
+[node name="DamageLabel" type="Label3D" parent="enemyLow_dice" unique_id=502174633]
+transform = Transform3D(1.505, 0, 0, 0, 0.96739537, 1.1528969, 0, -1.1528969, 0.96739537, 0, 1, 0)
+visible = false
+modulate = Color(1, 0.47168958, 0.38229927, 1)
+text = "asdfsaefsadf"
+font_size = 50
+
+[node name="FollowingCooldown" type="Timer" parent="enemyLow_dice" unique_id=1520790909]
+
+[node name="Textures" type="Node3D" parent="enemyLow_dice" unique_id=4417280]
+
+[node name="DiceSide(1)_1" type="Sprite3D" parent="enemyLow_dice/Textures" unique_id=1331810839]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0.5099685)
+texture = ExtResource("3_i4rm3")
+
+[node name="DiceSide(1)_2" type="Sprite3D" parent="enemyLow_dice/Textures" unique_id=875767138]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, -0.5041398)
+texture = ExtResource("3_i4rm3")
+
+[node name="DiceSide(1)_3" type="Sprite3D" parent="enemyLow_dice/Textures" unique_id=713589428]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, -0.255, 0, 0.255, -1.1146404e-08, 0, 0.5047648, -0.0023055375)
+texture = ExtResource("3_i4rm3")
+
+[node name="DiceSide(1)_4" type="Sprite3D" parent="enemyLow_dice/Textures" unique_id=1083995165]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, -0.255, 0, 0.255, -1.1146404e-08, 0, -0.5026775, -0.0023055375)
+texture = ExtResource("3_i4rm3")
+
+[node name="DiceSide(1)_5" type="Sprite3D" parent="enemyLow_dice/Textures" unique_id=1633543872]
+transform = Transform3D(-1.1146404e-08, 0, 0.255, 0, 0.255, 0, -0.255, 0, -1.1146404e-08, -0.51649547, 0, 6.648898e-05)
+texture = ExtResource("3_i4rm3")
+
+[node name="DiceSide(1)_6" type="Sprite3D" parent="enemyLow_dice/Textures" unique_id=1179350507]
+transform = Transform3D(-1.1146404e-08, 0, 0.255, 0, 0.255, 0, -0.255, 0, -1.1146404e-08, 0.50267863, 0, 6.648898e-05)
+texture = ExtResource("3_i4rm3")
+
+[node name="Attacked" type="Node3D" parent="enemyLow_dice" unique_id=1390161964]
+
+[node name="AttackedMeshInstance" type="MeshInstance3D" parent="enemyLow_dice/Attacked" unique_id=826167832]
+visible = false
+mesh = SubResource("BoxMesh_fowbw")
+surface_material_override/0 = SubResource("StandardMaterial3D_nf3do")
+
+[node name="CriticalAttackedMeshInstance" type="MeshInstance3D" parent="enemyLow_dice/Attacked" unique_id=1079683112]
+visible = false
+mesh = SubResource("BoxMesh_fowbw")
+surface_material_override/0 = SubResource("StandardMaterial3D_hcbg1")
+
+[node name="AtackedTimer" type="Timer" parent="enemyLow_dice/Attacked" unique_id=81216072]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemyLow_dice" unique_id=1648537644]
+volume_db = -2.0
+unit_size = 20.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="enemyLow_dice" unique_id=912589682]
+stream = ExtResource("11_bc2ox")
+volume_db = -15.0
+unit_size = 20.0
+bus = &"SFX"
+
+[node name="enemyLow_dice2" type="RigidBody3D" parent="." unique_id=1278520137 node_paths=PackedStringArray("Enemy", "EnemyTrigger", "AttackedMeshInstance", "CriticalAttackedMeshInstance") groups=["Enemies"]]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 2, 1, -3)
+script = ExtResource("10_6jcv6")
+Enemy = NodePath(".")
+EnemyTrigger = NodePath("EnemyTrigger")
+AttackedMeshInstance = NodePath("Attacked/AttackedMeshInstance")
+CriticalAttackedMeshInstance = NodePath("Attacked/CriticalAttackedMeshInstance")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="enemyLow_dice2" unique_id=290159595]
+shape = SubResource("BoxShape3D_w0rp6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemyLow_dice2" unique_id=181325271]
+mesh = SubResource("BoxMesh_wwsqc")
+surface_material_override/0 = SubResource("StandardMaterial3D_fowbw")
+
+[node name="EnemyTrigger" type="Area3D" parent="enemyLow_dice2" unique_id=335311786 groups=["Enemies"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemyLow_dice2/EnemyTrigger" unique_id=527654572]
+shape = SubResource("BoxShape3D_wwsqc")
+
+[node name="DamageCooldown" type="Timer" parent="enemyLow_dice2" unique_id=136947580]
+wait_time = 0.1
+
+[node name="DamageLabel" type="Label3D" parent="enemyLow_dice2" unique_id=1650234598]
+transform = Transform3D(1.505, 0, 0, 0, 0.96739537, 1.1528969, 0, -1.1528969, 0.96739537, 0, 1, 0)
+visible = false
+modulate = Color(1, 0.47168958, 0.38229927, 1)
+text = "asdfsaefsadf"
+font_size = 50
+
+[node name="FollowingCooldown" type="Timer" parent="enemyLow_dice2" unique_id=549504883]
+
+[node name="Textures" type="Node3D" parent="enemyLow_dice2" unique_id=1544733052]
+
+[node name="DiceSide(1)_1" type="Sprite3D" parent="enemyLow_dice2/Textures" unique_id=1796727666]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0.5099685)
+texture = ExtResource("3_i4rm3")
+
+[node name="DiceSide(1)_2" type="Sprite3D" parent="enemyLow_dice2/Textures" unique_id=429274159]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, -0.5041398)
+texture = ExtResource("3_i4rm3")
+
+[node name="DiceSide(1)_3" type="Sprite3D" parent="enemyLow_dice2/Textures" unique_id=934699574]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, -0.255, 0, 0.255, -1.1146404e-08, 0, 0.5047648, -0.0023055375)
+texture = ExtResource("3_i4rm3")
+
+[node name="DiceSide(1)_4" type="Sprite3D" parent="enemyLow_dice2/Textures" unique_id=1640254560]
+transform = Transform3D(0.255, 0, 0, 0, -1.1146404e-08, -0.255, 0, 0.255, -1.1146404e-08, 0, -0.5026775, -0.0023055375)
+texture = ExtResource("3_i4rm3")
+
+[node name="DiceSide(1)_5" type="Sprite3D" parent="enemyLow_dice2/Textures" unique_id=1603015866]
+transform = Transform3D(-1.1146404e-08, 0, 0.255, 0, 0.255, 0, -0.255, 0, -1.1146404e-08, -0.51649547, 0, 6.648898e-05)
+texture = ExtResource("3_i4rm3")
+
+[node name="DiceSide(1)_6" type="Sprite3D" parent="enemyLow_dice2/Textures" unique_id=2027482759]
+transform = Transform3D(-1.1146404e-08, 0, 0.255, 0, 0.255, 0, -0.255, 0, -1.1146404e-08, 0.50267863, 0, 6.648898e-05)
+texture = ExtResource("3_i4rm3")
+
+[node name="Attacked" type="Node3D" parent="enemyLow_dice2" unique_id=681336186]
+
+[node name="AttackedMeshInstance" type="MeshInstance3D" parent="enemyLow_dice2/Attacked" unique_id=1302469207]
+visible = false
+mesh = SubResource("BoxMesh_fowbw")
+surface_material_override/0 = SubResource("StandardMaterial3D_nf3do")
+
+[node name="CriticalAttackedMeshInstance" type="MeshInstance3D" parent="enemyLow_dice2/Attacked" unique_id=1948227665]
+visible = false
+mesh = SubResource("BoxMesh_fowbw")
+surface_material_override/0 = SubResource("StandardMaterial3D_hcbg1")
+
+[node name="AtackedTimer" type="Timer" parent="enemyLow_dice2/Attacked" unique_id=1131443680]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemyLow_dice2" unique_id=240899343]
+volume_db = -2.0
+unit_size = 20.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="enemyLow_dice2" unique_id=449027566]
+stream = ExtResource("11_bc2ox")
+volume_db = -15.0
+unit_size = 20.0
+bus = &"SFX"
+
+[connection signal="area_entered" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_entered"]
+[connection signal="area_exited" from="PlayerDice/PlayerTrigger" to="PlayerDice" method="_on_player_trigger_area_exited"]
+[connection signal="area_entered" from="PlayerDice/Attacking/AttackTrigger" to="PlayerDice" method="_on_attack_trigger_area_entered"]
+[connection signal="area_exited" from="PlayerDice/Attacking/AttackTrigger" to="PlayerDice" method="_on_attack_trigger_area_exited"]
+[connection signal="timeout" from="PlayerDice/Attacking/Attacking" to="PlayerDice" method="_on_attacking_timeout"]
+[connection signal="timeout" from="PlayerDice/Attacking/AttackCooldown" to="PlayerDice" method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="PlayerDice/Timers/DamageCooldown" to="PlayerDice" method="_on_damage_cooldown_timeout"]
+[connection signal="timeout" from="PlayerDice/Timers/HealthGainCooldown" to="PlayerDice" method="_on_health_gain_cooldown_timeout"]
+[connection signal="timeout" from="PlayerDice/Text/TextCountdown" to="PlayerDice" method="_on_text_countdown_timeout"]
+[connection signal="timeout" from="PlayerDice/Hurt/HurtVisualTimer" to="PlayerDice" method="_on_hurt_visual_timer_timeout"]
+[connection signal="area_entered" from="enemyLow_dice/EnemyTrigger" to="enemyLow_dice" method="_on_enemy_trigger_area_entered"]
+[connection signal="area_exited" from="enemyLow_dice/EnemyTrigger" to="enemyLow_dice" method="_on_enemy_trigger_area_exited"]
+[connection signal="timeout" from="enemyLow_dice/DamageCooldown" to="enemyLow_dice" method="_on_damage_cooldown_timeout"]
+[connection signal="timeout" from="enemyLow_dice/FollowingCooldown" to="enemyLow_dice" method="_on_following_cooldown_timeout"]
+[connection signal="timeout" from="enemyLow_dice/Attacked/AtackedTimer" to="enemyLow_dice" method="_on_atacked_timer_timeout"]
+[connection signal="area_entered" from="enemyLow_dice2/EnemyTrigger" to="enemyLow_dice2" method="_on_enemy_trigger_area_entered"]
+[connection signal="area_exited" from="enemyLow_dice2/EnemyTrigger" to="enemyLow_dice2" method="_on_enemy_trigger_area_exited"]
+[connection signal="timeout" from="enemyLow_dice2/DamageCooldown" to="enemyLow_dice2" method="_on_damage_cooldown_timeout"]
+[connection signal="timeout" from="enemyLow_dice2/FollowingCooldown" to="enemyLow_dice2" method="_on_following_cooldown_timeout"]
+[connection signal="timeout" from="enemyLow_dice2/Attacked/AtackedTimer" to="enemyLow_dice2" method="_on_atacked_timer_timeout"]

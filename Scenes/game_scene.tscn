@@ -101,27 +101,27 @@ top_radius = 1.25
 bottom_radius = 1.25
 height = 0.15
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72tq2"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnr0w"]
 transparency = 1
 albedo_color = Color(0.95686275, 0.95686275, 0.95686275, 0.54901963)
 
 [sub_resource type="TorusMesh" id="TorusMesh_m8pjy"]
-material = SubResource("StandardMaterial3D_72tq2")
+material = SubResource("StandardMaterial3D_fnr0w")
 inner_radius = 2.9
 outer_radius = 3.0
 ring_segments = 3
 
 [sub_resource type="TorusMesh" id="TorusMesh_qbb6i"]
-material = SubResource("StandardMaterial3D_72tq2")
+material = SubResource("StandardMaterial3D_fnr0w")
 inner_radius = 1.2
 outer_radius = 1.25
 ring_segments = 3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ousu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gqlrj"]
 albedo_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_m8pjy"]
-material = SubResource("StandardMaterial3D_4ousu")
+material = SubResource("StandardMaterial3D_gqlrj")
 
 [sub_resource type="BoxMesh" id="BoxMesh_wywco"]
 size = Vector3(1.05, 1.05, 1.05)
