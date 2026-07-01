@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dywhfdrpp64qr"
-path="res://.godot/imported/index.icon.png-d6d8a60acf6437ce578da776081ded7e.ctex"
+path="res://.godot/imported/index.icon.png-e2ff7e65ab440016f61d3b03a6bc9a13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Export/Die for a Challenge (HTML)/index.icon.png"
-dest_files=["res://.godot/imported/index.icon.png-d6d8a60acf6437ce578da776081ded7e.ctex"]
+source_file="res://Export/Die for a Challenge (HTML) (pre-launch)/index.icon.png"
+dest_files=["res://.godot/imported/index.icon.png-e2ff7e65ab440016f61d3b03a6bc9a13.ctex"]
 
 [params]
 
