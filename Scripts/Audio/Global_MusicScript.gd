@@ -37,7 +37,7 @@ func _process(delta):
 			Dynamics(1)
 
 func Looping():
-	if MusicPlayer.get_playback_position() >= 169.08:
+	if MusicPlayer.get_playback_position() >= 169.08: #168.46 for web build (HTML)
 			MusicPlayer.play(15.5)
 
 

@@ -431,12 +431,18 @@ label_settings = SubResource("LabelSettings_gjaym")
 
 [node name="AtariArea" type="Area2D" parent="Credits/SFXCredit/ExpandedCredits" unique_id=371954455]
 position = Vector2(24, 40)
+collision_layer = 9
+collision_mask = 9
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Credits/SFXCredit/ExpandedCredits/AtariArea" unique_id=124438641]
 shape = SubResource("RectangleShape2D_564oe")
 
 [node name="HalfbrickArea" type="Area2D" parent="Credits/SFXCredit/ExpandedCredits" unique_id=1944903623]
 position = Vector2(128, 40)
+collision_layer = 9
+collision_mask = 9
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Credits/SFXCredit/ExpandedCredits/HalfbrickArea" unique_id=1196133674]
 position = Vector2(16, 0)
@@ -444,12 +450,18 @@ shape = SubResource("RectangleShape2D_564oe")
 
 [node name="NintendoArea" type="Area2D" parent="Credits/SFXCredit/ExpandedCredits" unique_id=1017430632]
 position = Vector2(24, 88)
+collision_layer = 9
+collision_mask = 9
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Credits/SFXCredit/ExpandedCredits/NintendoArea" unique_id=1516923563]
 shape = SubResource("RectangleShape2D_564oe")
 
 [node name="VedinadArea" type="Area2D" parent="Credits/SFXCredit/ExpandedCredits" unique_id=1999061691]
 position = Vector2(144, 88)
+collision_layer = 9
+collision_mask = 9
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Credits/SFXCredit/ExpandedCredits/VedinadArea" unique_id=502289696]
 shape = SubResource("RectangleShape2D_564oe")
@@ -551,6 +563,10 @@ script = ExtResource("6_v0v8u")
 MouseCollisionArea = NodePath("MouseArea")
 
 [node name="MouseArea" type="Area2D" parent="MouseCollision" unique_id=539536982 groups=["Mouse"]]
+collision_layer = 9
+collision_mask = 9
+input_pickable = false
+monitoring = false
 
 [node name="MouseCollisionShape" type="CollisionShape2D" parent="MouseCollision/MouseArea" unique_id=878522858]
 shape = SubResource("CircleShape2D_564oe")
